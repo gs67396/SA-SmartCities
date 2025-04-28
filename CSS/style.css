@@ -18,9 +18,8 @@ a{
     color: aliceblue;
 }
 
-.criarconta{
-    background-color: #2dab18;
-    border: 2px solid beige;
+.criarconta button{
+    background-color: blue;
 }
 
 input{
