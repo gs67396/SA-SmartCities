@@ -2,9 +2,31 @@
     margin: 0;
     padding: 0;
 }
-#map { 
-    height: 180px; 
+
+#map {
+    height: 180px;
     display: block;
     margin-left: auto;
     margin-right: auto;
+}
+
+.content {
+    padding: 20px;
+    background-color: #227fa8;
+    border-radius: 20px;
+}
+
+.rotasLogo {
+    padding: 5px;
+    background-color: #41b8d5;
+    border-radius: 10px;
+    max-width: 120px;
+    text-align: center;
+    color: #ecf0f0;
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
+    font-style: normal;
+    font-size: 30px;
+    margin: 0 auto;
+
 }
