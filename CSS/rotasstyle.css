@@ -3,21 +3,35 @@
     padding: 0;
 }
 
-#map {
-    height: 180px;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
+
+.home{
+    z-index: 1000;
+    position: absolute;
+    top: 4%;
+    right: 10px;
+}
+
+.home img{
+    max-width: 40px;
+    max-height: auto;
+}
+
+.home button{
+    border: none;
+    border-radius: 40px;
+    padding: 12px;
+    background-color: #227fa8;
+    cursor: pointer;
 }
 
 .content {
-    padding: 20px;
+    padding: 5px;
     background-color: #227fa8;
     border-radius: 20px;
 }
 
 .rotasLogo {
-    padding: 5px;
+    padding: 10px;
     background-color: #41b8d5;
     border-radius: 10px;
     max-width: 120px;
@@ -26,7 +40,27 @@
     font-family: "Poppins", sans-serif;
     font-weight: 600;
     font-style: normal;
-    font-size: 30px;
+    font-size: 40px;
     margin: 0 auto;
 
 }
+
+.tabs {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+    margin-left: 60px ;
+    margin-right: 60px ;
+    margin-bottom: 20px ;
+}
+
+.tabs button {
+    border: none;
+    background-color: #227fa8;
+    cursor: pointer;
+    font-family: "Poppins", sans-serif;
+    color: #ecf0f0;
+    font-weight: 600;
+    font-size: 20px;
+}
+
