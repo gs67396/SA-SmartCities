@@ -66,10 +66,9 @@
 }
 
 .tabindicator{
+    background-color: #ff914d;
     padding: 5px;
-    background-color: black;
-    border-radius: 100px;
-    margin: 10px;
+    border-radius: 30px;
 
 }
 
@@ -79,5 +78,4 @@
         justify-content: center;
         gap: 100px;
     }
-
 }

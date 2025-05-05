@@ -107,15 +107,22 @@
 
             <div class="tabs">
 
+                <div>
+                    <button onclick="changetab('todas')">Todas</button>
+                    <div class="tabindicator" id="todastab"></div>
+                </div>
 
-                <button>Todas</button>
-
-                <button>Atuais</button>
-
-                <button>Alertas</button>
-
+                <div>
+                    <button onclick="changetab('atuais')">Atuais</button>
+                    <div class="tabindicator" id="atuaisstab" style="display: none;"></div>
+                </div>
+                
+                <div>
+                    <button onclick="changetab('alertas')">Alertas</button>
+                    <div class="tabindicator" id="alertasstab" style="display: none;"></div>
+                </div>
+                <script src="../JAVASCRIPT/rotas.js"></script>
             </div>
-            <div class="tabindicator">
 
             </div>
         </div>
