@@ -20,7 +20,7 @@
     border: none;
     border-radius: 40px;
     padding: 12px;
-    background-color: #227fa8;
+    background-color: rgb(34, 127, 168,0.6);
     cursor: pointer;
 }
 
@@ -72,10 +72,48 @@
 
 }
 
+.nodatalert{
+    text-align: center;
+    font-family: "Poppins", sans-serif;
+    color: rgba(245, 245, 245, 0.582);
+}
+
+.traindisplay{
+    background-color: #ececec;
+    margin: 20px;
+    border-radius: 5px;
+    display: flex;
+}
+
+.traindisplay .trainid{
+    font-family: "Poppins", sans-serif;
+    background-color: #5958b2;
+    border-radius: 30px;
+    padding: 5px;
+    color: white;
+    margin: 10px;
+    max-height: 25px;
+    font-weight: 600;
+}
+
+
+.traindisplay img{
+    max-width: 120px;
+}
+.traindisplay .text{
+    font-family: "Poppins", sans-serif;
+    font-weight: bold;
+    padding: 5px;
+}
+
 
 @media screen and (min-width: 1024px) {
     .tabs {
         justify-content: center;
         gap: 100px;
+    }
+    .traindisplay{
+        justify-content: center; 
+        
     }
 }
