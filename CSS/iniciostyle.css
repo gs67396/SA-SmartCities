@@ -44,3 +44,19 @@ color: rgb(0, 0, 0);
 .b2 button {
     background-color: brown;
 } 
+
+.alerta {
+    text-align: end;
+    display: flex;
+}
+
+.alerta button {
+    text-align: end;
+    margin: 8px;
+    border-radius: 30px;
+    background-color: brown;
+}
+
+.mais {
+
+}
