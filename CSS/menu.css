@@ -1,0 +1,31 @@
+.navbar {
+    background-color: #227fa8;
+    padding: 20px;
+    
+}
+
+.navbar a {
+    text-decoration: none;
+    color: aliceblue;
+    font-family: "Poppins", sans-serif;
+    font-weight: bold;
+    margin: 10px;
+
+}
+
+.navbar img{
+    max-width: 20%;
+}
+
+.home img {
+    max-width: 40px;
+    max-height: auto;
+}
+
+.home button {
+    border: none;
+    border-radius: 40px;
+    padding: 12px;
+    background-color: rgb(34, 127, 168, 0.6);
+    cursor: pointer;
+}

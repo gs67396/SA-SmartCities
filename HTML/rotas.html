@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../CSS/rotasstyle.css">
+    <link rel="stylesheet" href="../CSS/menu.css">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
         integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
@@ -19,6 +20,15 @@
 
 <body>
     <header>
+        <div class="navbar" id="navbar" style="display: none;">
+            <div><img src="../IMAGENS/SmartTrain.png" alt=""></div>
+            <a href="../HTML/Inicio.html"> Inicio </a>
+            <a href="../HTML/rotas.html"> Rotas </a>
+            <a href=""> Dashboard</a>
+            <a href="">Inspeções</a>
+            <a href="">Alertas</a>
+            <a href=""> Configurações </a>
+        </div>
         <div id="map" style="width: 100%; height: 400px; position: relative;"
             class="leaflet-container leaflet-touch leaflet-fade-anim leaflet-grab leaflet-touch-drag leaflet-touch-zoom"
             tabindex="0">
@@ -87,7 +97,8 @@
                             href="http://www.openstreetmap.org/copyright">OpenStreetMap</a></div>
                 </div>
             </div>
-            <div class="home"><button><img src="../IMAGENS/Hamburger_icon.svg.png"></button></div>
+            <div class="home"><button onclick="openav()"><img src="../IMAGENS/Hamburger_icon.svg.png"></button></div>
+            <script src="../JAVASCRIPT/menu.js"></script>
         </div>
 
         <script>
@@ -126,45 +137,54 @@
 
 
             <div id="todascontent">
-                <div class="traindisplay">
-                    <img src="../IMAGENS/trem1.png" alt="">
-                    <div class="trainid">017</div>
-                    <div>
-                        <div class="text">Lugar 1</div>
-                        <div class="text">18:00</div>
+                <a href="../HTML/traininfo.html">
+                    <div class="traindisplay">
+                        <img src="../IMAGENS/trem1.png" alt="">
+                        <div class="trainid">017</div>
+                        <div>
+                            <div class="text">Lugar 1</div>
+                            <div class="text">18:00</div>
+                        </div>
+                        <div class="text">-</div>
+                        <div>
+                            <div class="text">Lugar 2</div>
+                            <div class="text">20:00</div>
+                        </div>
                     </div>
-                    <div class="text">-</div>
-                    <div>
-                        <div class="text">Lugar 2</div>
-                        <div class="text">20:00</div>
+                </a>
+                <a href="../HTML/traininfo.html">
+                    <div class="traindisplay">
+                        <img src="../IMAGENS/trem1.png" alt="">
+                        <div class="trainid">017</div>
+                        <div>
+                            <div class="text">Lugar 1</div>
+                            <div class="text">18:00</div>
+                        </div>
+                        <div class="text">-</div>
+                        <div>
+                            <div class="text">Lugar 2</div>
+                            <div class="text">20:00</div>
+                        </div>
                     </div>
-                </div>
-                <div class="traindisplay">
-                    <img src="../IMAGENS/trem1.png" alt="">
-                    <div class="trainid">017</div>
-                    <div>
-                        <div class="text">Lugar 1</div>
-                        <div class="text">18:00</div>
+                </a>
+
+                <a href="../HTML/traininfo.html">
+
+                    <div class="traindisplay">
+                        <img src="../IMAGENS/trem1.png" alt="">
+                        <div class="trainid">017</div>
+                        <div>
+                            <div class="text">Lugar 1</div>
+                            <div class="text">18:00</div>
+                        </div>
+                        <div class="text">-</div>
+                        <div>
+                            <div class="text">Lugar 2</div>
+                            <div class="text">20:00</div>
+                        </div>
                     </div>
-                    <div class="text">-</div>
-                    <div>
-                        <div class="text">Lugar 2</div>
-                        <div class="text">20:00</div>
-                    </div>
-                </div>
-                <div class="traindisplay">
-                    <img src="../IMAGENS/trem1.png" alt="">
-                    <div class="trainid">017</div>
-                    <div>
-                        <div class="text">Lugar 1</div>
-                        <div class="text">18:00</div>
-                    </div>
-                    <div class="text">-</div>
-                    <div>
-                        <div class="text">Lugar 2</div>
-                        <div class="text">20:00</div>
-                    </div>
-                </div>
+                </a>
+
 
             </div>
 

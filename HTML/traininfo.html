@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../CSS/traininfostyle.css">
+    <link rel="stylesheet" href="../CSS/menu.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -14,13 +15,24 @@
 </head>
 
 <body>
-    <div class="home"><button><img src="../IMAGENS/Hamburger_icon.svg.png"></button></div>
+    <div class="navbar" id="navbar" style="display: none;">
+        <div><img src="../IMAGENS/SmartTrain.png" alt=""></div>
+        <a href="../HTML/Inicio.html"> Inicio </a>
+        <a href="../HTML/rotas.html"> Rotas </a>
+        <a href=""> Dashboard</a>
+        <a href="">Inspeções</a>
+        <a href="">Alertas</a>
+        <a href=""> Configurações </a>
+    </div>
+    <div class="home"><button onclick="openav()"><img src="../IMAGENS/Hamburger_icon.svg.png"></button></div>
+    <script src="../JAVASCRIPT/menu.js"></script>
+
     <div class="infoLogo">
         Informações
     </div>
     <div class="bigbox">
         <div style="display: flex;">
-            <img src="../IMAGENS/trem1.png" alt="">
+            <img src="../IMAGENS/trem1.png">
             <div class="trainid">017</div>
         </div>
 
@@ -28,7 +40,7 @@
             <div class="box">
                 <div>Maquinista</div>
 
-                <img src="../IMAGENS/user-3296.png" alt="">
+                <img src="../IMAGENS/user-3296.png">
                 <div>fulano</div>
                 <div>000-000-008</div>
 
@@ -50,33 +62,38 @@
     <hr>
     <h2>Rota Atual</h2>
     <div class="bigbox">
-        <img src="" alt="">
-        <div>
-            lugar 1
-            18:00
+        <img class="mapa" src="../IMAGENS/mapa.jpg">
+        <div class="rotaatual">
+            <div>Lugar 1 - Lugar 2</div>
+
+            <div>18:00 20:00</div>
+
+
         </div>
-        -
-        <div>
-            lugar 2
-            20:00
-        </div>
+
         <div class="alterar">
             <button>
-                Alterar
+                cancelar
             </button>
         </div>
 
     </div>
     <hr>
     <h2>Rotas planejadas</h2>
-    <p>Não ha nenhuma rota planejada no momento.</p>
+    <div class="nodatalert">Não há nenhuma rota planejada no momento. </div>
+
     <hr>
     <h2>Historico</h2>
     <div class="bigbox">
-        <div class="tempo">14:26 20 de mar de 2012</div>
         <div class="event">
-            <div class="dot"></div>
-            Acidente reportado proximo ao bairro Guanabara.
+            <div class="tempo">14:26 20 de mar de 2012</div>
+            <div style="display: flex;">
+                <div class="dot"></div>
+                Acidente reportado proximo ao bairro Guanabara.
+
+                <img class="mapa" src="../IMAGENS/mapa.jpg" alt="">
+            </div>
+
         </div>
     </div>
 

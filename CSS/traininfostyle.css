@@ -1,21 +1,10 @@
+
 body {
     background-color: #227fa8;
     background-image: linear-gradient(#227fa8, #4fc4e3);
     font-family: "Poppins", sans-serif;
 }
 
-.home img {
-    max-width: 40px;
-    max-height: auto;
-}
-
-.home button {
-    border: none;
-    border-radius: 40px;
-    padding: 12px;
-    background-color: rgb(34, 127, 168, 0.6);
-    cursor: pointer;
-}
 
 .infoLogo {
     background-color: #41b8d5;
@@ -27,20 +16,22 @@ body {
     font-style: normal;
     font-size: 40px;
     margin-bottom: 10px
-
 }
 
 .bigbox {
     background-color: #ececec;
     border-radius: 10px;
     padding: 10px;
+    display: block;
 }
 
 .bigbox img {
     max-width: 220px;
 }
+
 .box img {
     max-width: 100px;
+    align-items: center;
 }
 
 .box {
@@ -59,19 +50,64 @@ body {
     margin: 20px;
     background-color: #5958b2;
     border-radius: 20px;
-    padding: 5px 20px  5px 20px ;
+    padding: 5px 20px 5px 20px;
     color: white;
     font-weight: 600;
     font-size: xx-large;
     max-height: 50px;
 }
 
-h2{
+h2 {
     color: white;
     text-align: center;
     margin: 0;
 }
 
-.alterar{
+.alterar {
+    display: flex;
     align-items: center;
+    justify-content: center;
+}
+
+.alterar button {
+    border: none;
+    background-color: #e43d3c;
+    font-family: "Poppins", sans-serif;
+    font-weight: bolder;
+    font-size: 20px;
+    color: white;
+    border-radius: 5px;
+}
+
+.rotaatual {
+    text-align: center;
+    font-weight: bold;
+}
+
+.mapa img {
+    width: 50%;
+}
+
+.mapa {
+    display: block;
+    margin: auto;
+}
+
+.nodatalert {
+    text-align: center;
+    font-family: "Poppins", sans-serif;
+    color: rgba(245, 245, 245, 0.582);
+}
+
+.tempo{
+    font-weight: bold;
+    font-size: small;
+}
+
+
+.dot{
+    background-color:#e43d3c ;
+    padding: 5px;
+    border-radius: 100px;
+    max-height: 2px;
 }

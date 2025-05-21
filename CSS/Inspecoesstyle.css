@@ -1,0 +1,11 @@
+.caixa-grande {
+    background-color: aqua;
+    width: auto; /* 100% da largura da janela */
+    height: 45px; /* 100% da altura da janela */
+}
+
+.caixa-grande p {
+    text-align: center;
+    font-size: 30px;
+    border-radius: 80px;
+}
