@@ -12,6 +12,7 @@ background-position: center;
 h1 {
     color: yellow;
     text-align: center;
+    padding: 20px;
 }
 
 .conteudo button {
@@ -141,6 +142,10 @@ h1 {
     padding: 20px;
 }
 
+.espaco3 {
+    padding: 3px;
+}
+
 .ícone_de_perfil {
     width: 30px;
     height: 30px;
@@ -165,5 +170,11 @@ button {
 }
 
 .espaco2 {
-    width: 300px;
+    width: 10000px;
+}
+
+.home {
+ text-align: end;
+ width: 340px;
+ padding: 3px;
 }
