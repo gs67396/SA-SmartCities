@@ -1,5 +1,8 @@
 body {
     background-color: rgb(7, 0, 110);
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
 }
 
 .a {
@@ -33,6 +36,8 @@ h1 {
 .train-imagem {
     background-color: #555; /* Fundo da imagem do trem */
     text-align: center;
+    margin-left: 10px;
+    margin-right: 10px;
 }
 
 .train-imagem img {
@@ -48,6 +53,8 @@ h1 {
     gap: 8px 10px;
     align-items: center;
     background-color: #666;
+    margin-left: 10px;
+    margin-right: 10px;
 }
 
 .train-id {
@@ -157,6 +164,7 @@ h1 {
 button {
     background: none;
     border-radius: 20px;
+    margin: 10px;
 }
 
 .b2 button {
