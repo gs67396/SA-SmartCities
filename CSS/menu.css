@@ -1,7 +1,6 @@
 .navbar {
     background-color: #227fa8;
     padding: 20px;
-    
 }
 
 .navbar a {
@@ -13,7 +12,7 @@
 
 }
 
-.navbar img{
+.navbar img {
     max-width: 20%;
 }
 
@@ -28,4 +27,5 @@
     padding: 12px;
     background-color: rgb(34, 127, 168, 0.6);
     cursor: pointer;
+    margin: 5px;
 }
