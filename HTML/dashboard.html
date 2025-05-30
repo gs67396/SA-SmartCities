@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../CSS/traininfostyle.css">
     <link rel="stylesheet" href="../CSS/menu.css">
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -32,7 +33,27 @@
     </div>
 
     <h2>Total de atividade</h2>
-    <div class="bigbox"></div>
+    <div class="bigbox">
+        <div id="myPlot" style="width:100%;max-width:700px;"></div>
+
+        <script>
+            const xArray = ["Italy", "France", "Spain", "USA", "Argentina"];
+            const yArray = [55, 49, 44, 24, 15];
+
+            const data = [{
+                x: xArray,
+                y: yArray,
+                type: "bar",
+                orientation: "v",
+                marker: { color: "rgba(0,0,255,0.6)" }
+            }];
+
+            const layout = { title: "World Wide Wine Production" };
+
+            Plotly.newPlot("myPlot", data, layout);
+        </script>
+    </div>
+
 
     </div>
     <hr>
