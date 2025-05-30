@@ -5,17 +5,27 @@ body {
     text-decoration: none;
 }
 
+
 .a {
-background-image: url(../IMAGENS/1000_F_239727837_KzfKzkTjKgWuCukE8MRFKQtQr46oG0iR.jpg);
-background-size: cover;
-background-repeat: no-repeat;
-background-position: center;
+    background-image: url(../IMAGENS/1000_F_239727837_KzfKzkTjKgWuCukE8MRFKQtQr46oG0iR.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    padding: 10px;
 }
 
-h1 {
-    color: yellow;
+.a h1 {
+    color: #ecbe25;
     text-align: center;
     padding: 20px;
+    font-size: 40px;
+    text-shadow: black -2px 2px;
+    font-family: "Belleza", sans-serif;
+    font-weight: 400;
+    font-style: normal;
 }
 
 .conteudo button {
@@ -28,13 +38,15 @@ h1 {
 }
 
 .train-card {
-    background-color: #444; /* Cor do card */
+    background-color: #444;
+    /* Cor do card */
     margin: 2px;
     border-radius: 20px;
 }
 
 .train-imagem {
-    background-color: #555; /* Fundo da imagem do trem */
+    background-color: #555;
+    /* Fundo da imagem do trem */
     text-align: center;
     margin-left: 10px;
     margin-right: 10px;
@@ -73,13 +85,15 @@ h1 {
 }
 
 .status-trem {
-    background-color: #ff4d4d; /* Vermelho */
+    background-color: #ff4d4d;
+    /* Vermelho */
     border-radius: 5px;
     padding: 4px;
 }
 
 .status.inativo {
-    background-color: #5cb85c; /* Verde */
+    background-color: #5cb85c;
+    /* Verde */
     border-radius: 5px;
     padding: 4px;
 }
@@ -171,7 +185,7 @@ button {
     background-color: rgb(0, 89, 255);
     border-radius: 20px;
     padding: 6px;
-} 
+}
 
 .flexivel {
     display: flex;
@@ -180,4 +194,3 @@ button {
 .espaco2 {
     width: 10000px;
 }
-
