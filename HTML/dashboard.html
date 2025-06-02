@@ -34,34 +34,83 @@
 
     <h2>Total de atividade</h2>
     <div class="bigbox">
-        <div id="myPlot" style="width:100%;max-width:700px;"></div>
-
+        <div id="totalDeAtividades_graph" style="width:100%;max-width:700px;"></div>
         <script>
-            const xArray = ["Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sabado", "Domingo"];
-            const yArray = [8, 12, 16, 20, 22, 10, 4];
 
-            const data = [{
-                x: xArray,
-                y: yArray,
+            let dataTDA = [{
+                x: ["Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sabado", "Domingo"],
+                y: [8, 12, 16, 20, 22, 10, 4],
+
                 type: "bar",
                 orientation: "v",
-                marker: { color: "rgba(0,0,255,0.6)" }
+                marker: { color: "rgba(44,103,158,1.0)" }
             }];
 
-            const layout = { title: "" };
 
-            Plotly.newPlot("myPlot", data, layout);
+            let layoutTDA = { paper_bgcolor: "#ececec",
+             plot_bgcolor: "#ececec",
+              xaxis: { tickangle: -45 }, 
+            };
+            let configTDA = { displayModeBar: false, 
+                responsive: true 
+            }
+
+            Plotly.newPlot("totalDeAtividades_graph", dataTDA, layoutTDA, configTDA);
         </script>
     </div>
     <hr>
     <h2>Atividade por tipo de transporte</h2>
     <div class="bigbox">
-        
+        <div id="TipoDeTansporte_graph" style="width:100%;max-width:700px;"></div>
+        <script>
+            let dataTDT = [{
+                values: [33, 76,],
+                labels: ['Passageiros', 'Carga'],
+                type: 'pie'
+            }];
+
+            let layoutTDT = {
+                autosize: true,
+                automargin: true,
+                paper_bgcolor: "#ececec",
+            };
+
+            let configTDT = {
+                responsive: true,
+                displayModeBar: false
+            }
+
+            Plotly.newPlot('TipoDeTansporte_graph', dataTDT, layoutTDT, configTDT);
+        </script>
+
 
     </div>
     <hr>
     <h2>Uso de energia</h2>
-    <div class="bigbox"></div>
+    <div class="bigbox">
+        <div id="UsoDeEnergia_graph" style="width:100%;max-width:700px;"></div>
+        <script>
+            let dataUDE = [{
+                values: [38, 45,16],
+                labels: ['Diesel','Carvão','Elétrico'],
+                type: 'pie'
+            }];
+
+            let layoutUDE = {
+                autosize: true,
+                automargin: true,
+                paper_bgcolor: "#ececec",
+            };
+
+            let configUDE = {
+                responsive: true,
+                displayModeBar: false
+            }
+
+            Plotly.newPlot('UsoDeEnergia_graph', dataUDE, layoutUDE, configUDE);
+        </script>
+
+    </div>
 
 
 
