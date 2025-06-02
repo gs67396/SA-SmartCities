@@ -1,19 +1,82 @@
-*{
+* {
     margin: 0;
     padding: 0;
+}
+
+body {
+    background-color: rgb(7, 0, 110);
+}
+
+/*Para caixa de titulo*/
+
+.caixa-titulo {
+    background-color: #5271ff;
+    margin: 10px;
+    border-radius: 5px;
+    width: auto;
+    /* 100% da largura da janela */
+    height: 45px;
+    /* 100% da altura da janela */
+}
+
+.caixa-titulo h2 {
+    text-align: center;
+    font-size: 33px;
+    margin: 5px;
 
 }
 
+/*Para caixa grande*/
+
 .caixa-grande {
-    background-color: aqua;
-    width: auto; /* 100% da largura da janela */
-    height: 45px; /* 100% da altura da janela */
-    margin: 20px;
+    background-color: #227fa8;
+    width: auto;
+    height: 40px;
+    margin: 10px;
+    border-radius: 5px;
 }
 
 .caixa-grande p {
     text-align: center;
+    font-size: 33px;
+    margin: 5px;
+    color: white;
+}
+
+/*Para caixa Segundaria*/
+
+.caixa-pequena {
+    background-color: #ececec;
+    width: auto;
+    height: 40px;
+    margin: 10px;
+    border-radius: 5px;
+    color: #227fa8;
+}
+
+.caixa-pequena p {
+    text-align: center;
+    font-size: 33px;
+    margin: 5px;
+}
+
+/*Para caixa alerta*/
+
+.alertas-contagem {
+    background-color: #ff4d4d;
+    color: #fff;
+    border-radius: 50%;
+    width: 20px;
+}
+
+.caixa-grande-alerta {
+    background-color: #227fa8;
+    width: auto;
+    height: 40px;
+    margin: 10px;
+    border-radius: 5px;
     font-size: 30px;
-    border-radius: 80px;
-    margin: 20px;
+    text-align: center;
+    padding: 2px 2px;
+    width: auto;
 }
