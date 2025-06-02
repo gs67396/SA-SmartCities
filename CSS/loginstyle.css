@@ -45,3 +45,8 @@ button{
     margin: 10px;
 }
 
+.logo img{
+    max-width: 100%;
+
+}
+
