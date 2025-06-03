@@ -5,7 +5,6 @@ body {
     margin: 0;
     padding: 0;
     text-decoration: none;
-
 }
 
 
@@ -34,11 +33,17 @@ body {
 
 .bigbox img {
     max-width: 220px;
+    display: block;
+    margin: auto;
 }
 
 .box img {
     max-width: 100px;
     align-items: center;
+}
+
+.maininfo{
+    display: flex;
 }
 
 .box {
@@ -49,9 +54,9 @@ body {
     margin: 5px;
     text-align: center;
     font-weight: 600;
-    width: 80%;
-    height: 38%;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    width: 100%;     
+    box-sizing: border-box;
 }
 
 .trainid {
@@ -93,14 +98,9 @@ h2 {
     font-weight: bold;
 }
 
-.mapa img {
-    width: 50%;
-}
 
-.mapa {
-    display: block;
-    margin: auto;
-}
+
+
 
 .nodatalert {
     text-align: center;
