@@ -118,6 +118,12 @@ h2 {
     max-height: 2px;
 }
 
+.option select{
+    width: 100%;
+    padding: 10px;
+    border-radius: 10px;
+}
+
 @media screen and (min-width: 1024px) {
 
     .infoLogo{

@@ -11,8 +11,9 @@
     margin: 10px;
 }
 
-
-
+.navbar a:hover{
+    color: #ff914d;
+}
 .navbar img {
     max-width: 40%;
 }

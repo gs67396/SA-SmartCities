@@ -46,6 +46,10 @@
     margin-bottom: 20px;
 }
 
+.tabs :hover{
+    color: #ff914d;
+}
+
 .tabs button {
     border: none;
     background-color: transparent;
@@ -55,6 +59,7 @@
     font-weight: 600;
     font-size: 20px;
 }
+
 
 .tabindicator {
     background-color: #ff914d;
@@ -97,6 +102,10 @@
     font-family: "Poppins", sans-serif;
     font-weight: bold;
     padding: 5px;
+}
+
+.traindisplay:hover{
+    background-color: #9c9c9c
 }
 
 a {
