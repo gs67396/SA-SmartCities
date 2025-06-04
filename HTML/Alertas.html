@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../CSS/menu.css">
+    <link rel="stylesheet" href="../CSS/iniciostyle.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Belleza&display=swap" rel="stylesheet">
+    <title>Inicio</title>
+</head>
+
+<body>
+
+    <header>
+        <div class="navbar" id="navbar" style="display: none;">
+            <div><img src="../IMAGENS/SmartTrain.png" alt=""></div>
+            <a href="../HTML/Inicio.html"> Inicio </a>
+            <a href="../HTML/rotas.html"> Rotas </a>
+            <a href="../HTML/dashboard.html"> Dashboard</a>
+            <a href="../HTML/inspesções.html">Inspeções</a>
+            <a href="">Alertas</a>
+            <a href="../HTML/configuracoes.html"> Configurações </a>
+        </div>
+
+
+        <div class="a">
+
+            <div class="home" style="margin: 0;"><button onclick="openav()"><img
+                        src="../IMAGENS/Hamburger_icon.svg.png"></button></div>
+            <script src="../JAVASCRIPT/menu.js"></script>
+            <h1>SmartTrain</h1>
+        </div>
+    </header>
+
+    <main>
+
+        <div class="train-danificado">
+
+            <div class="train-imagem">
+                <img src="../IMAGENS/trem1.png" alt="">
+            </div>
+
+            <div class="train-info">
+
+                <div class="top-info">
+                    <span class="train-id">008</span>
+                    <span class="status-trem">Danificado</span>
+                    <span class="modelo">Modelo</span>
+                    <span class="modelo-id">00y4-G586</span>
+                    
+                    <p>Energia restante:</p>
+
+                    <div class="Energia">
+                        <div class="progresso" style="width: 67%;"></div>
+                    </div>
+                </div>
+
+                <button onclick="carregar()"></button>
+
+                <div class="">
+                    <p> Falhas: Nenhuma</p>
+                </div>
+
+                <div class="">
+                    <p> Atraso: Nenhuma</p>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="espaco"></div>
+
+
+
+        <div class="espaco"></div>
+
+    </main>
+
+    <div class="flexivel">
+
+        <button>
+            <div class="ícone_de_perfil"></div>
+        </button>
+
+        <div class="espaco2">
+
+        </div>
+
+        <div class="b2">
+            <button>Atividades</button>
+        </div>
+
+    </div>
+
+    <body>
+
+</html>
