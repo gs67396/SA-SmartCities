@@ -22,6 +22,10 @@
     max-width: 40px;
     max-height: auto;
 }
+.home button:hover{
+    background-color: #2385af;
+
+}
 
 .home button {
     border: none;
