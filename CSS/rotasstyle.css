@@ -106,7 +106,7 @@
 }
 
 .traindisplay:hover{
-    background-color: #9c9c9c
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
 a {
