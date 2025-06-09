@@ -8,6 +8,35 @@ body {
 }
 
 
+a{
+    text-decoration: none;
+}
+.pageheader{
+    background-image: url(../IMAGENS/1000_F_239727837_KzfKzkTjKgWuCukE8MRFKQtQr46oG0iR.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    padding: 50px;
+    text-align: center;
+}
+
+.smatrainlogo{
+    color: #ecbe25;
+    padding: 20px;
+    font-size: 40px;
+     font-family: "Belleza", sans-serif;
+    text-shadow: black -2px 2px;
+    font-weight: 400;
+    font-style: normal;
+}
+.modelo{
+    font-weight: 600;
+    color: black;
+}
+
 .infoLogo {
     background-color: #41b8d5;
     border-radius: 10px;
@@ -29,6 +58,8 @@ body {
     display: block;
     margin: 10px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    font-weight: 400;
+    color: black;
 }
 
 .bigbox img {
@@ -42,9 +73,7 @@ body {
     align-items: center;
 }
 
-.maininfo{
-    
-}
+
 
 .box {
     background-color: #227fa8;
@@ -57,6 +86,7 @@ body {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
     width: 100%;     
     box-sizing: border-box;
+    color: black;
 }
 
 .trainid {
@@ -68,6 +98,15 @@ body {
     font-weight: 600;
     font-size: xx-large;
     max-height: 50px;
+}
+.trainid-text {
+    margin-left: 5px;
+    margin-right: 5px;
+    background-color: #5958b2;
+    border-radius: 20px;
+    padding: 2px;
+    color: white;
+    font-weight: 600;
 }
 
 h2 {
@@ -96,6 +135,14 @@ h2 {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
     cursor: pointer;
     
+    
+}
+.status-trem{
+    background-color: #e43d3c;
+    font-family: "Poppins", sans-serif;
+    border-radius: 5px;
+    color: white;
+    padding: 5px;
 }
 
 .rotaatual {
@@ -121,12 +168,19 @@ h2 {
     padding: 5px;
     border-radius: 100px;
     max-height: 2px;
+    color: white;
 }
 
 .option select{
     width: 100%;
     padding: 10px;
     border-radius: 10px;
+}
+
+.alertas{
+    text-align: right;
+    font-weight: 600;
+    color: black;
 }
 
 @media screen and (min-width: 1024px) {
