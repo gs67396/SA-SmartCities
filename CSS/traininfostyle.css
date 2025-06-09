@@ -43,7 +43,7 @@ body {
 }
 
 .maininfo{
-    display: flex;
+    
 }
 
 .box {
@@ -146,5 +146,9 @@ h2 {
     hr{
        width:44%
     }
+
+
+
+    
     
 }
