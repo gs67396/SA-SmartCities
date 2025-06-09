@@ -20,6 +20,7 @@
             <a href="../HTML/Inicio.html"> Inicio </a>
             <a href="../HTML/rotas.html"> Rotas </a>
             <a href="../HTML/dashboard.html"> Dashboard</a>
+            <a href="../HTML/inspesções.html">Inspeções</a>
             <a href="">Alertas</a>
             <a href="../HTML/configuracoes.html"> Configurações </a>
         </div>
@@ -49,15 +50,16 @@
                     <span class="status-trem">Danificado</span>
                     <span class="modelo">Modelo</span>
                     <span class="modelo-id">00y4-G586</span>
-                    
+
                     <p>Energia restante:</p>
-
-                    <div class="Energia">
-                        <div class="progresso" style="width: 67%;"></div>
-                    </div>
+                
+                <script src="Progresso.js"></script>
+                <button onclick="setInterval()"></button>
+                <div class="energy-bar-container">
+                    <div class="energy-bar" id="energyBar"></div>
                 </div>
-
-                <button onclick="carregar()"></button>
+                
+                
 
                 <div class="">
                     <p> Falhas: Nenhuma</p>
