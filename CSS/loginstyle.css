@@ -67,6 +67,13 @@ button{
 
 .logo img{
     max-width: 100%;
+}
 
+.espaco {
+    padding: 20px;
+}
+
+.imag img{
+    height: 155px;
 }
 
