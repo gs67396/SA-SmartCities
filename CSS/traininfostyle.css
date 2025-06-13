@@ -84,8 +84,8 @@ a {
     align-items: center;
 }
 
-.top-info{
-    display: flex ;
+.top-info {
+    display: flex;
     align-items: center;
     gap: 10px;
 }
@@ -104,9 +104,10 @@ a {
     margin-bottom: 20px;
 }
 
-.box p{
+.box p {
     font-weight: 300;
 }
+
 .circle {
     border-radius: 50%;
     background-color: yellow;
@@ -249,9 +250,17 @@ h2 {
     hr {
         width: 44%
     }
+}
 
 
+@media screen and (max-width: 344px) {
 
+    .trainid {
+        margin: 0px;
 
-
+    }
+    .bigbox img {
+    max-width: 160px;
+    align-items: center;
+}
 }
