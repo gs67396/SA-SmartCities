@@ -253,11 +253,3 @@ h2 {
 }
 
 
-@media screen and (max-width: 360px) {
-
-    .trainid {
-        margin: 0px;
-
-    }
-   
-}
