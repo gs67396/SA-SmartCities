@@ -43,32 +43,68 @@
                 </div>
             </div>
         </div>
-        <div class="box free">
-            <h3>Nome de Usuário</h3>
 
-            <div class="bigscreenflex">
-                <p>Usuario1</p>
-                <div class="alterar" style="font-weight: 200;">
-                    <button>Editar</button>
-                </div>
-            </div>
-
-        </div>
         <div class="box free">
-            <h3>E-mail</h3>
-            <div class="bigscreenflex">
-                <p>Usuario1@hotmail.com</p>
-                <div class="alterar" style="font-weight: 200;">
-                    <button>Editar</button>
-                </div>
-            </div>
+    <h3>Nome de Usuário</h3>
+    <div class="bigscreenflex">
+        <p id="usuario-view">Usuario1</p>
+        <input type="text" id="usuario-edit" value="Usuario1" style="display:none;">
+        <div class="alterar" style="font-weight: 200;">
+            <button id="editar-usuario" onclick="editarUsuario()">Editar</button>
+            <button id="salvar-usuario" onclick="salvarUsuario()" style="display:none;">Salvar</button>
         </div>
+    </div>
+</div>
+
+    
+        <div class="box free">
+    <h3>E-mail</h3>
+    <div class="bigscreenflex">
+        <p id="email-view">Usuario1@hotmail.com</p>
+        <input type="email" id="email-edit" value="Usuario1@hotmail.com" style="display:none;">
+        <div class="alterar" style="font-weight: 200;">
+            <button id="editar-email" onclick="editarEmail()">Editar</button>
+            <button id="salvar-email" onclick="salvarEmail()" style="display:none;">Salvar</button>
+        </div>
+    </div>
+</div>
+
+
+<script>
+function editarEmail() {
+    document.getElementById('email-view').style.display = 'none';
+    document.getElementById('email-edit').style.display = 'inline';
+    document.getElementById('editar-email').style.display = 'none';
+    document.getElementById('salvar-email').style.display = 'inline';
+}
+function salvarEmail() {
+    var novoEmail = document.getElementById('email-edit').value;
+    document.getElementById('email-view').textContent = novoEmail;
+    document.getElementById('email-view').style.display = 'inline';
+    document.getElementById('email-edit').style.display = 'none';
+    document.getElementById('editar-email').style.display = 'inline';
+    document.getElementById('salvar-email').style.display = 'none';
+}
+</script>
+
+<script>
+function editarUsuario() {
+    document.getElementById('usuario-view').style.display = 'none';
+    document.getElementById('usuario-edit').style.display = 'inline';
+    document.getElementById('editar-usuario').style.display = 'none';
+    document.getElementById('salvar-usuario').style.display = 'inline';
+}
+function salvarUsuario() {
+    var novoEmail = document.getElementById('usuario-edit').value;
+    document.getElementById('usuario-view').textContent = novoEmail;
+    document.getElementById('usuario-view').style.display = 'inline';
+    document.getElementById('usuario-edit').style.display = 'none';
+    document.getElementById('editar-usuario').style.display = 'inline';
+    document.getElementById('salvar-usuario').style.display = 'none';
+}
+</script>
 
     </div>
-
-
-
-
 
 </body>
 

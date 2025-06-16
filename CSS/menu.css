@@ -50,3 +50,17 @@
 
 
 }
+
+#email-edit {
+    font-size: 1em;
+    border: 1px solid #2600ff;
+    background: #227fa8;
+    border-radius: 4px;
+}
+
+#usuario-edit {
+    font-size: 1em;
+    border: 1px solid #2600ff;
+    background: #227fa8;
+    border-radius: 4px;
+}
