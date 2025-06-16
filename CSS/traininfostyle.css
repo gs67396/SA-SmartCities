@@ -74,7 +74,7 @@ a {
 }
 
 .bigbox img {
-    max-width: 220px;
+    max-width: 50%;
     display: block;
     margin: auto;
 }
@@ -253,14 +253,11 @@ h2 {
 }
 
 
-@media screen and (max-width: 344px) {
+@media screen and (max-width: 360px) {
 
     .trainid {
         margin: 0px;
 
     }
-    .bigbox img {
-    max-width: 160px;
-    align-items: center;
-}
+   
 }
