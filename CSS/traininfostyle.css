@@ -18,20 +18,20 @@ a {
     background-repeat: no-repeat;
     background-position: center;
     display: flex;
-    align-items: center;
     margin-bottom: 10px;
     padding: 50px;
-    text-align: center;
+    justify-content: space-between;
 }
 
 .smatrainlogo {
     color: #ecbe25;
     padding: 20px;
-    font-size: 40px;
+    font-size: 8vw;
     font-family: "Belleza", sans-serif;
     text-shadow: black -2px 2px;
     font-weight: 400;
     font-style: normal;
+    margin: 0 auto;
 }
 
 .modelo {
@@ -223,6 +223,10 @@ h2 {
         margin-right: auto;
     }
 
+    .smatrainlogo {
+        font-size: 40px;
+    }
+
     .bigbox {
         max-width: 820px;
         margin-left: auto;
@@ -251,5 +255,4 @@ h2 {
         width: 44%
     }
 }
-
 

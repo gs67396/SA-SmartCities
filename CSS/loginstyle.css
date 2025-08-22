@@ -36,10 +36,10 @@ input{
     text-align: center;
     color: white;
     background-color: #091827;
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: 20px;
+    margin: 10px auto;
     display: block;
+    width: 80%;
+    max-width: 350px;
 }
 select{
     border-radius: 80px;
@@ -66,14 +66,17 @@ button{
 }
 
 .logo img{
-    max-width: 100%;
+    width: 50%;
+}
+
+.imagem img{
+    width: 50%;
+    max-width: 200px;
 }
 
 .espaco {
     padding: 20px;
 }
 
-.imag img{
-    height: 155px;
-}
+
 
