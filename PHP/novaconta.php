@@ -14,7 +14,7 @@
         <div class="logo"><img src="../IMAGENS/SmartTrain.png" alt="Logo"></div>
     </header>
 
-    <div class="imag">
+    <div class="imagem">
         <img src="../IMAGENS/user-3296.png" alt="header">
     </div>
 

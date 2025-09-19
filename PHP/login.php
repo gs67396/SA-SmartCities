@@ -18,25 +18,30 @@
         $email = trim($_POST["LoEmail"] ?? "");
         $senha = trim($_POST["LoSenha"] ?? "");
 
-        $stmt = $conn->prepare("SELECT pk_usuario, nome_usuario, senha_usuario FROM usuario WHERE email_usuario = ? AND senha_usuario = ?");
-        $stmt->bind_param("ss", $email, $senha);
+        $stmt = $conn->prepare("SELECT pk_usuario, nome_usuario, senha_usuario FROM usuario WHERE email_usuario = ? ");
+        $stmt->bind_param("s", $email);
         $stmt->execute();
         $resultado = $stmt->get_result();
+        
 
         if ($resultado->num_rows === 1) {
             $dados = $resultado->fetch_assoc();
-            $_SESSION["nome_usuario"] = $dados["nome_usuario"];
-            $_SESSION["usuario_id"] = $dados["pk_usuario"];
-            $_SESSION["conectado"] = true;
+            $senha_hash = $dados['senha_usuario'];
 
-    
-            header("Location: Inicio.php");
-            exit;
+            if (password_verify($senha, $senha_hash)) {
+                $_SESSION["nome_usuario"] = $dados["nome_usuario"];
+                $_SESSION["usuario_id"] = $dados["pk_usuario"];
+                $_SESSION["conectado"] = true;
+
+                header("Location: Inicio.php");
+                exit;
+            } else {
+                $erro = "E-mail ou senha inválidos.";
+            } 
         } else {
             $erro = "E-mail ou senha inválidos.";
         }
     }
-
 
 ?>
 
@@ -68,7 +73,7 @@
             <button type="submit">Login</button>
             
         </form> 
-        <div class="criarconta"><button><a href="novaconta.html">Criar conta</a></button></div>      
+        <div class="criarconta"><button><a href="novaconta.php">Criar conta</a></button></div>      
        
     </main>
     <footer>
