@@ -20,16 +20,14 @@
 
 <body>
     <header>
-        <div class="navbar" id="navbar" style="display: none;">
-            <a href="../HTML/Inicio.html">
-                <div><img src="../IMAGENS/SmartTrain.png" alt=""></div>
-            </a>
-            <a href="../HTML/Inicio.html"> Inicio </a>
-            <a href="../HTML/rotas.html"> Rotas </a>
-            <a href="../HTML/dashboard.html"> Dashboard</a>
-            <a href="../HTML/Alertas.html">Alertas</a>
-            <a href="../HTML/configuracoes.html"> Configurações </a>
-        </div>
+       <div class="navbar" id="navbar" style="display: none;">
+        <a href="../PHP/Inicio.php"><div><img src="../IMAGENS/SmartTrain.png" alt=""></div></a>
+        <a href="../PHP/Inicio.php"> Inicio </a>
+        <a href="../PHP/rotas.php"> Rotas </a>
+        <a href="../PHP/dashboard.php"> Dashboard</a>
+        <a href="../PHP/Alertas.php">Alertas</a>
+        <a href="../PHP/configuracoes.php">Configurações</a>
+    </div>
         <div id="map" style="width: 100%; height: 400px; position: relative;"
             class="leaflet-container leaflet-touch leaflet-fade-anim leaflet-grab leaflet-touch-drag leaflet-touch-zoom"
             tabindex="0">
@@ -138,7 +136,7 @@
 
 
             <div id="todascontent">
-                <a href="../HTML/traininfo.html">
+                <a href="../PHP/traininfo.php">
                     <div class="traindisplay">
                         <img src="../IMAGENS/trem1.png" alt="">
                         <div class="trainid">017</div>
@@ -156,7 +154,7 @@
                         </div>
                     </div>
                 </a>
-                <a href="../HTML/traininfo.html">
+                <a href="../PHP/traininfo.php">
                     <div class="traindisplay">
                         <img src="../IMAGENS/trem1.png" alt="">
                         <div class="trainid">017</div>
@@ -176,7 +174,7 @@
                     </div>
                 </a>
 
-                <a href="../HTML/traininfo.html">
+                <a href="../PHP/traininfo.php">
 
                     <div class="traindisplay">
                         <img src="../IMAGENS/trem1.png" alt="">

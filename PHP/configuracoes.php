@@ -17,12 +17,12 @@
 
 <body>
     <div class="navbar" id="navbar" style="display: none;">
-        <a href="../HTML/Inicio.html"><div><img src="../IMAGENS/SmartTrain.png" alt=""></div></a>
-        <a href="../HTML/Inicio.html"> Inicio </a>
-        <a href="../HTML/rotas.html"> Rotas </a>
-        <a href="../HTML/dashboard.html"> Dashboard</a>
-        <a href="../HTML/Alertas.html">Alertas</a>
-        <a href="../HTML/configuracoes.html"> Configurações </a>
+        <a href="../PHP/Inicio.php"><div><img src="../IMAGENS/SmartTrain.png" alt=""></div></a>
+        <a href="../PHP/Inicio.php"> Inicio </a>
+        <a href="../PHP/rotas.php"> Rotas </a>
+        <a href="../PHP/dashboard.php"> Dashboard</a>
+        <a href="../PHP/Alertas.php">Alertas</a>
+        <a href="../PHP/configuracoes.php">Configurações</a>
     </div>
     <div class="home"><button id="menuButton" onclick="openav()"><img id="icon"
                 src="../IMAGENS/Hamburger_icon.svg.png"></button></div>

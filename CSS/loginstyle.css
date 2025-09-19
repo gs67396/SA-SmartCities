@@ -1,6 +1,8 @@
 body{
     background-color: #091827;
     text-align: center;
+    color: aliceblue;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
 p {

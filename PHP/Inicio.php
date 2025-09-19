@@ -16,15 +16,13 @@
 
     <header>
         <div class="navbar" id="navbar" style="display: none;">
-            <a href="../HTML/Inicio.html">
-                <div><img src="../IMAGENS/SmartTrain.png" alt=""></div>
-            </a>
-            <a href="../HTML/Inicio.html"> Inicio </a>
-            <a href="../HTML/rotas.html"> Rotas </a>
-            <a href="../HTML/dashboard.html"> Dashboard</a>
-            <a href="../HTML/Alertas.html">Alertas</a>
-            <a href="../HTML/configuracoes.html"> Configurações </a>
-        </div>
+        <a href="../PHP/Inicio.php"><div><img src="../IMAGENS/SmartTrain.png" alt=""></div></a>
+        <a href="../PHP/Inicio.php"> Inicio </a>
+        <a href="../PHP/rotas.php"> Rotas </a>
+        <a href="../PHP/dashboard.php"> Dashboard</a>
+        <a href="../PHP/Alertas.php">Alertas</a>
+        <a href="../PHP/configuracoes.php">Configurações</a>
+    </div>
 
         <div class="pageheader">
             <div class="home"><button id="menuButton" onclick="openav()"><img id="icon"
@@ -35,7 +33,7 @@
     </header>
 
     <main>
-        <a href="../HTML/traininfo.html">
+        <a href="../PHP/traininfo.php">
             <div class="bigbox clickable">
                 <div class="train-imagem">
                     <img src="../IMAGENS/trem1.png" alt="">
@@ -47,7 +45,7 @@
                         <span class="texto status-trem">Danificado</span>
                         <span class="texto modelo">Modelo 00y4-G586</span>
                     </div>
-                    <a href="../HTML/rotas.html">
+                    <a href="../PHP/rotas.php">
                         <div class="box clickable" style="margin-top: 10px; margin-bottom: 10px;">
 
                             <div class="rota">
@@ -66,7 +64,7 @@
                         </div>
                     </a>
 
-                    <a href="../HTML/Alertas.html">
+                    <a href="../PHP/Alertas.php">
                         <div class="alertas">
                             <span>Alertas</span>
                             <span class="dot">1</span>
@@ -77,7 +75,7 @@
             </div>
         </a>
 
-        <a href="../HTML/traininfo.html">
+       <a href="../PHP/traininfo.php">
             <div class="bigbox clickable">
                 <div class="train-imagem">
                     <img src="../IMAGENS/trem1.png" alt="">
@@ -85,11 +83,11 @@
                 <div class="train-info">
                     <div class="espaco3"></div>
                     <div class="top-info">
-                        <span class="trainid">018</span>
-                        <span class="status-trem">Ativo</span>
-                        <span class="modelo">Modelo 00y4-G587</span>
+                        <span class="texto trainid">017</span>
+                        <span class="texto status-trem">Danificado</span>
+                        <span class="texto modelo">Modelo 00y4-G586</span>
                     </div>
-                    <a href="../HTML/rotas.html">
+                    <a href="../PHP/rotas.php">
                         <div class="box clickable" style="margin-top: 10px; margin-bottom: 10px;">
 
                             <div class="rota">
@@ -102,23 +100,23 @@
                             </div>
 
                             <div class="tempo">
-                                <span>16:00</span>
-                                <span>28:00</span>
+                                <span>18:00</span>
+                                <span>20:00</span>
                             </div>
                         </div>
                     </a>
 
-                    <a href="../HTML/Alertas.html">
+                    <a href="../PHP/Alertas.php">
                         <div class="alertas">
                             <span>Alertas</span>
-                            <span class="dot">0</span>
+                            <span class="dot">1</span>
                         </div>
                     </a>
 
                 </div>
             </div>
         </a>
-        <a href="../HTML/traininfo.html">
+        <a href="../PHP/traininfo.php">
             <div class="bigbox clickable">
                 <div class="train-imagem">
                     <img src="../IMAGENS/trem1.png" alt="">
@@ -126,11 +124,11 @@
                 <div class="train-info">
                     <div class="espaco3"></div>
                     <div class="top-info">
-                        <span class="trainid">019</span>
-                        <span class="status-trem">Danificado</span>
-                        <span class="modelo">Modelo 00y4-G588</span>
+                        <span class="texto trainid">017</span>
+                        <span class="texto status-trem">Danificado</span>
+                        <span class="texto modelo">Modelo 00y4-G586</span>
                     </div>
-                    <a href="../HTML/rotas.html">
+                    <a href="../PHP/rotas.php">
                         <div class="box clickable" style="margin-top: 10px; margin-bottom: 10px;">
 
                             <div class="rota">
@@ -143,12 +141,13 @@
                             </div>
 
                             <div class="tempo">
-                                <span>19:00</span>
-                                <span>22:00</span>
+                                <span>18:00</span>
+                                <span>20:00</span>
                             </div>
                         </div>
                     </a>
-                    <a href="../HTML/Alertas.html">
+
+                    <a href="../PHP/Alertas.php">
                         <div class="alertas">
                             <span>Alertas</span>
                             <span class="dot">1</span>
