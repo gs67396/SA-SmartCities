@@ -6,6 +6,11 @@
         
     $erro = "";
 
+    /*if (isset($_SESSION["nome_usuario"])) {
+        header("Location: Inicio.php");
+    exit;
+    }*/
+
     if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
         
@@ -34,7 +39,6 @@
 
 
 ?>
-
 
 
 <!DOCTYPE html>
