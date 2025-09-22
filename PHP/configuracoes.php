@@ -46,17 +46,19 @@
             <h3>Foto de perfil</h3>
             <div class="bigscreenflex">
                 <img src="../IMAGENS/user-3296.png" alt="">
-
                 <div class="alterar" style="font-weight: 200;">
+                    <form action="upload.php" method="post" enctype="multipart/form-data">
+                    <input type="file" name="foto" accept="image/*"><br><br>
                     <button>Editar</button>
                 </div>
             </div>
         </div>
 
+
         <div class="box free">
     <h3>Nome de Usuário</h3>
     <div class="bigscreenflex">
-        <p id="usuario-view"><?php echo $_SESSION["nome_usuario"]; ?></p>
+        <p id="usuario-view"><?php echo $_SESSION["nome_usuario"]; ?></p> 
         <input type="text" id="usuario-edit" value="<?php echo $_SESSION["nome_usuario"]; ?>" style="display:none;">
         <div class="alterar" style="font-weight: 200;">
             <button id="editar-usuario" onclick="editarUsuario()">Editar</button>
