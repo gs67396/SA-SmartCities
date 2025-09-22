@@ -1,3 +1,12 @@
+<?php
+
+    session_start();
+
+    if (!isset($_SESSION["conectado"]) || $_SESSION["conectado"] != true) {
+        header("Location: login.php");
+        exit;
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -47,8 +56,8 @@
         <div class="box free">
     <h3>Nome de Usuário</h3>
     <div class="bigscreenflex">
-        <p id="usuario-view">Usuario1</p>
-        <input type="text" id="usuario-edit" value="Usuario1" style="display:none;">
+        <p id="usuario-view"><?php echo $_SESSION["nome_usuario"]; ?></p>
+        <input type="text" id="usuario-edit" value="<?php echo $_SESSION["nome_usuario"]; ?>" style="display:none;">
         <div class="alterar" style="font-weight: 200;">
             <button id="editar-usuario" onclick="editarUsuario()">Editar</button>
             <button id="salvar-usuario" onclick="salvarUsuario()" style="display:none;">Salvar</button>
@@ -60,8 +69,8 @@
         <div class="box free">
     <h3>E-mail</h3>
     <div class="bigscreenflex">
-        <p id="email-view">Usuario1@hotmail.com</p>
-        <input type="email" id="email-edit" value="Usuario1@hotmail.com" style="display:none;">
+        <p id="email-view"><?php echo $_SESSION["email_usuario"]; ?></p>
+        <input type="email" id="email-edit" value="<?php echo $_SESSION["email_usuario"]; ?>" style="display:none;">
         <div class="alterar" style="font-weight: 200;">
             <button id="editar-email" onclick="editarEmail()">Editar</button>
             <button id="salvar-email" onclick="salvarEmail()" style="display:none;">Salvar</button>

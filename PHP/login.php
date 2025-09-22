@@ -18,7 +18,7 @@
         $email = trim($_POST["LoEmail"] ?? "");
         $senha = trim($_POST["LoSenha"] ?? "");
 
-        $stmt = $conn->prepare("SELECT pk_usuario, nome_usuario, senha_usuario FROM usuario WHERE email_usuario = ? ");
+        $stmt = $conn->prepare("SELECT pk_usuario, nome_usuario, senha_usuario, email_usuario FROM usuario WHERE email_usuario = ? ");
         $stmt->bind_param("s", $email);
         $stmt->execute();
         $resultado = $stmt->get_result();
@@ -31,6 +31,7 @@
             if (password_verify($senha, $senha_hash)) {
                 $_SESSION["nome_usuario"] = $dados["nome_usuario"];
                 $_SESSION["usuario_id"] = $dados["pk_usuario"];
+                $_SESSION["email_usuario"] = $dados["email_usuario"];
                 $_SESSION["conectado"] = true;
 
                 header("Location: Inicio.php");
