@@ -5,7 +5,48 @@
     if (!isset($_SESSION["conectado"]) || $_SESSION["conectado"] != true) {
         header("Location: login.php");
         exit;
+    } 
+
+// Conexão PDO
+$pdo = new PDO("mysql:host=localhost;dbname=seubanco;charset=utf8mb4", "usuario", "senha", [
+    PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
+]);
+
+if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_FILES["foto"])) {
+    $userId = $_SESSION['pk_usuario']; // ID do usuário logado
+
+    $arquivo = $_FILES["foto"]; // Dados do arquivo enviado
+
+    // Verificar se não houve erro
+    if ($arquivo["error"] === 0) {
+        // Definir pasta de destino
+        $pasta = "uploads/";
+        if (!is_dir($pasta)) {
+            mkdir($pasta, 0777, true);
+        }
+
+        // Gerar nome único para evitar conflito
+        $extensao = pathinfo($arquivo["name"], PATHINFO_EXTENSION);
+        $nomeUnico = uniqid("user_") . "." . $extensao; 
+
+        $caminho = $pasta . $nomeUnico;
+
+        // Mover arquivo para pasta
+        if (move_uploaded_file($arquivo["tmp_name"], $caminho)) {
+            // Salvar caminho no banco
+            $stmt = $pdo->prepare("UPDATE users SET foto = ? WHERE id = ?");
+            $stmt->execute([$caminho, $userId]);
+
+            echo "✅ Foto enviada com sucesso!";
+            echo "<br><img src='$caminho' width='150'>";
+        } else {
+            echo "❌ Erro ao salvar o arquivo.";
+        }
+    } else {
+        echo "❌ Erro no upload: " . $arquivo["error"];
     }
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -46,17 +87,19 @@
             <h3>Foto de perfil</h3>
             <div class="bigscreenflex">
                 <img src="../IMAGENS/user-3296.png" alt="">
-
                 <div class="alterar" style="font-weight: 200;">
+                    <form action="bd.php" method="post" enctype="multipart/form-data">
+                    <input type="file" name="foto" accept="image/*"><br><br>
                     <button>Editar</button>
                 </div>
             </div>
         </div>
 
+
         <div class="box free">
     <h3>Nome de Usuário</h3>
     <div class="bigscreenflex">
-        <p id="usuario-view"><?php echo $_SESSION["nome_usuario"]; ?></p>
+        <p id="usuario-view"><?php echo $_SESSION["nome_usuario"]; ?></p> 
         <input type="text" id="usuario-edit" value="<?php echo $_SESSION["nome_usuario"]; ?>" style="display:none;">
         <div class="alterar" style="font-weight: 200;">
             <button id="editar-usuario" onclick="editarUsuario()">Editar</button>
@@ -118,3 +161,4 @@ function salvarUsuario() {
 </body>
 
 </html>
+
