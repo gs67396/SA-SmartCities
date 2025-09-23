@@ -100,10 +100,22 @@
     <h3>Nome de Usuário</h3>
     <div class="bigscreenflex">
         <p id="usuario-view"><?php echo $_SESSION["nome_usuario"]; ?></p> 
-        <input type="text" id="usuario-edit" value="<?php echo $_SESSION["nome_usuario"]; ?>" style="display:none;">
+
+        <form  action="mudarnome.php" method="POST" id="mudarnome" style="display:none;" > 
+            <div class="bigscreenflex"> 
+                <input type="text" name="usuario-edit" value="<?php echo $_SESSION["nome_usuario"]; ?>" >  
+          
+                <div class="alterar" style="font-weight: 200;">
+                  <button id="salvar-usuario" onclick="salvarUsuario()" >Salvar</button>
+                </div>
+
+            </div>
+          
+        </form>
+        
         <div class="alterar" style="font-weight: 200;">
             <button id="editar-usuario" onclick="editarUsuario()">Editar</button>
-            <button id="salvar-usuario" onclick="salvarUsuario()" style="display:none;">Salvar</button>
+            
         </div>
     </div>
 </div>
@@ -142,9 +154,8 @@ function salvarEmail() {
 <script>
 function editarUsuario() {
     document.getElementById('usuario-view').style.display = 'none';
-    document.getElementById('usuario-edit').style.display = 'inline';
+    document.getElementById('mudarnome').style.display = 'inline';
     document.getElementById('editar-usuario').style.display = 'none';
-    document.getElementById('salvar-usuario').style.display = 'inline';
 }
 function salvarUsuario() {
     var novoEmail = document.getElementById('usuario-edit').value;
