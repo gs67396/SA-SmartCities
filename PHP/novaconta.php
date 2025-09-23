@@ -2,7 +2,6 @@
     require_once("bd.php");
     session_start();
     $erro = "";
-    $resultado = "";
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $nome = $_POST['novoUsername'] ?? '';
@@ -14,7 +13,7 @@
         // Função para validar a senha
         function senhaValida($senha) {
             return (
-                strlen($senha) >= 8 &&
+                strlen($senha) >= 8 &&                    // pelo menos 8 caracteres
                 preg_match('/[A-Za-z]/', $senha) &&       // pelo menos uma letra
                 preg_match('/[0-9]/', $senha) &&          // pelo menos um número
                 preg_match('/[\W]/', $senha)              // pelo menos um caractere especial
