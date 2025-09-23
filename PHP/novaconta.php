@@ -16,7 +16,8 @@
                 strlen($senha) >= 8 &&                    // pelo menos 8 caracteres
                 preg_match('/[A-Za-z]/', $senha) &&       // pelo menos uma letra
                 preg_match('/[0-9]/', $senha) &&          // pelo menos um número
-                preg_match('/[\W]/', $senha)              // pelo menos um caractere especial
+                preg_match('/[\W]/', $senha)  &&          // pelo menos um caractere especial
+                !preg_match('/\s/', $senha)               // não pode conter espaços
             );
         }
 
@@ -24,7 +25,12 @@
         if ($senha !== $confirmaSenha) {
             $erro= "As senhas não conferem!";
         } elseif (!senhaValida($senha)) {
-            $erro= "A senha deve ter no mínimo 8 caracteres, incluindo pelo menos uma letra, um número e um caractere especial."; 
+            $erro= "<p>A senha deve:</p> 
+            <p>- Ter no mínimo 8 caracteres</p>
+            <p>- Não possuir espaços</p>
+            <p>- Incluir pelo menos uma letra</p> 
+            <p>- Incluir pelo menos um número</p> 
+            <p>- Incluir pelo menos um caractere especial.</p>"; 
         } else {
             $senhaHash = password_hash($senha, PASSWORD_DEFAULT);
 
@@ -43,9 +49,9 @@
                 $stmt->bind_param("ssss", $nome, $email, $senhaHash, $genero);
 
                 if ($stmt->execute()) {
-                   $erro =  "Usuário cadastrado com sucesso!";
+                   $erro =  "<p>Usuário cadastrado com sucesso!<p>";
                 } else {
-                    $erro =  "Erro ao cadastrar usuário: " . $stmt->error; 
+                    $erro =  "<p>Erro ao cadastrar usuário: " . $stmt->error. "</p>"; 
                 }
 
                 $stmt->close();
@@ -90,9 +96,8 @@
         </select>
         <input type="password" name="novaSenha"  required placeholder="Senha">
         <input type="password" name="confirmarSenha" required placeholder="confirmar senha">
-        <?php if ($erro): ?>
-                <div class="erro"><?= htmlspecialchars($erro) ?></div>
-        <?php endif; ?>
+        <?php if ($erro){echo $erro;}  ?>
+                
         
         <button type="submit">Criar conta</button>
     </form>
