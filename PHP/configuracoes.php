@@ -123,18 +123,18 @@
    </div>
 
     
-        <div class="box free">
+    <div class="box free">
     <h3>E-mail</h3>
     <div class="bigscreenflex">
         <p id="email-view"><?php echo $_SESSION["email_usuario"]; ?></p>
         <form action="mudaremail.php" method="POST" id="mudaremail" style="display:none;"> 
             <div class="bigscreenflex">
-             <input type="email" name="email-edit" id="email-edit" value="<?php echo $_SESSION["email_usuario"]; ?>">
-            <div class="alterar" style="font-weight: 200;">
-                
-                <button id="salvar-email" type="submit" >Salvar</button>
+                <input type="email" name="email-edit" id="email-edit" value="<?php echo $_SESSION["email_usuario"]; ?>">
+                <div class="alterar" style="font-weight: 200;">
+                    
+                    <button id="salvar-email" type="submit" >Salvar</button>
 
-            </div>    
+                </div>    
             </div>
 
         </form>
@@ -152,7 +152,42 @@
         ?>
         
     </div>
-</div>
+    </div>
+
+    <div class="box free">
+        <h3>Senha<h3>
+        <form action="mudarsenha.php" method="POST" id="mudarsenha" style="display:none;">
+            <div class="bigsceenflex">
+                <input type="password" name="senhavelha" id="senhavelha" placeholder="Senha Atual"> <br>
+                <input type="password" name="senhanova" id="senhanova" placeholder="Senha Nova">
+                <div class="alterar" style="font-weight: 200;">
+                    
+                    <button id="salvar-senha" type="submit">Salvar</button>
+
+                </div>  
+            </div>
+        </form>
+        <div class="alterar" style="font-weight: 200;" >
+            <button id="editar-senha" onclick="editarSenha()">Editar</button>
+        </div>
+        <?php
+            if (isset($_GET['senha'])) {
+                if ($_GET['senha'] == 'ok') echo "<div class='feedback-senha' style='color:green;'>Senha alterada com sucesso</div>";
+                if ($_GET['senha'] == 'erro') echo "<div class='feedback-senha' style='color:red;'>Erro ao alterar senha</div>";
+                if ($_GET['senha'] == 'incorreta') echo "<div class='feedback-senha' style='color:red;'>Senha atual incorreta</div>";
+                if ($_GET['senha'] == 'invalida') echo "<div class='feedback-senha' style='color:red;'>
+                    A senha deve:<br>
+                    - Ter no mínimo 8 caracteres<br>
+                    - Não possuir espaços<br>
+                    - Incluir pelo menos uma letra<br>
+                    - Incluir pelo menos um número<br>
+                    - Incluir pelo menos um caractere especial.
+                </div>";
+                if ($_GET['senha'] == 'mesma') echo "<div class='feedback-senha' style='color:red;'>A nova senha não pode ser igual à atual</div>";
+            }
+        ?>
+
+    </div>
 
 
 <script>
@@ -175,6 +210,13 @@ function editarUsuario() {
     var feedback = document.querySelector('.feedback-nome');
     if (feedback) feedback.style.display = 'none';
     removeQueryParam('nome');
+}
+</script>
+
+<script>
+function editarSenha() {
+    document.getElementById('mudarsenha').style.display = 'inline';
+    document.getElementById('editar-senha').style.display = 'none';
 }
 </script>
 

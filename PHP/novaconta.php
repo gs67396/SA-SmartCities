@@ -3,12 +3,19 @@
     session_start();
     $erro = "";
 
+
+
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $nome = $_POST['novoUsername'] ?? '';
         $email = $_POST['novoEmail'] ?? '';
         $genero = $_POST['genero'] ?? '';
         $senha = $_POST['novaSenha'] ?? '';
         $confirmaSenha = $_POST['confirmarSenha'] ?? '';
+
+
+        function usernameValido($nome) {
+            return (isset($nome) && trim($nome) !== '');
+        }
 
         // Função para validar a senha
         function senhaValida($senha) {
@@ -21,8 +28,9 @@
             );
         }
 
-        // Validação da senha
-        if ($senha !== $confirmaSenha) {
+        if (!usernameValido($nome)) {
+            $erro = "<p>O nome de usuário não pode estar vazio<p>";
+        } elseif ($senha !== $confirmaSenha) {
             $erro= "As senhas não conferem!";
         } elseif (!senhaValida($senha)) {
             $erro= "<p>A senha deve:</p> 
@@ -41,7 +49,7 @@
             $stmt_verifica->store_result();
 
             if ($stmt_verifica->num_rows > 0) {
-                $erro = "Este e-mail já está cadastrado.";
+                $erro = "<P>Este e-mail já está cadastrado.<P>";
             } else {
                 // E-mail inédito, pode cadastrar
                 $sql = "INSERT INTO usuario (nome_usuario, email_usuario, senha_usuario, genero) VALUES (?, ?, ?, ?)";
@@ -85,7 +93,7 @@
 
     <form method="POST" id="criarconta">
         <input type="text" name="novoUsername" required placeholder="Nome de usuário">
-        <input type="e-mail" name="novoEmail" required placeholder="E-mail">
+        <input type="email" name="novoEmail" required placeholder="E-mail">
         <label for="genero">Gênero</label><br>
         <select name="genero" required>
             <option value="">Escolha..</option>

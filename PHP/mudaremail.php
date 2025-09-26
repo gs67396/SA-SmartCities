@@ -21,7 +21,7 @@
                 exit;
             }
 
-            
+            // verifica se o e-mail ja esta cadastrado
             $stmt_verifica = $conn->prepare("SELECT pk_usuario FROM usuario WHERE email_usuario = ? AND pk_usuario != ?");
             $stmt_verifica->bind_param("si", $novoEmail, $id);
             $stmt_verifica->execute();
