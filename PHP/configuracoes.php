@@ -80,8 +80,21 @@
     <div class="infoLogo">
         Configurações
     </div>
+
+    
+    
     <div class="bigbox">
         <h2 style="color: black;">Seu perfil</h2>
+
+        <div class="box free"> 
+            <div class="alterar" style="font-weight: 200;" >
+                <a href="sair.php">
+                    <button event="sair.php">Sair</button>
+                </a>
+                
+            </div>
+        </div>
+
         <div class="box free">
             <h3>Foto de perfil</h3>
             <div class="bigscreenflex">
@@ -188,6 +201,8 @@
         ?>
 
     </div>
+
+    
 
 
 <script>
