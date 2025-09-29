@@ -17,7 +17,7 @@
 
             if ($novoEmail === $emailAtual) {
                 
-                header("Location: configuracoes.php");
+                header("Location: ../PAGINAS/configuracoes.php");
                 exit;
             }
 
@@ -28,7 +28,7 @@
             $stmt_verifica->store_result();
 
             if ($stmt_verifica->num_rows > 0) {
-                header("Location: configuracoes.php?email=existe");
+                header("Location: ../PAGINAS/configuracoes.php?email=existe");
                 exit;
             }
             $stmt_verifica->close();
@@ -38,18 +38,18 @@
 
             if ($stmt->execute()) {
                 $_SESSION["email_usuario"] = $novoEmail;
-                header("Location: configuracoes.php?email=ok");
+                header("Location: ../PAGINAS/configuracoes.php?email=ok");
                 exit;
             } else {
-                header("Location: configuracoes.php?email=erro");
+                header("Location: ../PAGINAS/configuracoes.php?email=erro");
                 exit;
             }
         } else {
-            header("Location: configuracoes.php?email=vazio");
+            header("Location: ../PAGINAS/configuracoes.php?email=vazio");
             exit;
         }
     } else {
-        header("Location: configuracoes.php");
+        header("Location: ../PAGINAS/configuracoes.php");
         exit;
     }
 ?>

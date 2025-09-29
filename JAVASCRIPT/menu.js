@@ -6,9 +6,9 @@ let closed = true;
 menuButton.addEventListener("click", function() {
   
   if (closed){
-    icon.src = "../IMAGENS/x_icon_172101.png";
+    icon.src = "../../IMAGENS/x_icon_172101.png";
   } else{
-    icon.src = "../IMAGENS/Hamburger_icon.svg.png"
+    icon.src = "../../IMAGENS/Hamburger_icon.svg.png"
   }
   closed = !closed;
 

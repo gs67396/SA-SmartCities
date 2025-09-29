@@ -12,8 +12,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../CSS/rotasstyle.css">
-    <link rel="stylesheet" href="../CSS/menu.css">
+    <link rel="stylesheet" href="../../CSS/rotasstyle.css">
+    <link rel="stylesheet" href="../../CSS/menu.css">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
         integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
@@ -29,12 +29,12 @@
 <body>
     <header>
        <div class="navbar" id="navbar" style="display: none;">
-        <a href="../PHP/Inicio.php"><div><img src="../IMAGENS/SmartTrain.png" alt=""></div></a>
-        <a href="../PHP/Inicio.php"> Inicio </a>
-        <a href="../PHP/rotas.php"> Rotas </a>
-        <a href="../PHP/dashboard.php"> Dashboard</a>
-        <a href="../PHP/Alertas.php">Alertas</a>
-        <a href="../PHP/configuracoes.php">Configurações</a>
+        <a href="../PAGINAS/Inicio.php"><div><img src="../../IMAGENS/SmartTrain.png" alt=""></div></a>
+        <a href="../PAGINAS/Inicio.php"> Inicio </a>
+        <a href="../PAGINAS/rotas.php"> Rotas </a>
+        <a href="../PAGINAS/dashboard.php"> Dashboard</a>
+        <a href="../PAGINAS/Alertas.php">Alertas</a>
+        <a href="../PAGINAS/configuracoes.php">Configurações</a>
     </div>
         <div id="map" style="width: 100%; height: 400px; position: relative;"
             class="leaflet-container leaflet-touch leaflet-fade-anim leaflet-grab leaflet-touch-drag leaflet-touch-zoom"
@@ -105,8 +105,8 @@
                 </div>
             </div>
             <div class="home"><button id="menuButton" onclick="openav()"><img id="icon"
-                        src="../IMAGENS/Hamburger_icon.svg.png"></button></div>
-            <script src="../JAVASCRIPT/menu.js"></script>
+                        src="../../IMAGENS/Hamburger_icon.svg.png"></button></div>
+            <script src="../../JAVASCRIPT/menu.js"></script>
         </div>
 
         <script>
@@ -139,14 +139,14 @@
                     <button onclick="changetab('alertas')">Alertas</button>
                     <div class="tabindicator" id="alertasstab" style="display: none;"></div>
                 </div>
-                <script src="../JAVASCRIPT/rotas.js"></script>
+                <script src="../../JAVASCRIPT/rotas.js"></script>
             </div>
 
 
             <div id="todascontent">
-                <a href="../PHP/traininfo.php">
+                <a href="../PAGINAS/traininfo.php">
                     <div class="traindisplay">
-                        <img src="../IMAGENS/trem1.png" alt="">
+                        <img src="../../IMAGENS/trem1.png" alt="">
                         <div class="trainid">017</div>
                        <div class="traintext">
                             <div>
@@ -162,10 +162,10 @@
                         </div>
                     </div>
                 </a>
-                <a href="../PHP/traininfo.php">
+                <a href="../PAGINAS/traininfo.php">
                     <div class="traindisplay">
-                        <img src="../IMAGENS/trem1.png" alt="">
-                        <div class="trainid">017</div>
+                        <img src="../../IMAGENS/trem2.png" alt="">
+                        <div class="trainid">027</div>
                         <div class="traintext">
                             <div>
                                 <div class="text">Lugar 1</div>
@@ -182,11 +182,11 @@
                     </div>
                 </a>
 
-                <a href="../PHP/traininfo.php">
+                <a href="../PAGINAS/traininfo.php">
 
                     <div class="traindisplay">
-                        <img src="../IMAGENS/trem1.png" alt="">
-                        <div class="trainid">017</div>
+                        <img src="../../IMAGENS/trem3.png" alt="">
+                        <div class="trainid">008</div>
                        <div class="traintext">
                             <div>
                                 <div class="text">Lugar 1</div>

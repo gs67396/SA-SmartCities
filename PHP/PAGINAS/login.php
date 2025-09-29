@@ -1,6 +1,6 @@
 <?php 
 
-    require('bd.php');
+    require("../CODIGO/bd.php");
     
     session_start();
         
@@ -53,17 +53,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../CSS/loginstyle.css">
+    <link rel="stylesheet" href="../../CSS/loginstyle.css">
     <title>Login</title>
 </head>
 
 <body>
     <header>
-        <div class="logo"><img src="../IMAGENS/SmartTrain.png" alt="Logo"></div>
+        <div class="logo"><img src="../../IMAGENS/SmartTrain.png" alt="Logo"></div>
     </header>
 
     <main>
-        <div class="imagem"><img src="../IMAGENS/user-3296.png" alt="Usericon"></div>
+        <div class="imagem"><img src="../../IMAGENS/user-3296.png" alt="Usericon"></div>
         
         <form method="POST" id="Login">
             <input type="email" name="LoEmail" placeholder="E-mail"><br>

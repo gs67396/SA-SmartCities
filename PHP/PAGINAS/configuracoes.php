@@ -54,8 +54,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../CSS/traininfostyle.css">
-    <link rel="stylesheet" href="../CSS/menu.css">
+    <link rel="stylesheet" href="../../CSS/traininfostyle.css">
+    <link rel="stylesheet" href="../../CSS/menu.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -66,16 +66,16 @@
 
 <body>
     <div class="navbar" id="navbar" style="display: none;">
-        <a href="../PHP/Inicio.php"><div><img src="../IMAGENS/SmartTrain.png" alt=""></div></a>
-        <a href="../PHP/Inicio.php"> Inicio </a>
-        <a href="../PHP/rotas.php"> Rotas </a>
-        <a href="../PHP/dashboard.php"> Dashboard</a>
-        <a href="../PHP/Alertas.php">Alertas</a>
-        <a href="../PHP/configuracoes.php">Configurações</a>
+        <a href="../PAGINAS/Inicio.php"><div><img src="../IMAGENS/SmartTrain.png" alt=""></div></a>
+        <a href="../PAGINAS/Inicio.php"> Inicio </a>
+        <a href="../PAGINAS/rotas.php"> Rotas </a>
+        <a href="../PAGINAS/dashboard.php"> Dashboard</a>
+        <a href="../PAGINAS/Alertas.php">Alertas</a>
+        <a href="../PAGINAS/configuracoes.php">Configurações</a>
     </div>
     <div class="home"><button id="menuButton" onclick="openav()"><img id="icon"
-                src="../IMAGENS/Hamburger_icon.svg.png"></button></div>
-    <script src="../JAVASCRIPT/menu.js"></script>
+                src="../../IMAGENS/Hamburger_icon.svg.png"></button></div>
+    <script src="../../JAVASCRIPT/menu.js"></script>
 
     <div class="infoLogo">
         Configurações
@@ -88,7 +88,7 @@
 
         <div class="box free"> 
             <div class="alterar" style="font-weight: 200;" >
-                <a href="sair.php">
+                <a href="../CODIGO/sair.php">
                     <button event="sair.php">Sair</button>
                 </a>
                 
@@ -98,7 +98,7 @@
         <div class="box free">
             <h3>Foto de perfil</h3>
             <div class="bigscreenflex">
-                <img src="../IMAGENS/user-3296.png" alt="">
+                <img src="../../IMAGENS/user-3296.png" alt="">
                 <div class="alterar" style="font-weight: 200;">
                     <!-- <form action="bd.php" method="post" enctype="multipart/form-data"> 
                     <input type="file" name="foto" accept="image/*"><br><br> ! -->
@@ -113,7 +113,7 @@
         <div class="bigscreenflex">
             <p id="usuario-view"><?php echo $_SESSION["nome_usuario"]; ?></p> 
 
-        <form  action="mudarnome.php" method="POST" id="mudarnome" style="display:none;" > 
+        <form  action="../../PHP/CODIGO/mudarnome.php" method="POST" id="mudarnome" style="display:none;" > 
             <div class="bigscreenflex"> 
                 <input type="text" name="usuario-edit" id="usuario-edit" value="<?php echo $_SESSION["nome_usuario"]; ?>" >  
                 <div class="alterar" style="font-weight: 200;">
@@ -125,14 +125,15 @@
             <div class="alterar" style="font-weight: 200;">
                 <button id="editar-usuario" onclick="editarUsuario()">Editar</button>
             </div>
-            <?php
+            
+        </div>
+        <?php
                 if (isset($_GET['nome'])) {
                     if ($_GET['nome'] == 'ok') echo "<div class='feedback-nome' style='color:green;'>Nome alterado com sucesso</div>";
                     if ($_GET['nome'] == 'erro') echo "<div class='feedback-nome' style='color:red;'>Erro ao alterar nome</div>";
                     if ($_GET['nome'] == 'vazio') echo "<div class='feedback-nome' style='color:red;'>O campo nome não pode estar vazio</div>";
                 }
             ?>
-        </div>
    </div>
 
     
@@ -140,7 +141,7 @@
     <h3>E-mail</h3>
     <div class="bigscreenflex">
         <p id="email-view"><?php echo $_SESSION["email_usuario"]; ?></p>
-        <form action="mudaremail.php" method="POST" id="mudaremail" style="display:none;"> 
+        <form action="../CODIGO/mudaremail.php" method="POST" id="mudaremail" style="display:none;"> 
             <div class="bigscreenflex">
                 <input type="email" name="email-edit" id="email-edit" value="<?php echo $_SESSION["email_usuario"]; ?>">
                 <div class="alterar" style="font-weight: 200;">
@@ -154,7 +155,10 @@
         <div class="alterar" style="font-weight: 200;" >
             <button id="editar-email" onclick="editarEmail()">Editar</button>
         </div>
-        <?php
+        
+        
+    </div>
+    <?php
         
             if (isset($_GET['email'])) {
                 if ($_GET['email'] == 'ok') echo "<div class='feedback-email' style='color:green;'>E-mail alterado com sucesso</div>";
@@ -163,13 +167,11 @@
                 if ($_GET['email'] == 'vazio') echo "<div class='feedback-email' style='color:red;'>O campo e-mail não pode estar vazio</div>";
             }
         ?>
-        
-    </div>
     </div>
 
     <div class="box free">
         <h3>Senha<h3>
-        <form action="mudarsenha.php" method="POST" id="mudarsenha" style="display:none;">
+        <form action="../CODIGO/mudarsenha.php" method="POST" id="mudarsenha" style="display:none;">
             <div class="bigsceenflex">
                 <input type="password" name="senhavelha" id="senhavelha" placeholder="Senha Atual"> <br>
                 <input type="password" name="senhanova" id="senhanova" placeholder="Senha Nova">

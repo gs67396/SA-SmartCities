@@ -18,12 +18,12 @@
         $id = $_SESSION["usuario_id"] ?? null;
 
         if (!$id) {
-            header("Location: configuracoes.php?senha=erro");
+            header("Location: ../PAGINAS/configuracoes.php?senha=erro");
             exit;
         }
 
         if ($novaSenha === "" || $atualSenha === "") {
-            header("Location: configuracoes.php");
+            header("Location: ../PAGINAS/configuracoes.php");
             exit;
         }
 
@@ -37,19 +37,19 @@
 
             // Verifica se a senha atual está correta
             if (!password_verify($atualSenha, $senhaHashAtual)) {
-                header("Location: configuracoes.php?senha=incorreta");
+                header("Location: ../PAGINAS/configuracoes.php?senha=incorreta");
                 exit;
             }
 
             // Verifica se a nova senha é válida
             if (!senhaValida($novaSenha)) {
-                header("Location: configuracoes.php?senha=invalida");
+                header("Location: ../PAGINAS/configuracoes.php?senha=invalida");
                 exit;
             }
 
             // Não permitir que a nova senha seja igual à atual
             if (password_verify($novaSenha, $senhaHashAtual)) {
-                header("Location: configuracoes.php?senha=mesma");
+                header("Location: ../PAGINAS/configuracoes.php?senha=mesma");
                 exit;
             }
 
@@ -62,20 +62,20 @@
 
             if ($stmt2->execute()) {
                 $stmt2->close();
-                header("Location: configuracoes.php?senha=ok");
+                header("Location: ../PAGINAS/configuracoes.php?senha=ok");
                 exit;
             } else {
                 $stmt2->close();
-                header("Location: configuracoes.php?senha=erro");
+                header("Location: ../PAGINAS/configuracoes.php?senha=erro");
                 exit;
             }
         } else {
             $stmt->close();
-            header("Location: configuracoes.php?senha=erro");
+            header("Location: ../PAGINAS/configuracoes.php?senha=erro");
             exit;
         }
     } else {
-        header("Location: configuracoes.php");
+        header("Location: ../PAGINAS/configuracoes.php");
         exit;
     }
 

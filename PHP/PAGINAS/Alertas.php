@@ -12,8 +12,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../CSS/traininfostyle.css">
-    <link rel="stylesheet" href="../CSS/menu.css">
+    <link rel="stylesheet" href="../../CSS/traininfostyle.css">
+    <link rel="stylesheet" href="../../CSS/menu.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -24,16 +24,16 @@
 
 <body>
     <div class="navbar" id="navbar" style="display: none;">
-        <a href="../PHP/Inicio.php"><div><img src="../IMAGENS/SmartTrain.png" alt=""></div></a>
-        <a href="../PHP/Inicio.php"> Inicio </a>
-        <a href="../PHP/rotas.php"> Rotas </a>
-        <a href="../PHP/dashboard.php"> Dashboard</a>
-        <a href="../PHP/Alertas.php">Alertas</a>
-        <a href="../PHP/configuracoes.php">Configurações</a>
+        <a href="../PAGINAS/Inicio.php"><div><img src="../IMAGENS/SmartTrain.png" alt=""></div></a>
+        <a href="../PAGINAS/Inicio.php"> Inicio </a>
+        <a href="../PAGINAS/rotas.php"> Rotas </a>
+        <a href="../PAGINAS/dashboard.php"> Dashboard</a>
+        <a href="../PAGINAS/Alertas.php">Alertas</a>
+        <a href="../PAGINAS/configuracoes.php">Configurações</a>
     </div>
     <div class="home"><button id="menuButton" onclick="openav()"><img id="icon"
-                src="../IMAGENS/Hamburger_icon.svg.png"></button></div>
-    <script src="../JAVASCRIPT/menu.js"></script>
+                src="../../IMAGENS/Hamburger_icon.svg.png"></button></div>
+    <script src="../../JAVASCRIPT/menu.js"></script>
 
     <div class="infoLogo">
         Alertas
@@ -65,7 +65,7 @@
                 <div class="dot" style="background-color: gray;"></div>
                 Acidente reportado proximo ao bairro Guanabara.
 
-                <img src="../IMAGENS/mapa.jpg" alt="">
+                <img src="../../IMAGENS/mapa.jpg" alt="">
             </div>
 
         </div>

@@ -17,7 +17,7 @@
 
             if ($novoNome === $nomeAtual) {
                 
-                header("Location: configuracoes.php");
+                header("Location: ../PAGINAS/configuracoes.php");
                 exit;
             }
 
@@ -26,18 +26,18 @@
 
             if ($stmt->execute()) {
                 $_SESSION["nome_usuario"] = $novoNome;
-                header("Location: configuracoes.php?nome=ok");
+                header("Location: ../PAGINAS/configuracoes.php?nome=ok");
                 exit;
             } else {
-                header("Location: configuracoes.php?nome=erro");
+                header("Location: ../PAGINAS/configuracoes.php?nome=erro");
                 exit;
             }
         } else {
-            header("Location: configuracoes.php?nome=vazio");
+            header("Location: ../PAGINAS/configuracoes.php?nome=vazio");
             exit;
         }
     } else {
-        header("Location: configuracoes.php");
+        header("Location: ../PAGINAS/configuracoes.php");
         exit;
     }
 ?>

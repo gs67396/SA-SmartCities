@@ -1,5 +1,5 @@
 <?php  
-    require_once("bd.php");
+    require_once("../CODIGO/bd.php");
     session_start();
     $erro = "";
 
@@ -75,18 +75,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../CSS/loginstyle.css">
+    <link rel="stylesheet" href="../../CSS/loginstyle.css">
     <title>Cadastro</title>
 </head>
 
 <body>
 
     <header>
-        <div class="logo"><img src="../IMAGENS/SmartTrain.png" alt="Logo"></div>
+        <div class="logo"><img src="../../IMAGENS/SmartTrain.png" alt="Logo"></div>
     </header>
 
     <div class="imagem">
-        <img src="../IMAGENS/user-3296.png" alt="header">
+        <img src="../../IMAGENS/user-3296.png" alt="header">
     </div>
 
     <div class="espaco"></div>
@@ -109,7 +109,7 @@
         
         <button type="submit">Criar conta</button>
     </form>
-    <div class="criarconta"><button ><a href="../PHP/login.php">Voltar</a></button></div>
+    <div class="criarconta"><button ><a href="../PAGINAS/login.php">Voltar</a></button></div>
     
 </body>
 
