@@ -1,5 +1,6 @@
 <?php
     session_start();
+    include_once("../CODIGO/bd.php");
 
     if (!isset($_SESSION["conectado"]) || $_SESSION["conectado"] != true) {
         header("Location: login.php");
@@ -32,7 +33,7 @@
         <a href="../PAGINAS/Inicio.php"><div><img src="../../IMAGENS/SmartTrain.png" alt=""></div></a>
         <a href="../PAGINAS/Inicio.php"> Inicio </a>
         <a href="../PAGINAS/rotas.php"> Rotas </a>
-        <a href="../PAGINAS/dashboard.php"> Dashboard</a>
+        <a href="../PAGINAS/relatotio.php"> Dashboard</a>
         <a href="../PAGINAS/Alertas.php">Alertas</a>
         <a href="../PAGINAS/configuracoes.php">Configurações</a>
     </div>
@@ -127,12 +128,12 @@
             <div class="tabs">
                 <div>
                     <button onclick="changetab('todas')">Todas</button>
-                    <div class="tabindicator" id="todastab"></div>
+                    <div class="tabindicator" id="todastab" style="display: none;"></div>
                 </div>
 
                 <div>
                     <button onclick="changetab('atuais')">Atuais</button>
-                    <div class="tabindicator" id="atuaisstab" style="display: none;"></div>
+                    <div class="tabindicator" id="atuaisstab"></div>
                 </div>
 
                 <div>
@@ -143,7 +144,7 @@
             </div>
 
 
-            <div id="todascontent">
+            <div id="todascontent" style="display: none;">
                 <a href="../PAGINAS/traininfo.php">
                     <div class="traindisplay">
                         <img src="../../IMAGENS/trem1.png" alt="">
@@ -205,10 +206,59 @@
 
             </div>
 
-            <div id="atuaiscontent" style="display: none">
-                <div class="nodatalert">
-                    <h1>Não há rotas disponíveis no momento.</h1>
-                </div>
+            <div id="atuaiscontent">
+                <?php 
+
+                    $sql = "SELECT t.pk_trem, t.modelo_trem, t.condicao_trem, t.tipo_trem, r.origem_rota, r.destino_rota
+                    FROM trem t
+                    LEFT JOIN rota r ON t.rota_atual_trem = r.pk_rota";
+                    $result = $conn->query($sql);
+
+                    if($result->num_rows > 0){
+                        while ($row = $result->fetch_assoc()){
+                            $tipoTrem = strtolower($row["tipo_trem"]); 
+                            switch ($tipoTrem) {
+                                case 'a':
+                                    $imagem = 'trem1.png';
+                                    break;
+                                case 'b':
+                                    $imagem = 'trem2.png';
+                                    break;
+                                case 'c':
+                                    $imagem = 'trem3.png';
+                                    break;
+                                default:
+                                    $imagem = 'trem1.png';
+                            }
+                            echo '<a href="../PAGINAS/traininfo.php?trem'.$row["pk_trem"].'">
+                                    <div class="traindisplay">
+                                        <img src="../../IMAGENS/'.$imagem.'" alt="">
+                                        <div class="trainid">' . str_pad($row["pk_trem"], 3, '0', STR_PAD_LEFT) . '</div>
+                                    <div class="traintext">
+                                            <div>
+                                                <div class="text">Lugar 1</div>
+                                                <div class="text">18:00</div>
+                                            </div>
+                                            <div class="text">-</div>
+                                            <div>
+                                                <div class="text">Lugar 2</div>
+                                                <div class="text">20:00</div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </a>';
+
+                        }
+
+                    }else{
+                        echo "<div class='nodatalert'>
+                                <h1>Não há rotas disponíveis no momento.</h1>
+                            </div>";
+                    }
+
+                ?>
+                
 
             </div>
 

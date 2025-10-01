@@ -15,18 +15,31 @@ CREATE TABLE trem(
     modelo_trem VARCHAR(50) NOT NULL,
     condicao_trem VARCHAR(50) NOT NULL,
     tipo_trem VARCHAR(50) NOT NULL,
-    rota_atual_trem VARCHAR(50),
-    fk_rota VARCHAR(50)
-    REFERENCES rota(pk_rota)
-);
+    rota_atual_trem INT,
+    FOREIGN KEY (rota_atual_trem) REFERENCES rota(pk_rota);
+)
 
 CREATE TABLE rota(
     pk_rota INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
     nome_rota VARCHAR(50) NOT NULL,
     origem_rota VARCHAR(50) NOT NULL,
     destino_rota VARCHAR(50) NOT NULL,
-    distancia_rota DECIMAL(6,2) NOT NULL,
-    fk_trem VARCHAR(50)
-    REFERENCES trem(pk_trem)
+    distancia_rota DECIMAL(6,2) NOT NULL
 );
 
+CREATE TABLE rotas_trem(
+    pk_trem INT,
+    pk_rota INT,
+    PRIMARY KEY (pk_trem, pk_rota),
+    FOREIGN KEY (pk_trem) REFERENCES trem(pk_trem),
+    FOREIGN KEY (pk_rota) REFERENCES rota(pk_rota)
+);
+
+CREATE TABLE alerta(
+    pk_alerta INT PRIMARY KEY AUTO_INCREMENT,
+    tipo_alerta VARCHAR(50) NOT NULL,
+    descricao_alerta VARCHAR(250) NOT NULL,
+    data_hora_alerta DATETIME NOT NULL,
+    pk_trem INT,
+    FOREIGN KEY (pk_trem) REFERENCES trem(pk_trem)
+);

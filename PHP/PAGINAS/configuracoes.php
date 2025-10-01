@@ -69,7 +69,7 @@
         <a href="../PAGINAS/Inicio.php"><div><img src="../IMAGENS/SmartTrain.png" alt=""></div></a>
         <a href="../PAGINAS/Inicio.php"> Inicio </a>
         <a href="../PAGINAS/rotas.php"> Rotas </a>
-        <a href="../PAGINAS/dashboard.php"> Dashboard</a>
+        <a href="../PAGINAS/relatotio.php"> Dashboard</a>
         <a href="../PAGINAS/Alertas.php">Alertas</a>
         <a href="../PAGINAS/configuracoes.php">Configurações</a>
     </div>

@@ -1,6 +1,7 @@
 <?php
 
     session_start();
+    include_once("../CODIGO/bd.php");
 
     if (!isset($_SESSION["conectado"]) || $_SESSION["conectado"] != true) {
         header("Location: login.php");
@@ -28,7 +29,7 @@
         <a href="../PAGINAS/Inicio.php"><div><img src="../../IMAGENS/SmartTrain.png" alt=""></div></a>
         <a href="../PAGINAS/Inicio.php"> Inicio </a>
         <a href="../PAGINAS/rotas.php"> Rotas </a>
-        <a href="../PAGINAS/dashboard.php"> Dashboard</a>
+        <a href="../PAGINAS/relatotio.php"> Dashboard</a>
         <a href="../PAGINAS/Alertas.php">Alertas</a>
         <a href="../PAGINAS/configuracoes.php">Configurações</a>
     </div>
@@ -42,131 +43,96 @@
     </header>
 
     <main>
-        <a href="../PAGINAS/traininfo.php">
-            <div class="bigbox clickable">
-                <div class="train-imagem">
-                    <img src="../../IMAGENS/trem1.png" alt="">
-                </div>
-                <div class="train-info">
-                    <div class="espaco3"></div>
-                    <div class="top-info">
-                        <span class="texto trainid">017</span>
-                        <span class="texto status-trem">Danificado</span>
-                        <span class="texto modelo">Modelo 00Y4-G586</span>
-                    </div>
-                    <a href="../PAGINAS/rotas.php">
-                        <div class="box clickable" style="margin-top: 10px; margin-bottom: 10px;">
+        <?php
+            $sql = "SELECT t.pk_trem, t.modelo_trem, t.condicao_trem, t.tipo_trem, r.origem_rota, r.destino_rota,
+               COUNT(a.pk_alerta) AS total_alertas
+                FROM trem t
+                LEFT JOIN rota r ON t.rota_atual_trem = r.pk_rota
+                LEFT JOIN alerta a ON t.pk_trem = a.pk_trem
+                GROUP BY t.pk_trem, t.modelo_trem, t.condicao_trem, t.tipo_trem, r.origem_rota, r.destino_rota";
+            $result = $conn->query($sql);
 
-                            <div class="rota">
-                                <span>Rotas</span>
-                                <span class="seta">&gt;</span>
+            
+            if ($result->num_rows > 0) {
+                while ($row = $result->fetch_assoc()) {
+
+                    $tipoTrem = strtolower($row["tipo_trem"]); 
+                    switch ($tipoTrem) {
+                        case 'a':
+                            $imagem = 'trem1.png';
+                            break;
+                        case 'b':
+                            $imagem = 'trem2.png';
+                            break;
+                        case 'c':
+                            $imagem = 'trem3.png';
+                            break;
+                        default:
+                            $imagem = 'trem1.png';
+                    }
+                    $condicao = strtolower($row["condicao_trem"]);
+                    switch ($condicao) {
+                        case 'operacional':
+                            $statusColor = '#4caf50'; 
+                            break;
+                        case 'manutenção':
+                            $statusColor = '#ff9800'; 
+                            break;
+                        case 'danificado':
+                            $statusColor = '#e43d3c'; 
+                            break;
+                        default:
+                            $statusColor = '#5958b2'; 
+                    }
+
+                    if (!empty($row["origem_rota"]) && !empty($row["destino_rota"])) {
+                        $localizacao = htmlspecialchars($row["origem_rota"]) . " - " . htmlspecialchars($row["destino_rota"]);
+                    } else {
+                        $localizacao = "Sem rota atual";
+                    }
+
+                    echo '
+                    <a href="../PAGINAS/traininfo.php?trem'.$row["pk_trem"].'">
+                        <div class="bigbox clickable">
+                            <div class="train-imagem">
+                                <img src="../../IMAGENS/' . $imagem . '" alt="Imagem do trem">
                             </div>
-
-                            <div class="localizacao">
-                                <span>Lugar 1 - Lugar 2</span>
-                            </div>
-
-                            <div class="tempo">
-                                <span>18:00</span>
-                                <span>20:00</span>
-                            </div>
-                        </div>
-                    </a>
-
-                    <a href="../PAGINAS/Alertas.php">
-                        <div class="alertas">
-                            <span>Alertas</span>
-                            <span class="dot">1</span>
-                        </div>
-                    </a>
-
-                </div>
-            </div>
-        </a>
-
-       <a href="../PAGINAS/traininfo.php">
-            <div class="bigbox clickable">
-                <div class="train-imagem">
-                    <img src="../../IMAGENS/trem2.png" alt="">
-                </div>
-                <div class="train-info">
-                    <div class="espaco3"></div>
-                    <div class="top-info">
-                        <span class="texto trainid">027</span>
-                        <span class="texto status-trem">Danificado</span>
-                        <span class="texto modelo">Modelo 768X-PO90</span>
-                    </div>
-                    <a href="../PAGINAS/rotas.php">
-                        <div class="box clickable" style="margin-top: 10px; margin-bottom: 10px;">
-
-                            <div class="rota">
-                                <span>Rotas</span>
-                                <span class="seta">&gt;</span>
-                            </div>
-
-                            <div class="localizacao">
-                                <span>Lugar 1 - Lugar 2</span>
-                            </div>
-
-                            <div class="tempo">
-                                <span>18:00</span>
-                                <span>20:00</span>
-                            </div>
-                        </div>
-                    </a>
-
-                    <a href="../PHP/Alertas.php">
-                        <div class="alertas">
-                            <span>Alertas</span>
-                            <span class="dot">1</span>
-                        </div>
-                    </a>
-
-                </div>
-            </div>
-        </a>
-        <a href="../PAGINAS/traininfo.php">
-            <div class="bigbox clickable">
-                <div class="train-imagem">
-                    <img src="../../IMAGENS/trem3.png" alt="">
-                </div>
-                <div class="train-info">
-                    <div class="espaco3"></div>
-                    <div class="top-info">
-                        <span class="texto trainid">008</span>
-                        <span class="texto status-trem">Danificado</span>
-                        <span class="texto modelo">Modelo 13E6-W09L</span>
-                    </div>
-                    <a href="../PAGINAS/rotas.php">
-                        <div class="box clickable" style="margin-top: 10px; margin-bottom: 10px;">
-
-                            <div class="rota">
-                                <span>Rotas</span>
-                                <span class="seta">&gt;</span>
-                            </div>
-
-                            <div class="localizacao">
-                                <span>Lugar 1 - Lugar 2</span>
-                            </div>
-
-                            <div class="tempo">
-                                <span>18:00</span>
-                                <span>20:00</span>
+                            <div class="train-info">
+                                <div class="espaco3"></div>
+                                <div class="top-info">
+                                    <span class="texto trainid">' . str_pad($row["pk_trem"], 3, '0', STR_PAD_LEFT) . '</span>
+                                    <span class="texto status-trem" style="background-color:'. $statusColor .'">' . htmlspecialchars($row["condicao_trem"]) . '</span>
+                                    <span class="texto modelo">Modelo ' . htmlspecialchars($row["modelo_trem"]) . '</span>
+                                </div>
+                                <a href="../PAGINAS/rotas.php">
+                                    <div class="box clickable" style="margin-top: 10px; margin-bottom: 10px;">
+                                        <div class="rota">
+                                            <span>Rotas</span>
+                                            <span class="seta">&gt;</span>
+                                        </div>
+                                        <div class="localizacao">
+                                            <span>' . $localizacao . '</span>
+                                        </div>
+                                    </div>
+                                </a>';
+                                if ($row["total_alertas"] > 0) {
+                                    echo '
+                                    <a href="../PAGINAS/Alertas.php">
+                                        <div class="alertas">
+                                            <span>Alertas</span>
+                                            <span class="dot">' . $row["total_alertas"] . '</span>
+                                        </div>
+                                    </a>';
+                                }
+                                echo '
                             </div>
                         </div>
-                    </a>
-
-                    <a href="../PAGINAS/Alertas.php">
-                        <div class="alertas">
-                            <span>Alertas</span>
-                            <span class="dot">1</span>
-                        </div>
-                    </a>
-
-                </div>
-            </div>
-        </a>
-
-        <body>
+                    </a>';
+                }
+            } else {
+                echo "<p>Nenhum trem cadastrado.</p>";
+            }
+        ?>
+        
     </main>
 </html>
