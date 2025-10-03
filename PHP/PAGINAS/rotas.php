@@ -33,7 +33,7 @@
         <a href="../PAGINAS/Inicio.php"><div><img src="../../IMAGENS/SmartTrain.png" alt=""></div></a>
         <a href="../PAGINAS/Inicio.php"> Inicio </a>
         <a href="../PAGINAS/rotas.php"> Rotas </a>
-        <a href="../PAGINAS/relatotio.php"> Dashboard</a>
+        <a href="../PAGINAS/relatotio.php"> Relatório</a>
         <a href="../PAGINAS/Alertas.php">Alertas</a>
         <a href="../PAGINAS/configuracoes.php">Configurações</a>
     </div>
@@ -145,73 +145,12 @@
 
 
             <div id="todascontent" style="display: none;">
-                <a href="../PAGINAS/traininfo.php">
-                    <div class="traindisplay">
-                        <img src="../../IMAGENS/trem1.png" alt="">
-                        <div class="trainid">017</div>
-                       <div class="traintext">
-                            <div>
-                                <div class="text">Lugar 1</div>
-                                <div class="text">18:00</div>
-                            </div>
-                            <div class="text">-</div>
-                            <div>
-                                <div class="text">Lugar 2</div>
-                                <div class="text">20:00</div>
-                            </div>
-
-                        </div>
-                    </div>
-                </a>
-                <a href="../PAGINAS/traininfo.php">
-                    <div class="traindisplay">
-                        <img src="../../IMAGENS/trem2.png" alt="">
-                        <div class="trainid">027</div>
-                        <div class="traintext">
-                            <div>
-                                <div class="text">Lugar 1</div>
-                                <div class="text">18:00</div>
-                            </div>
-                            <div class="text">-</div>
-                            <div>
-                                <div class="text">Lugar 2</div>
-                                <div class="text">20:00</div>
-                            </div>
-
-                        </div>
-
-                    </div>
-                </a>
-
-                <a href="../PAGINAS/traininfo.php">
-
-                    <div class="traindisplay">
-                        <img src="../../IMAGENS/trem3.png" alt="">
-                        <div class="trainid">008</div>
-                       <div class="traintext">
-                            <div>
-                                <div class="text">Lugar 1</div>
-                                <div class="text">18:00</div>
-                            </div>
-                            <div class="text">-</div>
-                            <div>
-                                <div class="text">Lugar 2</div>
-                                <div class="text">20:00</div>
-                            </div>
-
-                        </div>
-                    </div>
-                </a>
-
-
-            </div>
-
-            <div id="atuaiscontent">
                 <?php 
-
                     $sql = "SELECT t.pk_trem, t.modelo_trem, t.condicao_trem, t.tipo_trem, r.origem_rota, r.destino_rota
-                    FROM trem t
-                    LEFT JOIN rota r ON t.rota_atual_trem = r.pk_rota";
+                            FROM trem t
+                            INNER JOIN rotas_trem rt ON t.pk_trem = rt.pk_trem
+                            INNER JOIN rota r ON rt.pk_rota = r.pk_rota
+                            ORDER BY t.pk_trem, r.pk_rota";
                     $result = $conn->query($sql);
 
                     if($result->num_rows > 0){
@@ -230,19 +169,63 @@
                                 default:
                                     $imagem = 'trem1.png';
                             }
-                            echo '<a href="../PAGINAS/traininfo.php?trem'.$row["pk_trem"].'">
+                            echo '<a href="../PAGINAS/traininfo.php?tremid='.$row["pk_trem"].'">
+                                    <div class="traindisplay">
+                                        <img src="../../IMAGENS/'.$imagem.'" alt="">
+                                        <div class="trainid">' . str_pad($row["pk_trem"], 3, '0', STR_PAD_LEFT) . '</div>
+                                        <div class="traintext">
+                                            <div class="text">' . htmlspecialchars($row["origem_rota"]) . '</div>
+                                            <div class="text">-</div>
+                                            <div class="text">' . htmlspecialchars($row["destino_rota"]) . '</div>
+                                        </div>
+                                    </div>
+                                </a>';
+                        }
+                    }else{
+                        echo "<div class='nodatalert'>
+                                <h1>Não há rotas disponíveis no momento.</h1>
+                            </div>";
+                    }
+                ?>
+            </div>
+
+            <div id="atuaiscontent">
+                <?php 
+
+                    $sql = "SELECT t.pk_trem, t.modelo_trem, t.condicao_trem, t.tipo_trem, r.origem_rota, r.destino_rota
+                    FROM trem t
+                    LEFT JOIN rota r ON t.rota_atual_trem = r.pk_rota
+                    WHERE t.rota_atual_trem IS NOT NULL";
+                    $result = $conn->query($sql);
+
+                    if($result->num_rows > 0){
+                        while ($row = $result->fetch_assoc()){
+                            $tipoTrem = strtolower($row["tipo_trem"]); 
+                            switch ($tipoTrem) {
+                                case 'a':
+                                    $imagem = 'trem1.png';
+                                    break;
+                                case 'b':
+                                    $imagem = 'trem2.png';
+                                    break;
+                                case 'c':
+                                    $imagem = 'trem3.png';
+                                    break;
+                                default:
+                                    $imagem = 'trem1.png';
+                            }
+                            echo '<a href="../PAGINAS/traininfo.php?tremid='.$row["pk_trem"].'">
                                     <div class="traindisplay">
                                         <img src="../../IMAGENS/'.$imagem.'" alt="">
                                         <div class="trainid">' . str_pad($row["pk_trem"], 3, '0', STR_PAD_LEFT) . '</div>
                                     <div class="traintext">
                                             <div>
-                                                <div class="text">Lugar 1</div>
-                                                <div class="text">18:00</div>
+                                                <div class="text">' . htmlspecialchars($row["origem_rota"]) . '</div>
                                             </div>
                                             <div class="text">-</div>
                                             <div>
-                                                <div class="text">Lugar 2</div>
-                                                <div class="text">20:00</div>
+                                                <div class="text">' . htmlspecialchars($row["destino_rota"]) . '</div>
+
                                             </div>
 
                                         </div>

@@ -1,5 +1,6 @@
 <?php
     session_start();
+    include_once("../CODIGO/bd.php");
 
     if (!isset($_SESSION["conectado"]) || $_SESSION["conectado"] != true) {
         header("Location: login.php");
@@ -24,17 +25,23 @@
 </head>
 
 <body>
-    <div class="navbar" id="navbar" style="display: none;">
-        <a href="../PAGINAS/Inicio.php"><div><img src="../../IMAGENS/SmartTrain.png" alt=""></div></a>
-        <a href="../PAGINAS/Inicio.php"> Inicio </a>
-        <a href="../PAGINAS/rotas.php"> Rotas </a>
-        <a href="../PAGINAS/relatotio.php"> Dashboard</a>
-        <a href="../PAGINAS/Alertas.php">Alertas</a>
-        <a href="../PAGINAS/configuracoes.php">Configurações</a>
-    </div>
-    <div class="home"><button id="menuButton" onclick="openav()"><img id="icon"
-                src="../../IMAGENS/Hamburger_icon.svg.png"></button></div>
-    <script src="../../JAVASCRIPT/menu.js"></script>
+    <?php include("../CODIGO/menu.php"); ?>
+    <?php
+        if (isset($_GET['tremid'])) {
+            $tremid = intval($_GET['tremid']); 
+            $sql = "SELECT t.pk_trem, t.modelo_trem, t.condicao_trem, t.tipo_trem, r.origem_rota, r.destino_rota,
+                        COUNT(a.pk_alerta) AS total_alertas
+                    FROM trem t
+                    LEFT JOIN rota r ON t.rota_atual_trem = r.pk_rota
+                    LEFT JOIN alerta a ON t.pk_trem = a.pk_trem
+                    WHERE t.pk_trem = $tremid
+                    GROUP BY t.pk_trem, t.modelo_trem, t.condicao_trem, t.tipo_trem, r.origem_rota, r.destino_rota";
+
+            $result = $conn->query($sql);
+            
+        }
+        
+    ?>
 
     <div class="infoLogo">
         Informações

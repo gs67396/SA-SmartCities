@@ -29,7 +29,7 @@
         <a href="../PAGINAS/Inicio.php"><div><img src="../../IMAGENS/SmartTrain.png" alt=""></div></a>
         <a href="../PAGINAS/Inicio.php"> Inicio </a>
         <a href="../PAGINAS/rotas.php"> Rotas </a>
-        <a href="../PAGINAS/relatotio.php"> Dashboard</a>
+        <a href="../PAGINAS/relatotio.php"> Relatório</a>
         <a href="../PAGINAS/Alertas.php">Alertas</a>
         <a href="../PAGINAS/configuracoes.php">Configurações</a>
     </div>
@@ -92,7 +92,7 @@
                     }
 
                     echo '
-                    <a href="../PAGINAS/traininfo.php?trem'.$row["pk_trem"].'">
+                    <a href="../PAGINAS/traininfo.php?tremid='.$row["pk_trem"].'">
                         <div class="bigbox clickable">
                             <div class="train-imagem">
                                 <img src="../../IMAGENS/' . $imagem . '" alt="Imagem do trem">

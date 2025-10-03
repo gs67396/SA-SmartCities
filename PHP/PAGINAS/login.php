@@ -34,6 +34,8 @@
                 $_SESSION["email_usuario"] = $dados["email_usuario"];
                 $_SESSION["conectado"] = true;
 
+                echo "<script>alert('Bem vindo!'); window.location.href='Inicio.php';</script>";
+
                 header("Location: Inicio.php");
                 exit;
             } else {

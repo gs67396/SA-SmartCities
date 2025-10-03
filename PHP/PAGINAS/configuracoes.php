@@ -65,17 +65,7 @@
 </head>
 
 <body>
-    <div class="navbar" id="navbar" style="display: none;">
-        <a href="../PAGINAS/Inicio.php"><div><img src="../IMAGENS/SmartTrain.png" alt=""></div></a>
-        <a href="../PAGINAS/Inicio.php"> Inicio </a>
-        <a href="../PAGINAS/rotas.php"> Rotas </a>
-        <a href="../PAGINAS/relatotio.php"> Dashboard</a>
-        <a href="../PAGINAS/Alertas.php">Alertas</a>
-        <a href="../PAGINAS/configuracoes.php">Configurações</a>
-    </div>
-    <div class="home"><button id="menuButton" onclick="openav()"><img id="icon"
-                src="../../IMAGENS/Hamburger_icon.svg.png"></button></div>
-    <script src="../../JAVASCRIPT/menu.js"></script>
+    <?php include("../CODIGO/menu.php"); ?>
 
     <div class="infoLogo">
         Configurações
@@ -201,6 +191,14 @@
                 if ($_GET['senha'] == 'mesma') echo "<div class='feedback-senha' style='color:red;'>A nova senha não pode ser igual à atual</div>";
             }
         ?>
+
+    </div>
+
+    <div class="box free">
+        <h3>Apagar conta<h3>
+        <div class="alterar" style="font-weight: 200;" >
+            <button>Deletar</button>
+        </div>
 
     </div>
 
