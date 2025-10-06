@@ -85,6 +85,8 @@
     border-radius: 5px;
     display: flex;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
+    flex-wrap: wrap;        
+    min-width: 0;            
 }
 
 .traindisplay .trainid {
@@ -99,20 +101,29 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-shrink: 0; 
 }
 
 
 .traindisplay img {
-    max-width: 120px;
+    width: 100%;         
+    max-width: 120px;    
+    height: auto;        
+    display: block;      
+    
 }
 
 .traindisplay .text {
     font-family: "Poppins", sans-serif;
     font-weight: bold;
     padding: 5px;
+    overflow: hidden;        /* Hide overflow */
+    
 }
 .traintext{
     display: flex;
+    flex-wrap: wrap;         /* Allow wrapping */
+    min-width: 0;            /* Prevent overflow */
 }
 .traindisplay:hover{
     box-shadow: 0 1px 5px rgba(0, 0, 0, 1);
@@ -145,16 +156,3 @@ a {
     }
 }
 
-
-@media screen and (max-width: 380px) {
-   
-    .traindisplay {
-        display: block;
-        justify-content: center;  
-        align-items: center; 
-    }
-    .trainid{
-        margin: 0 auto;
-    }
-   
-}

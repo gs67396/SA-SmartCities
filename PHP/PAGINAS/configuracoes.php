@@ -197,8 +197,26 @@
     <div class="box free">
         <h3>Apagar conta<h3>
         <div class="alterar" style="font-weight: 200;" >
-            <button>Deletar</button>
+            <button  id="botaoapagar" onclick=editarApagar()>Deletar</button>
         </div>
+        <div  id="botaoapergunta" style="font-weight: 200; display: none;">
+        
+            <p>Tem certeza que deseja apagar sua conta?</p>
+            <div class="alterar" style="font-weight: 200;">
+                    
+                <a href="../CODIGO/apagarconta.php">
+                    <button >Sim</button>
+                </a>
+
+            </div>  
+             <div class="alterar" style="font-weight: 200;">
+                    
+                <button onclick="location.reload()">Não</button>
+
+            </div>
+
+            
+            
 
     </div>
 
@@ -232,6 +250,12 @@ function editarUsuario() {
 function editarSenha() {
     document.getElementById('mudarsenha').style.display = 'inline';
     document.getElementById('editar-senha').style.display = 'none';
+}
+</script>
+<script>
+function editarApagar() {
+    document.getElementById('botaoapergunta').style.display = 'inline';
+    document.getElementById('botaoapagar').style.display = 'none';
 }
 </script>
 

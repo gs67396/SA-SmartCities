@@ -1,4 +1,5 @@
 <?php
+    require_once("../CODIGO/bd.php");
     session_start();
 
     if (!isset($_SESSION["conectado"]) || $_SESSION["conectado"] != true) {
@@ -28,38 +29,32 @@
     <div class="infoLogo">
         Alertas
     </div>
-     <div class="bigbox">
-        <div class="event">
-            <div class="tempo">16:16 23 de fevereiro de 2025</div>
-            <div style="display: flex;">
-                <div class="dot"></div>
-                Falta de enrgia reportada no veículo de ID <div class="trainid-text">017</div>.
-            </div>
+     <?php 
+     $sql = "SELECT tipo_alerta, descricao_alerta, data_hora_alerta, pk_trem FROM alerta ORDER BY data_hora_alerta DESC";
+        $result = $conn->query($sql);
 
-        </div>
-    </div>
-     <div class="bigbox">
-        <div class="event">
-            <div class="tempo">14:26 20 de mar de 2012</div>
-            <div style="display: flex;">
-                <div class="dot" style="background-color: gray;" ></div>
-                Manutenção nessecitada no veículo de ID <div class="trainid-text">018</div>.
-            </div>
-
-        </div>
-    </div>
-     <div class="bigbox">
-        <div class="event">
-            <div class="tempo">14:26 20 de mar de 2024</div>
-            <div style="display: flex;">
-                <div class="dot" style="background-color: gray;"></div>
-                Acidente reportado proximo ao bairro Guanabara.
-
-                <img src="../../IMAGENS/mapa.jpg" alt="">
-            </div>
-
-        </div>
-    </div>
+        if ($result->num_rows > 0) {
+            while($row = $result->fetch_assoc()) {
+                ?>
+                <div class="bigbox">
+                    <div class="event">
+                        <div class="tempo"><?php echo date("d-m-Y H:i:s", strtotime($row["data_hora_alerta"])); ?></div>
+                        <div style="display: flex;">
+                            <div class="dot" style="background-color: <?php echo ($row["tipo_alerta"] == "Manutenção") ? "gray" : "#e74c3c"; ?>;"></div>
+                            <?php echo htmlspecialchars($row["descricao_alerta"]); ?>
+                            <?php if (!empty($row["pk_trem"])): ?>
+                                no veículo de ID <div class="trainid-text"><?php echo $row["pk_trem"]; ?></div>.
+                            <?php endif; ?>
+                        </div>
+                    </div>
+                </div>
+                <?php
+            }
+        } else {
+            echo "<div class='bigbox'><div class='event'>Nenhuma alerta encontrada.</div></div>";
+        }
+     
+     ?>
 
 </body>
 

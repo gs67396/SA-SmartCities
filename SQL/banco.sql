@@ -10,14 +10,7 @@ CREATE TABLE usuario(
     genero VARCHAR(50)
 );
 
-CREATE TABLE trem(
-    pk_trem INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    modelo_trem VARCHAR(50) NOT NULL,
-    condicao_trem VARCHAR(50) NOT NULL,
-    tipo_trem VARCHAR(50) NOT NULL,
-    rota_atual_trem INT,
-    FOREIGN KEY (rota_atual_trem) REFERENCES rota(pk_rota);
-)
+
 
 CREATE TABLE rota(
     pk_rota INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
@@ -25,6 +18,15 @@ CREATE TABLE rota(
     origem_rota VARCHAR(50) NOT NULL,
     destino_rota VARCHAR(50) NOT NULL,
     distancia_rota DECIMAL(6,2) NOT NULL
+);
+
+CREATE TABLE trem(
+    pk_trem INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    modelo_trem VARCHAR(50) NOT NULL,
+    condicao_trem VARCHAR(50) NOT NULL,
+    tipo_trem VARCHAR(50) NOT NULL,
+    rota_atual_trem INT,
+    FOREIGN KEY (rota_atual_trem) REFERENCES rota(pk_rota)
 );
 
 CREATE TABLE rotas_trem(
