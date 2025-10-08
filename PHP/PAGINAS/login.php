@@ -18,7 +18,7 @@
         $email = trim($_POST["LoEmail"] ?? "");
         $senha = trim($_POST["LoSenha"] ?? "");
 
-        $stmt = $conn->prepare("SELECT pk_usuario, nome_usuario, senha_usuario, email_usuario FROM usuario WHERE email_usuario = ? ");
+        $stmt = $conn->prepare("SELECT pk_usuario, nome_usuario, senha_usuario, email_usuario FROM smartrain.usuario WHERE email_usuario = ? ");
         $stmt->bind_param("s", $email);
         $stmt->execute();
         $resultado = $stmt->get_result();

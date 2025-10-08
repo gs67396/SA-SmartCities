@@ -242,14 +242,7 @@ h2 {
 
     }
 
-    .bigscreenflex {
-        display: flex;
-        gap: 10px;
-        justify-content: space-between;
-        padding-bottom: 30px;
-        padding-left: 15px;
-        padding-right: 10px;
-    }
+   
 
     hr {
         width: 44%

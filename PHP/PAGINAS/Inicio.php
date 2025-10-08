@@ -34,6 +34,7 @@
         <a href="../PAGINAS/configuracoes.php">Configurações</a>
     </div>
 
+    
         <div class="pageheader">
             <div class="home"><button id="menuButton" onclick="openav()"><img id="icon"
                         src="../../IMAGENS/Hamburger_icon.svg.png"></button></div>

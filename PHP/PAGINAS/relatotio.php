@@ -27,7 +27,7 @@
      <?php include("../CODIGO/menu.php"); ?>
 
     <div class="infoLogo">
-        Realatorio Semanal
+        Realatório Semanal
     </div>
 
     <div class="bigbox">

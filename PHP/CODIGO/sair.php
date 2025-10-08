@@ -10,5 +10,5 @@
 
 
 
-    header("Location: login.php");
+    header("Location: ../PAGINAS/login.php");
 ?>
