@@ -80,5 +80,45 @@ button{
     padding: 20px;
 }
 
+@media screen and (max-width: 1024px) {
+    body {
+        font-size: 1em;
+        padding: 10px;
+    }
+    .table {
+        max-width: 100vw;
+        padding: 5px;
+        font-size: 20px;
+        overflow-x: auto;
+    }
+    table {
+        width: 100%;
+        font-size: 20px;
+    }
+    tr th, td {
+        font-size: 20px;
+        padding: 8px;
+    }
+}
 
+@media screen and (max-width: 768px) {
+    body {
+        font-size: 20px;
+        padding: 5px;
+    }
+    .table {
+        max-width: 100vw;
+        font-size: 0.8em;
+        padding: 2px;
+        overflow-x: auto;
+    }
+    table {
+        width: 100%;
+        font-size: 0.8em;
+    }
+    tr th, td {
+        font-size: 0.8em;
+        padding: 5px;
+    }
+}
 
