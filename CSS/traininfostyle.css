@@ -20,6 +20,12 @@ body {
     justify-content: space-between;
 }
 
+.nodatalert {
+    text-align: center;
+    font-family: "Poppins", sans-serif;
+    color: rgba(245, 245, 245, 0.582);
+}
+
 .smatrainlogo {
     color: #ecbe25;
     padding: 20px;

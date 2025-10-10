@@ -30,15 +30,44 @@
         Informações
     </div>
     <?php
-        if (isset($_GET['tremid'])) {
-            $tremid = intval($_GET['tremid']); 
-            $sql = "SELECT t.pk_trem, t.modelo_trem, t.condicao_trem, t.tipo_trem, r.origem_rota, r.destino_rota,
-                        COUNT(a.pk_alerta) AS total_alertas
-                    FROM trem t
-                    LEFT JOIN rota r ON t.rota_atual_trem = r.pk_rota
-                    LEFT JOIN alerta a ON t.pk_trem = a.pk_trem
-                    WHERE t.pk_trem = $tremid
-                    GROUP BY t.pk_trem, t.modelo_trem, t.condicao_trem, t.tipo_trem, r.origem_rota, r.destino_rota";
+        if (isset($_GET['tremid'])) { 
+    $tremid = intval($_GET['tremid']); 
+    
+    $sql = "SELECT 
+                t.pk_trem, 
+                t.modelo_trem, 
+                t.condicao_trem, 
+                t.tipo_trem, 
+                r.origem_rota, 
+                r.destino_rota,
+                COUNT(a.pk_alerta) AS total_alertas
+            FROM 
+                trem t
+            LEFT JOIN 
+                rota r ON t.rota_atual_trem = r.pk_rota
+            LEFT JOIN 
+                alerta a ON t.pk_trem = a.pk_trem
+            WHERE 
+                t.pk_trem = $tremid
+            GROUP BY 
+                t.pk_trem, 
+                t.modelo_trem, 
+                t.condicao_trem, 
+                t.tipo_trem, 
+                r.origem_rota, 
+                r.destino_rota";
+
+    $sql_alertas = "SELECT 
+                tipo_alerta, 
+                descricao_alerta, 
+                data_hora_alerta, 
+                pk_trem 
+            FROM 
+                alerta 
+            WHERE 
+                pk_trem = $tremid 
+            ORDER BY 
+                data_hora_alerta DESC";
 
             $result = $conn->query($sql);
             if ($result->num_rows > 0) {
@@ -130,7 +159,7 @@
                     <div class="rotaatual">
                         <div>' . $localizacao . '</div>
 
-                        <div>Distancia: 120 Km</div>
+                        
 
                     </div>
 
@@ -146,24 +175,34 @@
                 <div class="nodatalert">Não há nenhuma rota planejada no momento. </div>
 
                 <hr>
-                <h2>Historico</h2>
-                <div class="bigbox">
-                    <div class="event">
-                        <div class="tempo">14:26 20 de mar de 2024</div>
-                        <div style="display: flex;">
-                            <div class="dot"></div>
-                            Acidente reportado proximo ao bairro Guanabara.
+                <h2>Histórico de alertas</h2>';
 
-                            <img src="../../IMAGENS/mapa.jpg" alt="">
+                $result_alertas = $conn->query($sql_alertas);
+                if ($result_alertas->num_rows > 0) {
+                    while($row = $result_alertas->fetch_assoc()) {
+                        ?>
+                        <div class="bigbox">
+                            <div class="event">
+                                <div class="tempo"><?php echo date("d-m-Y H:i:s", strtotime($row["data_hora_alerta"])); ?></div>
+                                <div style="display: flex;">
+                                    <div class="dot" style="background-color: <?php echo ($row["tipo_alerta"] == "Manutenção") ? "gray" : "#e74c3c"; ?>;"></div>
+                                    <?php echo htmlspecialchars($row["descricao_alerta"]); ?>
+                                    <?php if (!empty($row["pk_trem"])): ?>
+                                        no veículo de ID <div class="trainid-text"><?php echo $row["pk_trem"]; ?></div>.
+                                    <?php endif; ?>
+                                </div>
+                            </div>
                         </div>
-
-                    </div>
-                </div>';
+                        <?php
+                    }
+                } else {
+                    echo "<div class='bigbox'><div class='event'>Nenhuma alerta encontrada.</div></div>";
                 }
-            } else {
-                echo "<p>Nenhum trem cadastrado.</p>";
-            }
-            }
+                        }
+                    } else {
+                        echo "<p>Nenhum trem cadastrado.</p>";
+                    }
+                    }
             
         
     ?>

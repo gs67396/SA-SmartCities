@@ -131,7 +131,7 @@
                     </a>';
                 }
             } else {
-                echo "<p>Nenhum trem cadastrado.</p>";
+                echo "<div class='nodatalert' ><h1>Nenhum trem cadastrado.</h1></div>";
             }
         ?>
         
