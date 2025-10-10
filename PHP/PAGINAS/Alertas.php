@@ -51,7 +51,7 @@
                 <?php
             }
         } else {
-            echo "<div class='bigbox'><div class='event'>Nenhuma alerta encontrada.</div></div>";
+            echo "<div class='bigbox'><div class='event'>Nenhum alerta encontrado.</div></div>";
         }
      
      ?>

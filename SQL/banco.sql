@@ -45,3 +45,4 @@ CREATE TABLE alerta(
     pk_trem INT,
     FOREIGN KEY (pk_trem) REFERENCES trem(pk_trem)
 );
+
