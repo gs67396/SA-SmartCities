@@ -134,6 +134,16 @@
                 echo "<div class='nodatalert' ><h1>Nenhum trem cadastrado.</h1></div>";
             }
         ?>
-        
+        <div class="box free"> 
+            <a href="cadastrartrem.php">
+            <div class="alterar" style="font-weight: 200;" >
+                            
+                            <button>Cadastrar trem</button>
+                            
+                            
+                        </div>
+            </a>
+            
+        </div>
     </main>
 </html>

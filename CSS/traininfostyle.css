@@ -9,6 +9,8 @@ body {
 
 
 
+
+
 .pageheader {
     background-image: url(../IMAGENS/1000_F_239727837_KzfKzkTjKgWuCukE8MRFKQtQr46oG0iR.jpg);
     background-size: cover;
@@ -156,7 +158,9 @@ h2 {
     align-items: center;
     justify-content: center;
     margin: 10px;
+    text-decoration: none;
 }
+
 
 .alterar :hover {
     box-shadow: 0 1px 5px rgba(0, 0, 0, 1);
@@ -172,6 +176,7 @@ h2 {
     border-radius: 5px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
     cursor: pointer;
+    text-decoration: none;
 
 
 }
