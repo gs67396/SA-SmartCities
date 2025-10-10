@@ -13,7 +13,7 @@ if ($con->connect_error) {
 $acao = $_GET['acao'] ?? $_POST['acao'] ?? '';
 
 if ($acao == 'listar') { 
-    $result = $con->query("SELECT * FROM sensores ORDER BY id DESC");
+    $result = $con->query("SELECT * FROM sensores ORDER BY id_sensor DESC");
     $dados = [];
     while ($row = $result->fetch_assoc()) {
         $dados[] = $row;
@@ -22,24 +22,33 @@ if ($acao == 'listar') {
 }
 
 if ($acao == 'adicionar') {
-    $nome = $_POST['id'];
+    $id_sensor = $_POST['id_sensor'];
     $nome = $_POST['nome'];
     $tipo = $_POST['tipo'];
-    $valor = $_POST['localizacao'];
-    $con->query("INSERT INTO sensores (id, nome, tipo, valor) VALUES ('$id', '$nome', '$tipo', '$localizacao')");
+    $localizacao = $_POST['localizacao'];
+    $stmt = $con->prepare("INSERT INTO sensores (id_sensor, nome, tipo, localizacao) VALUES (?, ?, ?, ?)");
+    $stmt->bind_param("isss", $id_sensor, $nome, $tipo, $localizacao);
+    $stmt->execute();
+    $stmt->close();
 }
 
 if ($acao == 'editar') {
-    $nome = $_POST['id'];
+    $id_sensor = $_POST['id_sensor'];
     $nome = $_POST['nome'];
     $tipo = $_POST['tipo'];
-    $valor = $_POST['localizacao'];
-    $con->query("UPDATE sensores SET nome='$nome', tipo='$tipo', valor='$localizacao' WHERE id=$id");
+    $localizacao = $_POST['localizacao'];
+    $stmt = $con->prepare("UPDATE sensores SET nome=?, tipo=?, localizacao=? WHERE id_sensor=?");
+    $stmt->bind_param("sssi", $nome, $tipo, $localizacao, $id_sensor);
+    $stmt->execute();
+    $stmt->close();
 }
 
 if ($acao == 'excluir') {
-    $id = $_POST['id'];
-    $con->query("DELETE FROM sensores WHERE id=$id");
+    $id_sensor = $_POST['id_sensor'];
+    $stmt = $con->prepare("DELETE FROM sensores WHERE id_sensor=?");
+    $stmt->bind_param("i", $id_sensor);
+    $stmt->execute();
+    $stmt->close();
 }
 
 $con->close();
