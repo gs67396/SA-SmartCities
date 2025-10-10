@@ -2,16 +2,19 @@
 
 require_once("bd.php");
 
-if (isset($_POST['sensor_id'])) {
-    $id = intval($_POST['sensor_id']);
-    $conn = new mysqli("localhost", "nome_sensor", "tipo_sensor", "sensores.sql");
+if (isset($_POST['id_sensor'])) {
+    $id = intval($_POST['id_sensor']);
+    // Usar a conexão do bd.php
+    global $conn;
     if ($conn->connect_error) die("Erro de conexão");
-    $sql = "DELETE FROM sensores WHERE id = $id";
-    if ($conn->query($sql)) {
+    $stmt = $conn->prepare("DELETE FROM sensores WHERE id = ?");
+    $stmt->bind_param("i", $id);
+    if ($stmt->execute()) {
         echo "ok";
     } else {
         echo "erro";
     }
+    $stmt->close();
     $conn->close();
 }
 ?>

@@ -8,9 +8,8 @@
         $tipo_sensor = trim($_POST['tipo_sensor']);
         $localizacao_sensor = trim($_POST['localizacao_sensor']);
 
-        if ($novoNome !== "") {
-            
-            $stmt_check = $conn->prepare("SELECT nome_sensor FROM sensores WHERE id = ?");
+        if ($Nome_novo !== "") {
+            $stmt_check = $conn->prepare("SELECT nome_sensor FROM sensores WHERE id_sensor = ?");
             $stmt_check->bind_param("i", $Id_sensor);
             $stmt_check->execute();
             $stmt_check->bind_result($nomeAtual);
@@ -18,13 +17,12 @@
             $stmt_check->close();
 
             if ($Nome_novo === $nomeAtual) {
-                
                 header("Location: ../PAGINAS/gerenciador_sensores.php");
                 exit;
             }
 
-            $stmt = $conn->prepare("UPDATE sensores SET nome_sensor = ? WHERE id = ?");
-            $stmt->bind_param("si", $Nome_novo, $Id_sensor);
+            $stmt = $conn->prepare("UPDATE sensores SET nome_sensor = ?, tipo_sensor = ?, localizacao_sensor = ? WHERE id_sensor = ?");
+            $stmt->bind_param("sssi", $Nome_novo, $tipo_sensor, $localizacao_sensor, $Id_sensor);
 
             if ($stmt->execute()) {
                 header("Location: ../PAGINAS/gerenciador_sensores.php?editar=ok");
