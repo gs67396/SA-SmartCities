@@ -105,7 +105,7 @@
                     if (!empty($row["origem_rota"]) && !empty($row["destino_rota"])) {
                         $localizacao = htmlspecialchars($row["origem_rota"]) . " - " . htmlspecialchars($row["destino_rota"]);
                     } else {
-                        $localizacao = "Sem rota atual";
+                        $localizacao = "SEM_ROTA";
                     }
 
                     echo '
@@ -155,26 +155,86 @@
                 </div>
                 <hr>
                 <h2>Rota Atual</h2>
-                <div class="bigbox">
-                    <div class="rotaatual">
-                        <div>' . $localizacao . '</div>
+                
+                    <div class="rotaatual">';
+                        if ($localizacao =="SEM_ROTA"){
+                           echo "<div class='nodatalert'>
+                                <h1>Não há rotas disponíveis no momento.</h1>
+                            </div>";
+                        }else{
+                            echo '
+                                    <div class="bigbox" style="text-align: center;font-weight: bold;">
+                                        
+                                    <div class="traintext">
+                                            <div>
+                                                <div class="text">' . htmlspecialchars($row["origem_rota"]) . '</div>
+                                            </div>
+                                            <div class="text">-</div>
+                                            <div>
+                                                <div class="text">' . htmlspecialchars($row["destino_rota"]) . '</div>
 
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                ';
+                        }
                         
 
-                    </div>
+                    echo '
 
-                    <div class="alterar">
-                        <button>
-                            cancelar
-                        </button>
+                    
+                        
                     </div>
 
                 </div>
                 <hr>
-                <h2>Rotas planejadas</h2>
-                <div class="nodatalert">Não há nenhuma rota planejada no momento. </div>
+                <h2>Rotas planejadas</h2>';
+                $sql_rotas = "SELECT t.pk_trem, t.modelo_trem, t.condicao_trem, t.tipo_trem, 
+                     r.origem_rota, r.destino_rota
+                    FROM trem t
+                    INNER JOIN rotas_trem rt ON t.pk_trem = rt.pk_trem
+                    INNER JOIN rota r ON rt.pk_rota = r.pk_rota
+                    WHERE t.pk_trem = $tremid
+                    ORDER BY t.pk_trem, r.pk_rota";
 
-                <hr>
+                    $result_rotas = $conn->query($sql_rotas);
+
+                    if (!$result_rotas) {
+                    echo "Erro na consulta: " . $conn->error;
+                    exit;
+                }
+
+                    if($result_rotas->num_rows > 0){
+                        while ($row = $result_rotas->fetch_assoc()){
+                            
+                            echo '
+                                    <div class="bigbox" style="text-align: center;font-weight: bold;">
+                                        
+                                    <div class="traintext">
+                                            <div>
+                                                <div class="text">' . htmlspecialchars($row["origem_rota"]) . '</div>
+                                            </div>
+                                            <div class="text">-</div>
+                                            <div>
+                                                <div class="text">' . htmlspecialchars($row["destino_rota"]) . '</div>
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                ';
+
+                        }
+
+                    }else{
+                        echo "<div class='nodatalert'>
+                                <h1>Não há rotas disponíveis no momento.</h1>
+                            </div>";
+                    }
+
+
+                echo '<hr>
                 <h2>Histórico de alertas</h2>';
 
                 $result_alertas = $conn->query($sql_alertas);
@@ -203,9 +263,33 @@
                         echo "<p>Nenhum trem cadastrado.</p>";
                     }
                     }
-            
-        
-    ?>
+                echo "<div class='box free'> 
+                        <div class='alterar' style='font-weight: 200;'>
+                            <button id='excluirtrem' onclick='editarApagar()'>Excluir trem</button>
+                        </div>
+                        
+                        <div id='botaoapergunta' style='font-weight: 200; display: none;'>
+                            <p>Tem certeza que deseja apagar esse trem ?</p>
+                            <div class='alterar' style='font-weight: 200;'>
+                                 <a href='../CODIGO/excluirtrem.php?tremid=".$tremid."'>
+                                    <button>Sim</button>
+                                </a>
+                            </div>  
+                            <div class='alterar' style='font-weight: 200;'>
+                                <button onclick='location.reload()'>Não</button>
+                            </div>
+                        </div>
+
+                        <script>
+                            function editarApagar() {
+                                document.getElementById('botaoapergunta').style.display = 'inline';
+                                document.getElementById('excluirtrem').style.display = 'none';
+                            }
+                        </script>
+                    </div>";
+                                
+                            
+                        ?>
 
     
     

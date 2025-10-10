@@ -135,7 +135,7 @@
             }
         ?>
         <div class="box free"> 
-            <a href="cadastrartrem.php">
+            <a href="cadastrartrem.php" style='text-decoration: none;'>
             <div class="alterar" style="font-weight: 200;" >
                             
                             <button>Cadastrar trem</button>

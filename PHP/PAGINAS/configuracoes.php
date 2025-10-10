@@ -221,9 +221,6 @@
 
     </div>
 
-    
-
-
 <script>
 function editarEmail() {
     document.getElementById('email-view').style.display = 'none';
