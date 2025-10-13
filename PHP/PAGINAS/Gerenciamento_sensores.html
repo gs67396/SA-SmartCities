@@ -84,27 +84,52 @@
 </html>
 
 <script>
-const form = document.getElementById('sensorForm');
-const tabela = document.querySelector('#tabelaSensores tbody');
 
-form.addEventListener('submit', e => {
+// Cadastrar 
+const formCadastro = document.getElementById('cadastro_sensor');
+// Formulário de edição
+const formEditar = document.getElementById('editar_sensor');
+// Tabela criar
+const tabela = document.querySelector('.table tbody');
+
+// Ao cadastrar sensor
+formCadastro.addEventListener('submit', e => {
   e.preventDefault();
-  const id = document.getElementById('sensorId').value;
-  const nome = document.getElementById('nome').value;
-  const tipo = document.getElementById('tipo').value;
-  const valor = document.getElementById('valor').value;
 
-  const action = id ? 'update' : 'create';
+  const nome = document.getElementById('sensor_name').value;
+  const tipo = document.getElementById('sensor_type').value;
+  const local = document.getElementById('location').value;
 
   fetch('process.php', {
     method: 'POST',
-    body: new URLSearchParams({ id, nome, tipo, valor, action })
-  }).then(() => {
-    form.reset();
+    body: new URLSearchParams({ action: 'create', nome, tipo, valor: local })
+  })
+  .then(() => {
+    formCadastro.reset();
     carregarSensores();
   });
 });
 
+// Ao editar sensor
+formEditar.addEventListener('submit', e => {
+  e.preventDefault();
+
+  const id = document.getElementById('sensor_id').value;
+  const nome = document.getElementById('new_sensor_name').value;
+  const tipo = document.getElementById('new_sensor_type').value;
+  const local = document.getElementById('new_location').value;
+
+  fetch('process.php', {
+    method: 'POST',
+    body: new URLSearchParams({ action: 'update', id, nome, tipo, valor: local })
+  })
+  .then(() => {
+    formEditar.reset();
+    carregarSensores();
+  });
+});
+
+// Listar sensores
 function carregarSensores() {
   fetch('process.php', {
     method: 'POST',
@@ -120,31 +145,25 @@ function carregarSensores() {
         <td>${s.nome}</td>
         <td>${s.tipo}</td>
         <td>${s.valor}</td>
-        <td>
-          <button onclick="editar(${s.id}, '${s.nome}', '${s.tipo}', '${s.valor}')">Editar</button>
-          <button onclick="excluir(${s.id})">Excluir</button>
-        </td>`;
+        <td><button onclick="excluir(${s.id})">Excluir</button></td>
+      `;
       tabela.appendChild(tr);
     });
   });
 }
 
-function editar(id, nome, tipo, valor) {
-  document.getElementById('sensorId').value = id;
-  document.getElementById('nome').value = nome;
-  document.getElementById('tipo').value = tipo;
-  document.getElementById('valor').value = valor;
-}
-
+// Excluir sensor
 function excluir(id) {
-  if (confirm('Deseja realmente excluir este sensor?')) {
+  if (confirm('Excluir este sensor?')) {
     fetch('process.php', {
       method: 'POST',
-      body: new URLSearchParams({ id, action: 'delete' })
-    }).then(() => carregarSensores());
+      body: new URLSearchParams({ action: 'delete', id })
+    })
+    .then(() => carregarSensores());
   }
 }
 
-// Carrega ao abrir
+// Carrega os sensores assim que a página abrir
 carregarSensores();
-</script>
+
+<script>
