@@ -84,22 +84,67 @@
 </html>
 
 <script>
-function excluirItem(botao, sensorId) {
-    if (!confirm("Deseja realmente excluir este sensor?")) return;
+const form = document.getElementById('sensorForm');
+const tabela = document.querySelector('#tabelaSensores tbody');
 
-    fetch('../BACKEND/excluir_sensor.php', {
-        method: 'POST',
-        headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-        body: 'id=' + encodeURIComponent(Id) 
-    })
-    .then(response => response.text())
-    .then(data => {
-        if (data.trim() === 'ok') {
-            // Remove a linha da tabela
-            botao.closest('td').remove();
-        } else {
-            alert('Erro ao excluir sensor!');
-        }
+form.addEventListener('submit', e => {
+  e.preventDefault();
+  const id = document.getElementById('sensorId').value;
+  const nome = document.getElementById('nome').value;
+  const tipo = document.getElementById('tipo').value;
+  const valor = document.getElementById('valor').value;
+
+  const action = id ? 'update' : 'create';
+
+  fetch('process.php', {
+    method: 'POST',
+    body: new URLSearchParams({ id, nome, tipo, valor, action })
+  }).then(() => {
+    form.reset();
+    carregarSensores();
+  });
+});
+
+function carregarSensores() {
+  fetch('process.php', {
+    method: 'POST',
+    body: new URLSearchParams({ action: 'list' })
+  })
+  .then(r => r.json())
+  .then(data => {
+    tabela.innerHTML = '';
+    data.forEach(s => {
+      const tr = document.createElement('tr');
+      tr.innerHTML = `
+        <td>${s.id}</td>
+        <td>${s.nome}</td>
+        <td>${s.tipo}</td>
+        <td>${s.valor}</td>
+        <td>
+          <button onclick="editar(${s.id}, '${s.nome}', '${s.tipo}', '${s.valor}')">Editar</button>
+          <button onclick="excluir(${s.id})">Excluir</button>
+        </td>`;
+      tabela.appendChild(tr);
     });
+  });
 }
+
+function editar(id, nome, tipo, valor) {
+  document.getElementById('sensorId').value = id;
+  document.getElementById('nome').value = nome;
+  document.getElementById('tipo').value = tipo;
+  document.getElementById('valor').value = valor;
+}
+
+function excluir(id) {
+  if (confirm('Deseja realmente excluir este sensor?')) {
+    fetch('process.php', {
+      method: 'POST',
+      body: new URLSearchParams({ id, action: 'delete' })
+    }).then(() => carregarSensores());
+  }
+}
+
+// Carrega ao abrir
+carregarSensores();
 </script>
