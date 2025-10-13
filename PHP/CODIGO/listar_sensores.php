@@ -1,9 +1,10 @@
 <?php
-include 'db_conexao.php'; // ou o nome do seu arquivo de conexão
+include 'db_sensores.php';
 
 $action = $_POST['action'] ?? '';
 
 if ($action === 'create') {
+    $id = $POST['id'];
     $nome = $_POST['nome'];
     $tipo = $_POST['tipo'];
     $location = $_POST['valor']; // no JS o campo se chama "valor"
@@ -42,3 +43,4 @@ if ($action === 'create') {
 
 $conn->close();
 ?>
+
