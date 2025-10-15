@@ -28,15 +28,7 @@
 </head>
 
 <body>
-    <header>
-       <div class="navbar" id="navbar" style="display: none;">
-        <a href="../PAGINAS/Inicio.php"><div><img src="../../IMAGENS/SmartTrain.png" alt=""></div></a>
-        <a href="../PAGINAS/Inicio.php"> Inicio </a>
-        <a href="../PAGINAS/rotas.php"> Rotas </a>
-        <a href="../PAGINAS/relatotio.php"> Relatório</a>
-        <a href="../PAGINAS/Alertas.php">Alertas</a>
-        <a href="../PAGINAS/configuracoes.php">Configurações</a>
-    </div>
+    <?php include("../CODIGO/menu.php"); ?>
         <div id="map" style="width: 100%; height: 400px; position: relative;"
             class="leaflet-container leaflet-touch leaflet-fade-anim leaflet-grab leaflet-touch-drag leaflet-touch-zoom"
             tabindex="0">
@@ -140,21 +132,31 @@
                     <button onclick="changetab('alertas')">Alertas</button>
                     <div class="tabindicator" id="alertasstab" style="display: none;"></div>
                 </div>
+
+                
                 <script src="../../JAVASCRIPT/rotas.js"></script>
             </div>
 
 
             <div id="todascontent" style="display: none;">
                 <?php 
-                    $sql = "SELECT t.pk_trem, t.modelo_trem, t.condicao_trem, t.tipo_trem, r.origem_rota, r.destino_rota
+                    $sql = "SELECT 
+                                t.pk_trem, 
+                                t.modelo_trem, 
+                                t.condicao_trem, 
+                                t.tipo_trem, 
+                                r.origem_rota, 
+                                r.destino_rota, 
+                                rt.data_hora_rota
                             FROM trem t
                             INNER JOIN rotas_trem rt ON t.pk_trem = rt.pk_trem
                             INNER JOIN rota r ON rt.pk_rota = r.pk_rota
                             ORDER BY t.pk_trem, r.pk_rota";
+
                     $result = $conn->query($sql);
 
-                    if($result->num_rows > 0){
-                        while ($row = $result->fetch_assoc()){
+                    if ($result->num_rows > 0) {
+                        while ($row = $result->fetch_assoc()) {
                             $tipoTrem = strtolower($row["tipo_trem"]); 
                             switch ($tipoTrem) {
                                 case 'a':
@@ -169,24 +171,29 @@
                                 default:
                                     $imagem = 'trem1.png';
                             }
-                            echo '<a href="../PAGINAS/traininfo.php?tremid='.$row["pk_trem"].'">
+
+                            // Formatar a data e hora
+                            $dataHora = date("d/m/Y H:i", strtotime($row["data_hora_rota"]));
+
+                            echo '<a href="../PAGINAS/traininfo.php?tremid=' . $row["pk_trem"] . '">
                                     <div class="traindisplay">
-                                        <img src="../../IMAGENS/'.$imagem.'" alt="">
+                                        <img src="../../IMAGENS/' . $imagem . '" alt="">
                                         <div class="trainid">' . str_pad($row["pk_trem"], 3, '0', STR_PAD_LEFT) . '</div>
                                         <div class="traintext">
                                             <div class="text">' . htmlspecialchars($row["origem_rota"]) . '</div>
                                             <div class="text">-</div>
                                             <div class="text">' . htmlspecialchars($row["destino_rota"]) . '</div>
+                                            <div class="text" style="margin-top: 5px; font-size: 0.9em; color: #666;"> ' . $dataHora . '</div>
                                         </div>
                                     </div>
                                 </a>';
                         }
-                    }else{
+                    } else {
                         echo "<div class='nodatalert'>
                                 <h1>Não há rotas disponíveis no momento.</h1>
                             </div>";
                     }
-                ?>
+                    ?>
             </div>
 
             <div id="atuaiscontent">

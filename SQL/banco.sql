@@ -32,6 +32,7 @@ CREATE TABLE trem(
 CREATE TABLE rotas_trem(
     pk_trem INT,
     pk_rota INT,
+    data_hora_rota DATETIME NOT NULL,
     PRIMARY KEY (pk_trem, pk_rota),
     FOREIGN KEY (pk_trem) REFERENCES trem(pk_trem),
     FOREIGN KEY (pk_rota) REFERENCES rota(pk_rota)
@@ -46,3 +47,9 @@ CREATE TABLE alerta(
     FOREIGN KEY (pk_trem) REFERENCES trem(pk_trem)
 );
 
+CREATE TABLE sensores (
+    id_sensor INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    nome_sensor VARCHAR(100) NOT NULL,
+    tipo_sensor VARCHAR(50) NOT NULL,
+    localizacao_trem VARCHAR(100) NOT NULL
+);
