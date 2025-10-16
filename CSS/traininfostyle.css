@@ -221,6 +221,54 @@ h2 {
     color: black;
 }
 
+
+
+
+
+
+
+.label{
+    font-family: "Poppins", sans-serif;
+    font-size: larger;
+    color: aliceblue;
+}
+
+.input{
+    border-radius: 80px;
+    border: 4px solid white;
+    font-size: larger;
+    text-align: center;
+    color: white;
+    background-color: #0f4070;
+    margin: 10px auto;
+    display: block;
+    width: 80%;
+    max-width: 350px;
+}
+.select{
+    border-radius: 80px;
+    border: 4px solid white;
+    font-size: larger;
+    text-align: center;
+    color: white;
+    background-color: #0f4070;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 20px;
+}
+
+.button{
+    background-color: #2dab18;
+    border: none;
+    border-radius: 80px;
+    color: white;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: larger;
+    padding: 10px 20px  10px 20px  ;
+    cursor: pointer;
+    margin: 10px;
+}
+
 @media screen and (min-width: 1024px) {
 
     .infoLogo {
