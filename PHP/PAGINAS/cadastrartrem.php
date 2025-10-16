@@ -36,8 +36,8 @@
 
 <?php
 
-include 'inicio.html'; 
-require_once("bd.php"); 
+
+require_once("../CODIGO/bd.php"); 
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $id_trem = intval($_POST['id_trem']);

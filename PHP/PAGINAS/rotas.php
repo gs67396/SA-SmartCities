@@ -200,6 +200,7 @@
                 <?php 
 
                     $sql = "SELECT t.pk_trem, t.modelo_trem, t.condicao_trem, t.tipo_trem, r.origem_rota, r.destino_rota
+                    COUNT(a.pk_alerta) AS total_alertas
                     FROM trem t
                     LEFT JOIN rota r ON t.rota_atual_trem = r.pk_rota
                     WHERE t.rota_atual_trem IS NOT NULL";
@@ -225,7 +226,7 @@
                                     <div class="traindisplay">
                                         <img src="../../IMAGENS/'.$imagem.'" alt="">
                                         <div class="trainid">' . str_pad($row["pk_trem"], 3, '0', STR_PAD_LEFT) . '</div>
-                                    <div class="traintext">
+                                        <div class="traintext">
                                             <div>
                                                 <div class="text">' . htmlspecialchars($row["origem_rota"]) . '</div>
                                             </div>
@@ -236,6 +237,7 @@
                                             </div>
 
                                         </div>
+                                        
                                     </div>
                                 </a>';
 

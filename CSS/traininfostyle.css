@@ -207,13 +207,7 @@ h2 {
 }
 
 
-.dot {
-    background-color: #e43d3c;
-    padding: 5px;
-    border-radius: 100px;
-    max-height: 2px;
-    color: white;
-}
+
 
 .option select {
     width: 100%;
