@@ -74,7 +74,9 @@
     </script>
 
   <div class="imagem">
-    <img src="../../IMAGENS/ajuda.png" alt="icone" class="img_manual">
+    <a href="Manual_usuario.php" title="Abrir manual do usuário">
+      <img src="../../IMAGENS/ajuda.png" alt="icone" class="img_manual">
+    </a>
   </div>
 
     <div class="infoLogo">
@@ -155,7 +157,6 @@
         <div class="alterar" style="font-weight: 200;" >
             <button id="editar-email" onclick="editarEmail()">Editar</button>
         </div>
-        
         
     </div>
     <?php

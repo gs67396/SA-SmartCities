@@ -300,12 +300,11 @@ h2 {
     text-align: end;
     margin-bottom: 5px;
     max-width: 50px;
-    position: absolute;
+    position: end;
 }
 
 .imagem img {
-    text-align: end;
-    max-width: 50px;
+    max-width: 75px;
     height: auto;
     display: inline-block;
 }
