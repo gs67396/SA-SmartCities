@@ -144,7 +144,6 @@
                                 t.pk_trem, 
                                 t.modelo_trem, 
                                 t.condicao_trem, 
-                                t.tipo_trem, 
                                 r.origem_rota, 
                                 r.destino_rota, 
                                 rt.data_hora_rota
@@ -157,15 +156,15 @@
 
                     if ($result->num_rows > 0) {
                         while ($row = $result->fetch_assoc()) {
-                            $tipoTrem = strtolower($row["tipo_trem"]); 
+                            $tipoTrem = strtolower($row["modelo_trem"]); 
                             switch ($tipoTrem) {
-                                case 'a':
+                                case '00y4-g586':
                                     $imagem = 'trem1.png';
                                     break;
-                                case 'b':
+                                case '37p9-jf85':
                                     $imagem = 'trem2.png';
                                     break;
-                                case 'c':
+                                case '823x-klp9':
                                     $imagem = 'trem3.png';
                                     break;
                                 default:
@@ -199,7 +198,7 @@
             <div id="atuaiscontent">
                 <?php 
 
-                    $sql = "SELECT t.pk_trem, t.modelo_trem, t.condicao_trem, t.tipo_trem, r.origem_rota, r.destino_rota
+                    $sql = "SELECT t.pk_trem, t.modelo_trem, t.condicao_trem, r.origem_rota, r.destino_rota
                     FROM trem t
                     LEFT JOIN rota r ON t.rota_atual_trem = r.pk_rota
                     WHERE t.rota_atual_trem IS NOT NULL";
@@ -207,15 +206,15 @@
 
                     if($result->num_rows > 0){
                         while ($row = $result->fetch_assoc()){
-                            $tipoTrem = strtolower($row["tipo_trem"]); 
+                            $tipoTrem = strtolower($row["modelo_trem"]); 
                             switch ($tipoTrem) {
-                                case 'a':
+                                case '00y4-g586':
                                     $imagem = 'trem1.png';
                                     break;
-                                case 'b':
+                                case '37p9-jf85':
                                     $imagem = 'trem2.png';
                                     break;
-                                case 'c':
+                                case '823x-klp9':
                                     $imagem = 'trem3.png';
                                     break;
                                 default:

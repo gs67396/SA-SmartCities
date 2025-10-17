@@ -33,31 +33,42 @@
             <script src="../../JAVASCRIPT/menu.js"></script>
             <div class="smatrainlogo">SmartTrain</div>
         </div>
+        <div class="box free"> 
+            <a href="cadastrartrem.php" style='text-decoration: none;'>
+            <div class="alterar" style="font-weight: 200;" >
+                            
+                            <button>Cadastrar trem</button>
+                            
+                            
+                        </div>
+            </a>
+            
+        </div>
     
 
     <main>
         <?php
-            $sql = "SELECT t.pk_trem, t.modelo_trem, t.condicao_trem, t.tipo_trem, r.origem_rota, r.destino_rota,
+            $sql = "SELECT t.pk_trem, t.modelo_trem, t.condicao_trem,  r.origem_rota, r.destino_rota,
                COUNT(a.pk_alerta) AS total_alertas
                 FROM trem t
                 LEFT JOIN rota r ON t.rota_atual_trem = r.pk_rota
                 LEFT JOIN alerta a ON t.pk_trem = a.pk_trem
-                GROUP BY t.pk_trem, t.modelo_trem, t.condicao_trem, t.tipo_trem, r.origem_rota, r.destino_rota";
+                GROUP BY t.pk_trem, t.modelo_trem, t.condicao_trem, r.origem_rota, r.destino_rota";
             $result = $conn->query($sql);
 
             
             if ($result->num_rows > 0) {
                 while ($row = $result->fetch_assoc()) {
 
-                    $tipoTrem = strtolower($row["tipo_trem"]); 
+                    $tipoTrem = strtolower($row["modelo_trem"]); 
                     switch ($tipoTrem) {
-                        case 'a':
+                        case '00y4-g586':
                             $imagem = 'trem1.png';
                             break;
-                        case 'b':
+                        case '37p9-jf85':
                             $imagem = 'trem2.png';
                             break;
-                        case 'c':
+                        case '823x-klp9':
                             $imagem = 'trem3.png';
                             break;
                         default:
@@ -72,6 +83,9 @@
                             $statusColor = '#ff9800'; 
                             break;
                         case 'danificado':
+                            $statusColor = '#e43d3c'; 
+                            break;
+                        case 'inativo':
                             $statusColor = '#e43d3c'; 
                             break;
                         default:
@@ -126,16 +140,6 @@
                 echo "<div class='nodatalert' ><h1>Nenhum trem cadastrado.</h1></div>";
             }
         ?>
-        <div class="box free"> 
-            <a href="cadastrartrem.php" style='text-decoration: none;'>
-            <div class="alterar" style="font-weight: 200;" >
-                            
-                            <button>Cadastrar trem</button>
-                            
-                            
-                        </div>
-            </a>
-            
-        </div>
+        
     </main>
 </html>

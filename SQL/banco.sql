@@ -24,7 +24,6 @@ CREATE TABLE trem(
     pk_trem INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
     modelo_trem VARCHAR(50) NOT NULL,
     condicao_trem VARCHAR(50) NOT NULL,
-    tipo_trem VARCHAR(50) NOT NULL,
     rota_atual_trem INT,
     FOREIGN KEY (rota_atual_trem) REFERENCES rota(pk_rota)
 );
