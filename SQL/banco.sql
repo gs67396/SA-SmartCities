@@ -24,8 +24,17 @@ CREATE TABLE trem(
     pk_trem INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
     modelo_trem VARCHAR(50) NOT NULL,
     condicao_trem VARCHAR(50) NOT NULL,
+    maquinista_trem INT,
+    FOREIGN KEY (maquinista_trem), REFERENCES maquinista(pk_maquinista)
     rota_atual_trem INT,
     FOREIGN KEY (rota_atual_trem) REFERENCES rota(pk_rota)
+);
+
+CREATE TABLE maquinista(
+    pk_maquinista INT NOT NULL PRIMARY KEY AUTO_INCREMET,
+    nome_maquinista VARCHAR(50) NOT NULL,
+    trem_maquinado INT,
+    FOREIGN KEY (trem_maquinado) REFERENCES trem(pk_trem)
 );
 
 CREATE TABLE rotas_trem(
