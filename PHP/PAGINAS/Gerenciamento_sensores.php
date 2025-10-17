@@ -142,17 +142,15 @@ $conn->close();
     </div>
     <script src='../../JAVASCRIPT/menu.js'></script>
 
-    <h2>Monitoramento de sensores</h2>
+    <div class="infoLogo">Monitoramento de sensores</div>
     <hr>
 
     <?php if ($msg): ?>
         <p style="color: green; font-weight: bold;"><?= htmlspecialchars($msg) ?></p>
     <?php endif; ?>
 
-    <h3>Cadastrar sensor</h3>
-
     <!-- Botão para mostrar/esconder o formulário -->
-    <button id="btnMostrarForm">Mostrar formulário de cadastro</button>
+    <button id="btnMostrarForm">Cadastrar sensor</button>
 
     <form method="POST" id="formCadastroSensor">
         <input type="hidden" name="action" value="create" />
@@ -165,7 +163,7 @@ $conn->close();
         <label for="localizacao_trem">Localização (id do trem):</label>
         <input type="text" id="localizacao_trem" name="localizacao_trem" required /><br /><br />
 
-        <button type="submit">Cadastrar Sensor</button>
+        <button type="submit">Cadastrar</button>
     </form>
 
     <br /><hr /><br />
@@ -266,7 +264,7 @@ $conn->close();
                 btnMostrarForm.textContent = 'Esconder formulário de cadastro';
             } else {
                 formCadastro.style.display = 'none';
-                btnMostrarForm.textContent = 'Mostrar formulário de cadastro';
+                btnMostrarForm.textContent = 'Cadastar sensor';
             }
         });
     </script>

@@ -200,7 +200,6 @@
                 <?php 
 
                     $sql = "SELECT t.pk_trem, t.modelo_trem, t.condicao_trem, t.tipo_trem, r.origem_rota, r.destino_rota
-                    COUNT(a.pk_alerta) AS total_alertas
                     FROM trem t
                     LEFT JOIN rota r ON t.rota_atual_trem = r.pk_rota
                     WHERE t.rota_atual_trem IS NOT NULL";

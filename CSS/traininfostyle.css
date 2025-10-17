@@ -58,6 +58,8 @@ body {
     margin-bottom: 10px;
     margin: 10px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .bigbox {
@@ -69,6 +71,9 @@ body {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
     font-weight: 400;
     color: black;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
 }
 
 .bigbox a{
@@ -112,10 +117,14 @@ body {
     box-sizing: border-box;
     color: black;
     margin-bottom: 20px;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .box p {
     font-weight: 300;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .circle {
