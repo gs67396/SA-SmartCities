@@ -285,6 +285,31 @@ h2 {
     gap: 10px;
 }
 
+.home {
+    z-index: 100000;
+    position: absolute;
+}
+
+.details summary, details summary {
+    cursor: pointer;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.imagem {
+    text-align: end;
+    margin-bottom: 5px;
+    max-width: 50px;
+    position: absolute;
+}
+
+.imagem img {
+    text-align: end;
+    max-width: 50px;
+    height: auto;
+    display: inline-block;
+}
+
 @media screen and (min-width: 1024px) {
 
     .infoLogo {
