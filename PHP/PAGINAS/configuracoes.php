@@ -68,9 +68,14 @@
 <body>
     <?php include("../CODIGO/menu.php"); ?>
      <div class='home'><button id='menuButton' onclick='openav()'><img id='icon'
-                src='../../IMAGENS/Hamburger_icon.svg.png'></button></div>
-    <script src='../../JAVASCRIPT/menu.js'></script>
-    
+                src='../../IMAGENS/Hamburger_icon.svg.png'></button>
+            </div>
+    <script src='../../JAVASCRIPT/menu.js'>
+    </script>
+
+  <div class="imagem">
+    <img src="../../IMAGENS/ajuda.png" alt="icone" class="img_manual">
+  </div>
 
     <div class="infoLogo">
         Configurações
