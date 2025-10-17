@@ -278,6 +278,13 @@ h2 {
     margin: 10px;
 }
 
+
+.caixa {
+    background-color: aquamarine;
+    display: flex;
+    gap: 10px;
+}
+
 @media screen and (min-width: 1024px) {
 
     .infoLogo {
@@ -305,10 +312,12 @@ h2 {
 
     }
 
-   
-
     hr {
         width: 44%
+    }
+
+    .text_center {
+        text-align: center;
     }
 }
 
