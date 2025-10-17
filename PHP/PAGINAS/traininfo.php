@@ -40,7 +40,6 @@
                 t.pk_trem, 
                 t.modelo_trem, 
                 t.condicao_trem, 
-                t.tipo_trem, 
                 r.origem_rota, 
                 r.destino_rota,
                 COUNT(a.pk_alerta) AS total_alertas
@@ -56,7 +55,6 @@
                 t.pk_trem, 
                 t.modelo_trem, 
                 t.condicao_trem, 
-                t.tipo_trem, 
                 r.origem_rota, 
                 r.destino_rota";
 
@@ -76,15 +74,15 @@
             if ($result->num_rows > 0) {
                                 while ($row = $result->fetch_assoc()) {
 
-                    $tipoTrem = strtolower($row["tipo_trem"]); 
+                    $tipoTrem = strtolower($row["modelo_trem"]); 
                     switch ($tipoTrem) {
-                        case 'a':
+                        case '00y4-g586':
                             $imagem = 'trem1.png';
                             break;
-                        case 'b':
+                        case '37p9-jf85':
                             $imagem = 'trem2.png';
                             break;
-                        case 'c':
+                        case '823x-klp9':
                             $imagem = 'trem3.png';
                             break;
                         default:
@@ -99,6 +97,9 @@
                             $statusColor = '#ff9800'; 
                             break;
                         case 'danificado':
+                            $statusColor = '#e43d3c'; 
+                            break;
+                        case 'inativo':
                             $statusColor = '#e43d3c'; 
                             break;
                         default:
@@ -134,7 +135,7 @@
                             </div>
                             <div class="box" style="width: 100%;">
                                 Condição <br>
-                                ' . htmlspecialchars($row["condicao_trem"]) . '
+                                <span class="texto status-trem" style="background-color:'. $statusColor .'">' . htmlspecialchars($row["condicao_trem"]) . '</span>
                             </div>
 
                         </div>
@@ -193,7 +194,7 @@
                 </div>
                 <hr>
                 <h2>Rotas planejadas</h2>';
-                $sql_rotas = "SELECT t.pk_trem, t.modelo_trem, t.condicao_trem, t.tipo_trem, 
+                $sql_rotas = "SELECT t.pk_trem, t.modelo_trem, t.condicao_trem, 
                      r.origem_rota, r.destino_rota
                     FROM trem t
                     INNER JOIN rotas_trem rt ON t.pk_trem = rt.pk_trem
