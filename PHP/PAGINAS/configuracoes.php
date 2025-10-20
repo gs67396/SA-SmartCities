@@ -66,18 +66,13 @@
 </head>
 
 <body>
-    <?php include("../CODIGO/menu.php"); ?>
-     <div class='home'><button id='menuButton' onclick='openav()'><img id='icon'
+    
+     <div class='home'><button id='menuButtonOpen' onclick='openav()'><img id='icon'
                 src='../../IMAGENS/Hamburger_icon.svg.png'></button>
             </div>
     <script src='../../JAVASCRIPT/menu.js'>
     </script>
-
-  <div class="imagem">
-    <a href="Manual_usuario.php" title="Abrir manual do usuário">
-      <img src="../../IMAGENS/ajuda.png" alt="icone" class="img_manual">
-    </a>
-  </div>
+    <?php include("../CODIGO/menu.php"); ?>
 
     <div class="infoLogo">
         Configurações

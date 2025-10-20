@@ -69,7 +69,7 @@
         
         <form method="POST" id="Login">
             <input type="email" name="LoEmail" placeholder="E-mail"><br>
-            <input type="password" name="LoSenha" placeholder="Senha"><br>
+            <input type="password" name="LoSenha" placeholder="Senha" autocomplete="new-password"><br>
             <?php if ($erro): ?>
                 <div class="erro"><?= htmlspecialchars($erro) ?></div>
             <?php endif; ?>

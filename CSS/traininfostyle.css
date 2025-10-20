@@ -285,10 +285,6 @@ h2 {
     gap: 10px;
 }
 
-.home {
-    z-index: 100000;
-    position: absolute;
-}
 
 .details summary, details summary {
     cursor: pointer;

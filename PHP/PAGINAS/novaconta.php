@@ -102,8 +102,8 @@
             <option value="out">Outro</option>
             <option value="out">Prefiro não dizer</option>
         </select>
-        <input type="password" name="novaSenha"  required placeholder="Senha">
-        <input type="password" name="confirmarSenha" required placeholder="confirmar senha">
+        <input type="password" name="novaSenha"  required placeholder="Senha" autocomplete="new-password">
+        <input type="password" name="confirmarSenha" required placeholder="confirmar senha" autocomplete="new-password">
         <?php if ($erro){echo $erro;}  ?>
                 
         

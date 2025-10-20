@@ -1,21 +1,33 @@
 .navbar {
     background-color: #227fa8;
-    padding: 20px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column; 
+  align-items: flex-start; 
+  width: 200px; 
+  height: 100vh; 
+  position: fixed; 
+  top: 0;
+  left: 0;
+  overflow-y: auto; 
+  z-index: 9999; 
 }
 
 .navbar a {
-    text-decoration: none;
-    color: aliceblue;
-    font-family: "Poppins", sans-serif;
-    font-weight: bold;
-    margin: 10px;
+     text-decoration: none;
+  color: aliceblue;
+  font-family: "Poppins", sans-serif;
+  font-weight: bold;
+  margin: 10px 0; 
+  display: block; 
 }
 
 .navbar a:hover{
     color: #ff914d;
 }
 .navbar img {
-    max-width: 40%;
+    max-width: 100%; /* keep original size */
+  margin-bottom: 20px; /* space below logo */
 }
 
 .home img {
@@ -43,11 +55,7 @@
     .navbar{
         text-align: center;
     }
-    .navbar img {
-        max-width: 20%;
-        margin-left: auto;
-        margin-right: auto;
-    }
+   
     .home button{
         padding: 12px;
     }

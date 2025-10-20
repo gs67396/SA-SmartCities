@@ -97,7 +97,7 @@
                             href="http://www.openstreetmap.org/copyright">OpenStreetMap</a></div>
                 </div>
             </div>
-            <div class="home"><button id="menuButton" onclick="openav()"><img id="icon"
+            <div class="home"><button id="menuButtonOpen" onclick="openav()"><img id="icon"
                         src="../../IMAGENS/Hamburger_icon.svg.png"></button></div>
             <script src="../../JAVASCRIPT/menu.js"></script>
         </div>

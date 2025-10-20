@@ -28,7 +28,7 @@
 
     
         <div class="pageheader">
-            <div class="home"><button id="menuButton" onclick="openav()"><img id="icon"
+            <div class="home"><button id="menuButtonOpen" onclick="openav()"><img id="icon"
                         src="../../IMAGENS/Hamburger_icon.svg.png"></button></div>
             <script src="../../JAVASCRIPT/menu.js"></script>
             <div class="smatrainlogo">SmartTrain</div>
