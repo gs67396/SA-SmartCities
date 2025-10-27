@@ -82,6 +82,10 @@ ALTER TABLE rotas_trem
 ALTER TABLE alerta
     ADD CONSTRAINT fk_alerta_trem FOREIGN KEY (pk_trem) REFERENCES trem(pk_trem);
 
+-- Inserts usuario
+INSERT INTO usuario (nome_usuario, email_usuario, senha_usuario, genero) VALUES
+('Caio Alves','caio.alves@smartraimail.com','$2y$10$HAuHoaoqfXIIWVTqkIfYRegMYNjJc80BpcJ0iUbb0oRiS7RZjacPe','masc');
+
 -- Inserts sensores
 INSERT INTO sensores (nome_sensor, tipo_sensor, localizacao_trem) VALUES
 ('Sensor de Temperatura', 'Temperatura', 'Trem 001'),
