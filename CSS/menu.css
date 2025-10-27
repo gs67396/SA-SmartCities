@@ -13,26 +13,15 @@
   z-index: 9999; 
   border-color: #1a7196;
   border-right-style: solid;
-  left: -65%; /* Começa a animação fora da tela, à esquerda */
-  animation: moverDireita 1s forwards; /* Aplica a animação com duração de 3 segundos */
-}
-
-@keyframes moverDireita {
-    0% {
-        transform: translateX(0); /* Posição inicial: fora da tela, à esquerda */
-    }
-    100% {
-        transform: translateX(100%); /* Posição final: movida para a direita, para dentro da tela */
-    }
 }
 
 .navbar a {
-     text-decoration: none;
+  text-decoration: none;
   color: aliceblue;
   font-family: "Poppins", sans-serif;
-  font-weight: bold;
-  margin: 10px 0; 
-  display: block; 
+  font-weight: bold; 
+  margin: 10px 0;
+  display: block;
 }
 
 .navbar a:hover{
@@ -72,7 +61,6 @@
     .home button{
         padding: 12px;
     }
-
 
 }
 
