@@ -1,12 +1,11 @@
-const icon = document.getElementById("icon");
-const menuButton = document.getElementById("menuButton");
+const menuButtonOpen = document.getElementById("menuButtonOpen");
+const menuButtonClose = document.getElementById("menuButtonClose");
+const navbar = document.getElementById("navbar");
 
-
-
-
-function openav(){
-    document.getElementById('navbar').style.display = document.getElementById('navbar').style.display === 'none' ? 'block' : 'none' ;
-    document.getElementById('menuButtonClose').style.display = document.getElementById('menuButtonClose').style.display === 'none' ? 'block' : 'none' ;
-    document.getElementById('menuButtonOpen').style.display = document.getElementById('menuButtonOpen').style.display === 'none' ? 'block' : 'none' ;
+function openav() {
+    if (!navbar) return;
+    const isHidden = window.getComputedStyle(navbar).display === 'none';
+    navbar.style.display = isHidden ? 'block' : 'none';
+    if (menuButtonClose) menuButtonClose.style.display = isHidden ? 'block' : 'none';
+    if (menuButtonOpen) menuButtonOpen.style.display = isHidden ? 'none' : 'block';
 }
-

@@ -1,7 +1,11 @@
+body{
+    background-color: #227fa8;
+}
 * {
     margin: 0;
     padding: 0;
     text-decoration: none;
+    
 }
 
 .dot {

@@ -32,78 +32,86 @@
     <div class="infoLogo">
         Informações
     </div>
+
     <?php
         if (isset($_GET['tremid'])) { 
-    $tremid = intval($_GET['tremid']); 
-    
-    $sql = "SELECT 
-                t.pk_trem, 
-                t.modelo_trem, 
-                t.condicao_trem, 
-                r.origem_rota, 
-                r.destino_rota,
-                COUNT(a.pk_alerta) AS total_alertas
-            FROM 
-                trem t
-            LEFT JOIN 
-                rota r ON t.rota_atual_trem = r.pk_rota
-            LEFT JOIN 
-                alerta a ON t.pk_trem = a.pk_trem
-            WHERE 
-                t.pk_trem = $tremid
-            GROUP BY 
-                t.pk_trem, 
-                t.modelo_trem, 
-                t.condicao_trem, 
-                r.origem_rota, 
-                r.destino_rota";
+            $tremid = intval($_GET['tremid']); 
 
-    $sql_alertas = "SELECT 
-                tipo_alerta, 
-                descricao_alerta, 
-                data_hora_alerta, 
-                pk_trem 
-            FROM 
-                alerta 
-            WHERE 
-                pk_trem = $tremid 
-            ORDER BY 
-                data_hora_alerta DESC";
+            // -------------------------------
+            // INSERÇÃO DE NOVA ROTA (FORMULÁRIO)
+            // -------------------------------
+            if (isset($_POST['adicionar_rota'])) {
+                $rota_id = intval($_POST['rota_id']);
+                $data_hora = $_POST['data_hora_rota'];
+
+                if (!empty($rota_id) && !empty($data_hora)) {
+                    $stmt = $conn->prepare("INSERT INTO rotas_trem (pk_trem, pk_rota, data_hora_rota) VALUES (?, ?, ?)");
+                    $stmt->bind_param("iis", $tremid, $rota_id, $data_hora);
+                    if ($stmt->execute()) {
+                        echo "<script>alert('Rota adicionada com sucesso!'); window.location.href='?tremid=$tremid';</script>";
+                    } else {
+                        echo "<script>alert('Erro ao adicionar rota: " . $conn->error . "');</script>";
+                    }
+                    $stmt->close();
+                }
+            }
+
+            // -------------------------------
+            // CONSULTAS
+            // -------------------------------
+            $sql = "SELECT 
+                        t.pk_trem, 
+                        t.modelo_trem, 
+                        t.condicao_trem, 
+                        r.origem_rota, 
+                        r.destino_rota,
+                        COUNT(a.pk_alerta) AS total_alertas
+                    FROM 
+                        trem t
+                    LEFT JOIN 
+                        rota r ON t.rota_atual_trem = r.pk_rota
+                    LEFT JOIN 
+                        alerta a ON t.pk_trem = a.pk_trem
+                    WHERE 
+                        t.pk_trem = $tremid
+                    GROUP BY 
+                        t.pk_trem, 
+                        t.modelo_trem, 
+                        t.condicao_trem, 
+                        r.origem_rota, 
+                        r.destino_rota";
+
+            $sql_alertas = "SELECT 
+                        tipo_alerta, 
+                        descricao_alerta, 
+                        data_hora_alerta, 
+                        pk_trem 
+                    FROM 
+                        alerta 
+                    WHERE 
+                        pk_trem = $tremid 
+                    ORDER BY 
+                        data_hora_alerta DESC";
 
             $result = $conn->query($sql);
             if ($result->num_rows > 0) {
-                                while ($row = $result->fetch_assoc()) {
+                while ($row = $result->fetch_assoc()) {
 
                     $tipoTrem = strtolower($row["modelo_trem"]); 
                     switch ($tipoTrem) {
-                        case '00y4-g586':
-                            $imagem = 'trem1.png';
-                            break;
-                        case '37p9-jf85':
-                            $imagem = 'trem2.png';
-                            break;
-                        case '823x-klp9':
-                            $imagem = 'trem3.png';
-                            break;
-                        default:
-                            $imagem = 'trem1.png';
+                        case '00y4-g586': $imagem = 'trem1.png'; break;
+                        case '37p9-jf85': $imagem = 'trem2.png'; break;
+                        case '823x-klp9': $imagem = 'trem3.png'; break;
+                        default: $imagem = 'trem1.png';
                     }
+
                     $condicao = strtolower($row["condicao_trem"]);
                     switch ($condicao) {
-                        case 'operacional':
-                            $statusColor = '#4caf50'; 
-                            break;
-                        case 'manutenção':
-                            $statusColor = '#ff9800'; 
-                            break;
-                        case 'danificado':
-                            $statusColor = '#e43d3c'; 
-                            break;
-                        case 'inativo':
-                            $statusColor = '#e43d3c'; 
-                            break;
-                        default:
-                            $statusColor = '#5958b2'; 
+                        case 'operacional': $statusColor = '#4caf50'; break;
+                        case 'manutenção': $statusColor = '#ff9800'; break;
+                        case 'danificado': $statusColor = '#e43d3c'; break;
+                        case 'inativo': $statusColor = '#e43d3c'; break;
+                        default: $statusColor = '#5958b2'; 
                     }
 
                     if (!empty($row["origem_rota"]) && !empty($row["destino_rota"])) {
@@ -113,191 +121,169 @@
                     }
 
                     echo '
-                                <div class="bigbox">
-                    <div style="display: flex;">
-                        <img src="../../IMAGENS/' . $imagem . '">
-                        <div class="trainid">' . str_pad($row["pk_trem"], 3, '0', STR_PAD_LEFT) . '</div>
-                    </div>
-
-                    <div class="maininfo">
-                        <div class="box">
-                            <div>Maquinista</div>
-
-                            <img src="../../IMAGENS/user-3296.png">
-                            <div>fulano</div>
-                            <div>000-000-008</div>
-
-                        </div>
+                    <div class="bigbox">
                         <div style="display: flex;">
-                            <div class="box" style="width: 100%;">
-                                Modelo <br>
-                                ' . htmlspecialchars($row["modelo_trem"]) . '
-                            </div>
-                            <div class="box" style="width: 100%;">
-                                Condição <br>
-                                <span class="texto status-trem" style="background-color:'. $statusColor .'">' . htmlspecialchars($row["condicao_trem"]) . '</span>
-                            </div>
-
-                        </div>
-                        <div style="display: flex;">
-                            <div class="box" style="width: 100%;">
-                                Combustivel <br>
-                                Eletrico
-                            </div>
-                            <div class="box" style="width: 100%;">
-                                Velocidade media <br>
-                                320 Km/h
-                            </div>
-
+                            <img src="../../IMAGENS/' . $imagem . '">
+                            <div class="trainid">' . str_pad($row["pk_trem"], 3, '0', STR_PAD_LEFT) . '</div>
                         </div>
 
+                        <div class="maininfo">
+                            <div class="box">
+                                <div>Maquinista</div>
+                                <img src="../../IMAGENS/user-3296.png">
+                                <div>fulano</div>
+                                <div>000-000-008</div>
+                            </div>
 
-
-
-                    </div>
-
-                </div>
-                <hr>
-                <h2>Rota Atual</h2>
-                
-                    <div class="rotaatual">';
-                        if ($localizacao =="SEM_ROTA"){
-                           echo "<div class='nodatalert'>
-                                <h1>Não há rotas disponíveis no momento.</h1>
-                            </div>";
-                        }else{
-                            echo '
-                                    <div class="bigbox" style="text-align: center;font-weight: bold;">
-                                        
-                                    <div class="traintext">
-                                            <div>
-                                                <div class="text">' . htmlspecialchars($row["origem_rota"]) . '</div>
-                                            </div>
-                                            <div class="text">-</div>
-                                            <div>
-                                                <div class="text">' . htmlspecialchars($row["destino_rota"]) . '</div>
-
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                ';
-                        }
-                        
-
-                    echo '
-
-                    
-                        
-                    </div>
-
-                </div>
-                <hr>
-                <h2>Rotas planejadas</h2>';
-                $sql_rotas = "SELECT t.pk_trem, t.modelo_trem, t.condicao_trem, 
-                     r.origem_rota, r.destino_rota
-                    FROM trem t
-                    INNER JOIN rotas_trem rt ON t.pk_trem = rt.pk_trem
-                    INNER JOIN rota r ON rt.pk_rota = r.pk_rota
-                    WHERE t.pk_trem = $tremid
-                    ORDER BY t.pk_trem, r.pk_rota";
-
-                    $result_rotas = $conn->query($sql_rotas);
-
-                    if (!$result_rotas) {
-                    echo "Erro na consulta: " . $conn->error;
-                    exit;
-                }
-
-                    if($result_rotas->num_rows > 0){
-                        while ($row = $result_rotas->fetch_assoc()){
-                            
-                            echo '
-                                    <div class="bigbox" style="text-align: center;font-weight: bold;">
-                                        
-                                    <div class="traintext">
-                                            <div>
-                                                <div class="text">' . htmlspecialchars($row["origem_rota"]) . '</div>
-                                            </div>
-                                            <div class="text">-</div>
-                                            <div>
-                                                <div class="text">' . htmlspecialchars($row["destino_rota"]) . '</div>
-
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                ';
-
-                        }
-
-                    }else{
-                        echo "<div class='nodatalert'>
-                                <h1>Não há rotas disponíveis no momento.</h1>
-                            </div>";
-                    }
-
-
-                echo '<hr>
-                <h2>Histórico de alertas</h2>';
-
-                $result_alertas = $conn->query($sql_alertas);
-                if ($result_alertas->num_rows > 0) {
-                    while($row = $result_alertas->fetch_assoc()) {
-                        ?>
-                        <div class="bigbox">
-                            <div class="event">
-                                <div class="tempo"><?php echo date("d-m-Y H:i:s", strtotime($row["data_hora_alerta"])); ?></div>
-                                <div style="display: flex;">
-                                    <div class="dot" style="background-color: <?php echo ($row["tipo_alerta"] == "Manutenção") ? "gray" : "#e74c3c"; ?>;"></div>
-                                    <?php echo htmlspecialchars($row["descricao_alerta"]); ?>
-                                    <?php if (!empty($row["pk_trem"])): ?>
-                                        no veículo de ID <div class="trainid-text"><?php echo $row["pk_trem"]; ?></div>.
-                                    <?php endif; ?>
+                            <div style="display: flex;">
+                                <div class="box" style="width: 100%;">
+                                    Modelo <br>' . htmlspecialchars($row["modelo_trem"]) . '
+                                </div>
+                                <div class="box" style="width: 100%;">
+                                    Condição <br>
+                                    <span class="texto status-trem" style="background-color:'. $statusColor .'">' . htmlspecialchars($row["condicao_trem"]) . '</span>
                                 </div>
                             </div>
-                        </div>
-                        <?php
-                    }
-                } else {
-                    echo "<div class='bigbox'><div class='event'>Nenhum alerta encontrado.</div></div>";
-                }
-                        }
-                    } else {
-                        echo "<p>Nenhum trem cadastrado.</p>";
-                    }
-                    }
-                echo "<div class='box free'> 
-                        <div class='alterar' style='font-weight: 200;'>
-                            <button id='excluirtrem' onclick='editarApagar()'>Excluir trem</button>
-                        </div>
-                        
-                        <div id='botaoapergunta' style='font-weight: 200; display: none;'>
-                            <p>Tem certeza que deseja apagar esse trem ?</p>
-                            <div class='alterar' style='font-weight: 200;'>
-                                 <a href='../CODIGO/excluirtrem.php?tremid=".$tremid."'>
-                                    <button>Sim</button>
-                                </a>
-                            </div>  
-                            <div class='alterar' style='font-weight: 200;'>
-                                <button onclick='location.reload()'>Não</button>
+
+                            <div style="display: flex;">
+                                <div class="box" style="width: 100%;">Combustível <br>Elétrico</div>
+                                <div class="box" style="width: 100%;">Velocidade média <br>320 Km/h</div>
                             </div>
                         </div>
+                    </div>
+                    <hr>
+                    <h2>Rota Atual</h2>
+                    <div class="rotaatual">';
+                    
+                    if ($localizacao =="SEM_ROTA"){
+                        echo "<div class='nodatalert'><h1>Não há rotas disponíveis no momento.</h1></div>";
+                    } else {
+                        echo '
+                        <div class="bigbox" style="text-align: center;font-weight: bold;">
+                            <div class="traintext">
+                                <div><div class="text">' . htmlspecialchars($row["origem_rota"]) . '</div></div>
+                                <div class="text">-</div>
+                                <div><div class="text">' . htmlspecialchars($row["destino_rota"]) . '</div></div>
+                            </div>
+                        </div>';
+                    }
 
-                        <script>
-                            function editarApagar() {
-                                document.getElementById('botaoapergunta').style.display = 'inline';
-                                document.getElementById('excluirtrem').style.display = 'none';
-                            }
-                        </script>
-                    </div>";
-                                
-                            
-                        ?>
+                    echo '</div><hr><h2>Rotas planejadas</h2>';
 
-    
-    
+                    // ROTAS PLANEJADAS
+                    $sql_rotas = "SELECT t.pk_trem, t.modelo_trem, t.condicao_trem, 
+                                        r.origem_rota, r.destino_rota, rt.data_hora_rota
+                                  FROM trem t
+                                  INNER JOIN rotas_trem rt ON t.pk_trem = rt.pk_trem
+                                  INNER JOIN rota r ON rt.pk_rota = r.pk_rota
+                                  WHERE t.pk_trem = $tremid
+                                  ORDER BY rt.data_hora_rota";
+                    $result_rotas = $conn->query($sql_rotas);
 
+                    if ($result_rotas->num_rows > 0) {
+                        while ($rowr = $result_rotas->fetch_assoc()) {
+                            $dataHora = date("d/m/Y H:i", strtotime($rowr["data_hora_rota"]));
+                            echo '
+                            <div class="bigbox" style="text-align: center;font-weight: bold;">
+                                <div class="traintext">
+                                    <div><div class="text">' . htmlspecialchars($rowr["origem_rota"]) . '</div></div>
+                                    <div class="text">-</div>
+                                    <div><div class="text">' . htmlspecialchars($rowr["destino_rota"]) . '</div></div>
+                                    <div class="text" style="margin-top: 5px; font-size: 0.9em; color: #666;"> ' . $dataHora . '</div>
+                                </div>
+                            </div>';
+                        }
+                    } else {
+                        echo "<div class='nodatalert'><h1>Não há rotas planejadas no momento.</h1></div>";
+                    }
+
+               
+                    echo '
+                    <div class="box free"> 
+                        <div class="alterar" style="font-weight: 200;">
+                            <button id="abrirFormRota">Adicionar Rota</button>
+                        </div>
+                    </div>
+
+                    <div class="bigbox" id="formAddRota" style="display:none; margin-top:20px; padding:20px; border:1px solid #ccc; border-radius:10px; background-color:#f9f9f9;">
+                        <h3>Adicionar nova rota ao trem</h3>
+                        <form method="POST" action="">
+                            <label for="rotaSelect">Selecione a rota:</label><br>
+                            <select name="rota_id" id="rotaSelect" required>
+                                <option value="">-- Escolha uma rota --</option>';
+                                    $rotas = $conn->query("SELECT pk_rota, nome_rota, origem_rota, destino_rota FROM rota");
+                                    while($r = $rotas->fetch_assoc()) {
+                                        echo "<option value='{$r['pk_rota']}'>{$r['nome_rota']} ({$r['origem_rota']} → {$r['destino_rota']})</option>";
+                                    }
+                    echo '
+                            </select><br><br>
+                            <label for="dataHora">Data e hora da rota:</label><br>
+                            <input type="datetime-local" name="data_hora_rota" id="dataHora" required><br><br>
+                            <button type="submit" name="adicionar_rota">Salvar rota</button>
+                            <button type="button" onclick="document.getElementById(\'formAddRota\').style.display=\'none\'">Cancelar</button>
+                        </form>
+                    </div>
+
+                    <script>
+                        document.getElementById("abrirFormRota").addEventListener("click", () => {
+                            const form = document.getElementById("formAddRota");
+                            form.style.display = (form.style.display === "none" || form.style.display === "") ? "block" : "none";
+                        });
+                    </script>
+                    <hr>
+                    <h2>Histórico de alertas</h2>';
+
+                    $result_alertas = $conn->query($sql_alertas);
+                    if ($result_alertas->num_rows > 0) {
+                        while($ra = $result_alertas->fetch_assoc()) {
+                            ?>
+                            <div class="bigbox">
+                                <div class="event">
+                                    <div class="tempo"><?php echo date("d-m-Y H:i:s", strtotime($ra["data_hora_alerta"])); ?></div>
+                                    <div style="display: flex;">
+                                        <div class="dot" style="background-color: <?php echo ($ra["tipo_alerta"] == "Manutenção") ? "gray" : "#e74c3c"; ?>;"></div>
+                                        <?php echo htmlspecialchars($ra["descricao_alerta"]); ?>
+                                        <?php if (!empty($ra["pk_trem"])): ?>
+                                            no veículo de ID <div class="trainid-text"><?php echo $ra["pk_trem"]; ?></div>.
+                                        <?php endif; ?>
+                                    </div>
+                                </div>
+                            </div>
+                            <?php
+                        }
+                    } else {
+                        echo "<div class='bigbox'><div class='event'>Nenhum alerta encontrado.</div></div>";
+                    }
+                }
+            } else {
+                echo "<p>Nenhum trem cadastrado.</p>";
+            }
+
+            echo "<div class='box free'> 
+                    <div class='alterar' style='font-weight: 200;'>
+                        <button id='excluirtrem' onclick='editarApagar()'>Excluir trem</button>
+                    </div>
+                    
+                    <div id='botaoapergunta' style='font-weight: 200; display: none;'>
+                        <p>Tem certeza que deseja apagar esse trem ?</p>
+                        <div class='alterar' style='font-weight: 200;'>
+                            <a href='../CODIGO/excluirtrem.php?tremid=".$tremid."'>
+                                <button>Sim</button>
+                            </a>
+                        </div>  
+                        <div class='alterar' style='font-weight: 200;'>
+                            <button onclick='location.reload()'>Não</button>
+                        </div>
+                    </div>
+
+                    <script>
+                        function editarApagar() {
+                            document.getElementById('botaoapergunta').style.display = 'inline';
+                            document.getElementById('excluirtrem').style.display = 'none';
+                        }
+                    </script>
+                </div>";
+        }
+    ?>
 </body>
-
 </html>

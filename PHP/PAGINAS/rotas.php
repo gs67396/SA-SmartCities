@@ -29,9 +29,14 @@
 
 <body>
     <?php include("../CODIGO/menu.php"); ?>
+    <div class='home'><button id='menuButtonOpen' onclick='openav()'><img id='icon' src='../../IMAGENS/Hamburger_icon.svg.png'></button></div>
+    <script src='../../JAVASCRIPT/menu.js'></script>
+    
         <div id="map" style="width: 100%; height: 400px; position: relative;"
             class="leaflet-container leaflet-touch leaflet-fade-anim leaflet-grab leaflet-touch-drag leaflet-touch-zoom"
             tabindex="0">
+
+            
             <div class="leaflet-pane leaflet-map-pane" style="transform: translate3d(0px, 0px, 0px);">
                 <div class="leaflet-pane leaflet-tile-pane">
                     <div class="leaflet-layer " style="z-index: 1; opacity: 1;">
@@ -97,9 +102,7 @@
                             href="http://www.openstreetmap.org/copyright">OpenStreetMap</a></div>
                 </div>
             </div>
-            <div class="home"><button id="menuButtonOpen" onclick="openav()"><img id="icon"
-                        src="../../IMAGENS/Hamburger_icon.svg.png"></button></div>
-            <script src="../../JAVASCRIPT/menu.js"></script>
+            
         </div>
 
         <script>
@@ -193,6 +196,7 @@
                             </div>";
                     }
                     ?>
+                    
             </div>
 
             <div id="atuaiscontent">
