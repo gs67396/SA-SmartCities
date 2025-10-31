@@ -28,7 +28,7 @@
 
             // Gerar nome único para evitar conflito
             $extensao = pathinfo($arquivo["name"], PATHINFO_EXTENSION);
-            $nomeUnico = uniqid("user_") . "." . $extensao; 
+            $nomeUnico = uniqid("user_") . "." . $extensao;
 
             $caminho = $pasta . $nomeUnico;
 
@@ -67,11 +67,14 @@
 
 <body>
     
-     <div class='home'><button id='menuButtonOpen' onclick='openav()'><img id='icon'
-                src='../../IMAGENS/Hamburger_icon.svg.png'></button>
-            </div>
-    <script src='../../JAVASCRIPT/menu.js'>
-    </script>
+     <?php include("../CODIGO/menu.php"); ?>
+
+    <div class='home'>
+        <button id='menuButtonOpen' onclick='openav()'>
+            <img id='icon' src='../../IMAGENS/Hamburger_icon.svg.png' />
+        </button>
+    </div>
+    <script src='../../JAVASCRIPT/menu.js'></script>
     <?php include("../CODIGO/menu.php"); ?>
 
     <div class="infoLogo">
