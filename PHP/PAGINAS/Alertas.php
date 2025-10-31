@@ -36,10 +36,10 @@
      $sql = "SELECT tipo_alerta, descricao_alerta, data_hora_alerta, pk_trem FROM alerta ORDER BY data_hora_alerta DESC";
         $result = $conn->query($sql);
 
-        if ($result->num_rows > 0) {
-            while($row = $result->fetch_assoc()) {
+        if ($result->num_rows > 0) { 
+            while($row = $result->fetch_assoc()) { 
                 ?>
-                <div class="bigbox">
+                <div class="bigbox"> 
                     <div class="event">
                         <div class="tempo"><?php echo date("d-m-Y H:i:s", strtotime($row["data_hora_alerta"])); ?></div>
                         <div style="display: flex;">
@@ -50,15 +50,20 @@
                             <?php endif; ?>
                         </div>
                     </div>
-                </div>
+                    <Div class="button">Excluir</Div>
                 <?php
             }
         } else {
             echo "<div class='bigbox'><div class='event'>Nenhum alerta encontrado.</div></div>";
         }
-     
      ?>
 
+    </div>
+
+    
+    <!-- para caso precise <div class="alterar">
+    <div class="button">Adicionar alerta</div>
+    </div>-->
 </body>
 
 </html>

@@ -187,8 +187,6 @@ h2 {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
     cursor: pointer;
     text-decoration: none;
-
-
 }
 
 .status-trem {
@@ -279,6 +277,7 @@ h2 {
 }
 
 
+
 .caixa {
     background-color: aquamarine;
     display: flex;
@@ -303,6 +302,19 @@ h2 {
     max-width: 75px;
     height: auto;
     display: inline-block;
+}
+
+.alterar .button {
+    border: none;
+    background-color: #e43d3c;
+    font-family: "Poppins", sans-serif;
+    font-weight: bolder;
+    font-size: 20px;
+    color: white;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
+    cursor: pointer;
+    text-decoration: none;
 }
 
 @media screen and (min-width: 1024px) {
