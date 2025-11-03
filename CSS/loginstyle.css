@@ -100,6 +100,7 @@ button{
     text-overflow: ellipsis;
 }
 
+
 @media screen and (min-width: 1024px){
     .infoLogo {
         max-width: 320px;

@@ -122,7 +122,7 @@ $conn->close();
     <link rel="stylesheet" href="../../CSS/loginstyle.css" />
     <link rel="stylesheet" href="../../CSS/menu.css" />
     <style>
-        /* Esconde o formulário de cadastro inicialmente */
+        
         #formCadastroSensor {
             display: none;
             margin-top: 15px;
@@ -135,7 +135,7 @@ $conn->close();
 
     <?php include("../CODIGO/menu.php"); ?>
 
-    <div class='home'>
+    <div class='home' style="text-align: left;">
         <button id='menuButtonOpen' onclick='openav()'>
             <img id='icon' src='../../IMAGENS/Hamburger_icon.svg.png' />
         </button>
@@ -149,7 +149,7 @@ $conn->close();
         <p style="color: green; font-weight: bold;"><?= htmlspecialchars($msg) ?></p>
     <?php endif; ?>
 
-    <!-- Botão para mostrar/esconder o formulário -->
+    
     <button id="btnMostrarForm">Cadastrar sensor</button>
 
     <form method="POST" id="formCadastroSensor">
@@ -198,7 +198,7 @@ $conn->close();
                             </td>
                         </tr>
 
-                        <!-- Linha de edição, escondida inicialmente -->
+                        
                         <tr class="editRow" id="editRow<?= $s['id_sensor'] ?>" style="display:none;">
                             <td colspan="5">
                                 <form method="POST" class="formEditSensor">
@@ -233,18 +233,18 @@ $conn->close();
                     const sensorId = button.getAttribute('data-id');
                     const editRow = document.getElementById('editRow' + sensorId);
                     
-                    // Esconde todas as linhas de edição antes
+                    
                     document.querySelectorAll('.editRow').forEach(row => row.style.display = 'none');
                     
-                    // Mostra a linha de edição da sensor clicado
+                    
                     editRow.style.display = 'table-row';
                     
-                    // Opcional: scroll para o formulário de edição
+                   
                     editRow.scrollIntoView({ behavior: 'smooth', block: 'center' });
                 });
             });
 
-            // Botão cancelar para esconder o formulário
+            
             document.querySelectorAll('.btnCancelar').forEach(button => {
                 button.addEventListener('click', () => {
                     const sensorId = button.getAttribute('data-id');

@@ -13,8 +13,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../../CSS/rotasstyle.css">
     <link rel="stylesheet" href="../../CSS/menu.css">
+    <link rel="stylesheet" href="../../CSS/traininfostyle.css">
+    <link rel="stylesheet" href="../../CSS/rotasstyle.css">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
         integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
@@ -257,9 +258,36 @@
             </div>
 
             <div id="alertascnotent" style="display: none">
-                <div class="nodatalert">
-                    <h1>Não há alertas disponíveis no momento.</h1>
-                </div>
+                <?php 
+                $sql = "SELECT tipo_alerta, descricao_alerta, data_hora_alerta, pk_trem FROM alerta ORDER BY data_hora_alerta DESC";
+                    $result = $conn->query($sql);
+
+                    if ($result->num_rows > 0) { 
+                        while($row = $result->fetch_assoc()) { 
+                            ?>
+                            <div class="traindisplay"> 
+                                <div class="event">
+                                    <div class="tempo"><?php echo date("d-m-Y H:i:s", strtotime($row["data_hora_alerta"])); ?></div>
+                                    <div style="display: flex;">
+                                        <div class="dot" style="background-color: <?php echo ($row["tipo_alerta"] == "Manutenção") ? "gray" : "#e74c3c"; ?>;"></div>
+                                        <?php echo htmlspecialchars($row["descricao_alerta"]); ?>
+                                        <?php if (!empty($row["pk_trem"])): ?>
+                                            no veículo de ID <div class="trainid-text"><?php echo $row["pk_trem"]; ?></div>.
+                                        <?php endif; ?>
+                                    </div>
+                                </div>
+                                <Div class="button">Excluir</Div>
+                            <?php
+                        }
+                    } else {
+                        echo "<div class='nodatalert'>
+                                    <h1>Não há alertas disponíveis no momento.</h1>
+                                </div>";
+                    }
+                ?>
+
+    </div>
+                
             </div>
 
 

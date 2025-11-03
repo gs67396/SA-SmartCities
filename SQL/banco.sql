@@ -57,6 +57,7 @@ CREATE TABLE sensores (
 CREATE TABLE alerta(
     pk_alerta INT PRIMARY KEY AUTO_INCREMENT,
     tipo_alerta VARCHAR(50) NOT NULL,
+    view_alerta BOOLEAN NOT NULL,
     descricao_alerta VARCHAR(250) NOT NULL,
     data_hora_alerta DATETIME NOT NULL,
     pk_trem INT
@@ -109,5 +110,5 @@ INSERT INTO rotas_trem (pk_trem, pk_rota, data_hora_rota) VALUES
 (1, 1, '2025-11-11 15:00:00');
 
 -- Inserts alerta
-INSERT INTO alerta (tipo_alerta, descricao_alerta, data_hora_alerta, pk_trem) VALUES 
-('Manutenção', 'O trem precisa de manutenção urgente.', '2024-06-15 14:30:00', 2);
+INSERT INTO alerta (tipo_alerta, view_alerta, descricao_alerta, data_hora_alerta, pk_trem) VALUES 
+('Manutenção', FALSE , 'O trem precisa de manutenção urgente.', '2024-06-15 14:30:00', 2);
