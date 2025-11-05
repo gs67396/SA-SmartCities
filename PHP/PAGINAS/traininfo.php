@@ -45,7 +45,7 @@
                 $data_hora = $_POST['data_hora_rota'];
 
                 if (!empty($rota_id) && !empty($data_hora)) {
-                    $stmt = $conn->prepare("INSERT INTO rotas_trem (pk_trem, pk_rota, data_hora_rota) VALUES (?, ?, ?)");
+                    $stmt = $conn->prepare("INSERT IGNORE INTO rotas_trem (pk_trem, pk_rota, data_hora_rota) VALUES (?, ?, ?)");
                     $stmt->bind_param("iis", $tremid, $rota_id, $data_hora);
                     if ($stmt->execute()) {
                         echo "<script>alert('Rota adicionada com sucesso!'); window.location.href='?tremid=$tremid';</script>";

@@ -50,7 +50,7 @@
                             <?php endif; ?>
                         </div>
                     </div>
-                    <Div class="button">Excluir</Div>
+                    <div class="button">Excluir</div>             
                 <?php
             }
         } else {
@@ -58,12 +58,14 @@
         }
      ?>
 
-    </div>
-
-    
-    <!-- para caso precise <div class="alterar">
-    <div class="button">Adicionar alerta</div>
-    </div>-->
+</div>
+    <div class="box free"> 
+            <a href="Adicionar_alerta.php" style='text-decoration: none;'>
+            <div class="alterar" style="font-weight: 200;" >     
+                            <button>Adicionar alerta</button>        
+                        </div>
+            </a>
+        </div>
 </body>
 
 </html>
