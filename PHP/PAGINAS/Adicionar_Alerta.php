@@ -27,3 +27,29 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $conn->close();
 }
 ?>
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adicionar Alertas</title>
+    <link rel="stylesheet" href="../../CSS/loginstyle.css">
+</head>
+<body>
+    <h2>Alertas de Sensores</h2>
+    <form method="POST" action="">
+        <label for="modelo_trem">Modelo do Trem:</label>
+        <input type="text" id="modelo_trem" name="modelo_trem" required>
+        <br><br>
+        <button type="submit">Adicionar alerta</button>
+    </form>
+    <h2>Alertas de Manuntenção</h2>
+    <form method="POST" action="">
+        <label for="modelo_trem">Modelo do Trem:</label>
+        <input type="text" id="modelo_trem" name="modelo_trem" required>
+        <br><br>
+        <button type="submit">Adicionar alerta</button>
+    </form>
+</body>
+</html>
