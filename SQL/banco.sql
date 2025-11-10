@@ -85,7 +85,9 @@ ALTER TABLE alerta
 
 -- Inserts usuario
 INSERT INTO usuario (nome_usuario, email_usuario, senha_usuario, genero) VALUES
-('Caio Alves','caio.alves@smartraimail.com','$2y$10$HAuHoaoqfXIIWVTqkIfYRegMYNjJc80BpcJ0iUbb0oRiS7RZjacPe','masc');
+('Caio Alves','caio.alves@smartraimail.com','$2y$10$HAuHoaoqfXIIWVTqkIfYRegMYNjJc80BpcJ0iUbb0oRiS7RZjacPe','masc'),
+('Guilherme Ramos','guilherme.ramos@smartraimail.com','$2y$10$GlgYEnGkaXCPFDMdtmKFAuL8KnpdMUX9d12/oa1YKbrQfIGVc7j1y','masc'),
+('Gabriel Santos','gabriel.santos@smartraimail.com','$2y$10$NpRrFWwnvIFUxQZKEwQdMez9dutP349TFL9CJK7m7SH7RCafDvTRu','masc');
 
 -- Inserts sensores
 INSERT INTO sensores (nome_sensor, tipo_sensor, localizacao_trem) VALUES
