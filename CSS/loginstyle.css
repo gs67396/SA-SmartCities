@@ -100,6 +100,14 @@ button{
     text-overflow: ellipsis;
 }
 
+.Oculto1 {
+    display: none;
+}
+
+.Oculto2 {
+    display: none;
+}
+
 
 @media screen and (min-width: 1024px){
     .infoLogo {
