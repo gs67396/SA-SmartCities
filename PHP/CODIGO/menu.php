@@ -11,5 +11,5 @@
         <a href='../PAGINAS/configuracoes.php'>Configurações</a>
         <a href='../PAGINAS/Gerenciamento_sensores.php'>Sensores</a>
         <a href='../PAGINAS/Manual_usuario.php'>Ajuda</a>
-        <a href='../PAGINAS/Sobre_nós.php'>Sobre nós</a>
+        <a href='../PAGINAS/Sobre_nos.php'>Sobre nós</a>
     </div>
