@@ -34,37 +34,28 @@
     <div class="bigbox">
         <details class="selecao">
             <summary>1. Nossa Missão</summary>
-            <p></p>
-            <p></p>
-        </details>
-    </div>
-
-     <div class="bigbox">
-        <details class="selecao">
-            <summary>2. Nossa História</summary>
-            <p></p>
-            <p></p>
+            <p>Nossa missão é inspirar, educar e conectar pessoas que compartilham do fascínio pelo universo ferroviário.</p>
         </details>
     </div>
 
     <div class="bigbox">
         <details class="selecao">
-            <summary>3. O Que Oferecemos:</summary>
+            <summary>2. O Que Oferecemos:</summary>
             <details class="selecao">
                 <p>Smart Train, você encontrará:</p>
                 <summary>Guias</summary>
-                <p></p>
+                <p>Informações detalhadas e dicas práticas para poder navegar pelo site e usar suas funcionalidades</p>
             </details>
             <details class="selecao">
-                <summary>Segurança</summary>
-                <p></p>
+                <summary>Segurança e Conforto</summary>
+                <p>Para você navegar por Joinville sem problemas de um lado para o outro, mantendo em segurança enquanto aproveita a viagem.</p>
             </details>
         </details>
     </div>
 
     <div class="bigbox">
         <details class="selecao">
-            <summary>4. Produtos Selecionados:</summary>
+            <summary>3. Produtos Selecionados:</summary>
             <p>Uma curadoria de locomotivas, vagões, trilhos, prédios e acessórios das melhores marcas do mercado (se aplicável, para sites de e-commerce).</p>
             <p>Notícias e Eventos: Fique por dentro das novidades do mundo do ferromodelismo e dos eventos presenciais e online.</p>
         </details>
@@ -72,14 +63,14 @@
 
     <div class="bigbox">
         <details class="selecao">
-            <summary>5.Conecte-se Conosco</summary>
+            <summary>4. Conecte-se Conosco</summary>
             <p>Convidamos você a explorar nosso site, tirar suas dúvidas e, o mais importante, compartilhar sua própria jornada sobre os trilhos. Porque, no fim das contas, não é apenas sobre trens. É sobre as histórias que criamos, as memórias que construímos e as conexões que fazemos ao longo do caminho.</p>
         </details>
     </div>
 
     <div class="bigbox">
         <details class="selecao">
-            <summary>6 Contatos</summary>
+            <summary>5. Contatos</summary>
             <p>Telefone: 47 98881 9133</p>
             <p>Email: Suporte_trem@smartraimail.com</p>
         </details>
