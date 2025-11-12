@@ -1,14 +1,28 @@
 <?php
-    require_once("../CODIGO/bd.php");
-    session_start();
+require_once("../CODIGO/bd.php");
+session_start();
 
-    if (!isset($_SESSION["conectado"]) || $_SESSION["conectado"] != true) {
-        header("Location: login.php");
-        exit;
-    }
+if (!isset($_SESSION["conectado"]) || $_SESSION["conectado"] != true) {
+    header("Location: login.php");
+    exit;
+}
+
+// =========================
+// REMOVER ALERTA
+// =========================
+if (isset($_POST["remover_alerta"])) {
+    $id = intval($_POST["remover_alerta"]);
+    $stmt = $conn->prepare("DELETE FROM alerta WHERE pk_alerta = ?");
+    $stmt->bind_param("i", $id);
+    $stmt->execute();
+    $stmt->close();
+    // Atualiza a página para refletir a exclusão
+    header("Location: " . $_SERVER['PHP_SELF']);
+    exit;
+}
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt">
 
 <head>
     <meta charset="UTF-8">
@@ -25,47 +39,62 @@
 
 <body>
     <?php include("../CODIGO/menu.php"); ?>
-    <div class='home'><button id='menuButtonOpen' onclick='openav()'><img id='icon'
-                src='../../IMAGENS/Hamburger_icon.svg.png'></button></div>
+    <div class='home'>
+        <button id='menuButtonOpen' onclick='openav()'>
+            <img id='icon' src='../../IMAGENS/Hamburger_icon.svg.png'>
+        </button>
+    </div>
     <script src='../../JAVASCRIPT/menu.js'></script>
 
     <div class="infoLogo">
         Alertas
     </div>
-     <?php 
-     $sql = "SELECT tipo_alerta, descricao_alerta, data_hora_alerta, pk_trem FROM alerta ORDER BY data_hora_alerta DESC";
-        $result = $conn->query($sql);
 
-        if ($result->num_rows > 0) { 
-            while($row = $result->fetch_assoc()) { 
-                ?>
-                <div class="bigbox"> 
-                    <div class="event">
-                        <div class="tempo"><?php echo date("d-m-Y H:i:s", strtotime($row["data_hora_alerta"])); ?></div>
-                        <div style="display: flex;">
-                            <div class="dot" style="background-color: <?php echo ($row["tipo_alerta"] == "Manutenção") ? "gray" : "#e74c3c"; ?>;"></div>
-                            <?php echo htmlspecialchars($row["descricao_alerta"]); ?>
-                            <?php if (!empty($row["pk_trem"])): ?>
-                                no veículo de ID <div class="trainid-text"><?php echo $row["pk_trem"]; ?></div>.
-                            <?php endif; ?>
-                        </div>
+    <?php 
+    $sql = "SELECT pk_alerta, tipo_alerta, descricao_alerta, data_hora_alerta, pk_trem 
+            FROM alerta 
+            ORDER BY data_hora_alerta DESC";
+    $result = $conn->query($sql);
+
+    if ($result->num_rows > 0) { 
+        while($row = $result->fetch_assoc()) { 
+    ?>
+        <div class="bigbox"> 
+            <div class="event">
+                <div class="tempo"><?php echo date("d-m-Y H:i:s", strtotime($row["data_hora_alerta"])); ?></div>
+                <div style="display: flex;">
+                    <div class="dot" 
+                        style="background-color: <?php echo ($row["tipo_alerta"] == "Manutenção") ? "gray" : "#e74c3c"; ?>;">
                     </div>
-                    <div class="button">Excluir</div>             
-                <?php
-            }
-        } else {
-            echo "<div class='bigbox'><div class='event'>Nenhum alerta encontrado.</div></div>";
-        }
-     ?>
+                    <?php echo htmlspecialchars($row["descricao_alerta"]); ?>
+                    <?php if (!empty($row["pk_trem"])): ?>
+                        no veículo de ID <div class="trainid-text"><?php echo $row["pk_trem"]; ?></div>.
+                    <?php endif; ?>
+                </div>
+            </div>
 
-</div>
-    <div class="box free"> 
-            <a href="Adicionar_alerta.php" style='text-decoration: none;'>
-            <div class="alterar" style="font-weight: 200;" >     
-                            <button>Adicionar alerta</button>        
-                        </div>
-            </a>
+            <!-- Formulário para excluir alerta -->
+            <form method="POST" style="display:inline;">
+                <input type="hidden" name="remover_alerta" value="<?php echo $row['pk_alerta']; ?>">
+                <button type="submit" class="button" 
+                        onclick="return confirm('Tem certeza que deseja excluir este alerta?');">
+                    Excluir
+                </button>
+            </form>
         </div>
-</body>
+    <?php
+        }
+    } else {
+        echo "<div class='bigbox'><div class='event'>Nenhum alerta encontrado.</div></div>";
+    }
+    ?>
 
+    <div class="box free"> 
+        <a href="Adicionar_alerta.php" style='text-decoration: none;'>
+            <div class="alterar" style="font-weight: 200;">     
+                <button>Adicionar alerta</button>        
+            </div>
+        </a>
+    </div>
+</body>
 </html>
