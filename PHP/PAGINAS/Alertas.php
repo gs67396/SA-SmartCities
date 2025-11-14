@@ -81,6 +81,13 @@ if (isset($_POST["remover_alerta"])) {
                     Excluir
                 </button>
             </form>
+
+            <form method="POST" style="display:inline;">
+                <input type="hidden" name="Editar_alerta" value="<?php echo $row['pk_alerta']; ?>">
+                <button type="submit" class="button" >
+                    Editar
+                </button>
+            </form>
         </div>
     <?php
         }

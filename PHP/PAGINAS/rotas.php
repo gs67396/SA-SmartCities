@@ -276,7 +276,7 @@
                                         <?php endif; ?>
                                     </div>
                                 </div>
-                                <Div class="button">Excluir</Div>
+                            </div>
                             <?php
                         }
                     } else {

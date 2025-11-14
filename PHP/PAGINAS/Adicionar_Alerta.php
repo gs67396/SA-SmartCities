@@ -3,23 +3,36 @@ session_start();
 require_once("../CODIGO/bd.php"); 
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    $tipo_alerta = trim($_POST['tipo_alerta'] ?? '');
+    $descricao_alerta = trim($_POST['descricao_alerta'] ?? '');
+    $data_hora_alerta = trim($_POST['data_hora_alerta'] ?? '');
 
-    $modelo_trem = trim($_POST['modelo_trem']);
-    $condicao_trem = "inativo"; 
-
-    if ($modelo_trem !== "") { 
-        $sql = "INSERT INTO trem (modelo_trem, condicao_trem) VALUES (?, ?)";
-        $stmt = $conn->prepare($sql);
-        $stmt->bind_param("ss", $modelo_trem, $condicao_trem);
-        if ($stmt->execute()) {
-            $stmt->close();
-            $conn->close();
-         
-            header("Location: inicio.php");
-            exit(); 
+    if ($tipo_alerta !== "" && $descricao_alerta !== "" && $data_hora_alerta !== "") { 
+        // Verifica se o usuário enviou o pk_trem manualmente
+        $pk_trem = isset($_POST['pk_trem']) ? intval($_POST['pk_trem']) : null;
+        if (!$pk_trem) {
+            // Se não enviou, pega o primeiro trem cadastrado
+            $sql_trem = "SELECT pk_trem FROM trem LIMIT 1";
+            $result_trem = $conn->query($sql_trem);
+            if ($result_trem && $row = $result_trem->fetch_assoc()) {
+                $pk_trem = $row['pk_trem'];
+            }
+        }
+        if ($pk_trem) {
+            $sql = "INSERT INTO alerta (tipo_alerta, descricao_alerta, data_hora_alerta, pk_trem) VALUES (?, ?, ?, ?)";
+            $stmt = $conn->prepare($sql);
+            $stmt->bind_param("sssi", $tipo_alerta, $descricao_alerta, $data_hora_alerta, $pk_trem);
+            if ($stmt->execute()) {
+                $stmt->close();
+                $conn->close();
+                header("Location: Alertas.php?sucesso=1");
+                exit(); 
+            } else {
+                echo "Erro ao cadastrar alerta.";
+                $stmt->close();
+            }
         } else {
-            echo "Erro ao cadastrar trem.";
-            $stmt->close();
+            echo "Nenhum trem cadastrado encontrado. Cadastre um trem antes de adicionar alertas.";
         }
     } else {
         echo "Preencha todos os campos obrigatórios.";
@@ -38,77 +51,65 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     <link rel="stylesheet" href="../../CSS/loginstyle.css">
 </head>
 
-<body>
+<body></body>
 
-     <button onclick="alternarVisibilidade()">Manuntenção</button>
+<h1>Alertas dos trens</h1>
 
-    <div class="Oculto1">
+     <button onclick="alternarVisibilidade()">Manutenção</button>
 
-        <h2>Alertas de Manuntenção</h2>
+    <div class="Oculto1" id="Oculto1">
+        <h2>Alertas de Manutenção</h2>
         <form method="POST" action="">
-            <label for="modelo_trem">Modelo do Trem:</label>
-            <input type="text" id="modelo_trem" name="modelo_trem" required>
-            <lapel for="tipo_alerta">Tipo de alerta:</label>
-                <input type="text" id="modelo_trem" name="modelo_trem" required>
-                <label for="descricao_alerta">Descrição do alerta:</label>
-                <input type="text" id="modelo_trem" name="modelo_trem" required>
-                <label for="data_hora_alerta">Data e hora do alerta:</label>
-                <input type="datetime-local" id="data_hora_alerta" name="data_hora_alerta" required>
-                <br><br>
-                <button type="submit">Adicionar alerta</button>
+            <label for="pk_trem">ID do Trem (opcional):</label>
+            <input type="number" id="pk_trem" name="pk_trem" min="1" placeholder="ID do Trem">
+            <label for="tipo_alerta">Tipo de alerta:</label>
+            <input type="text" id="tipo_alerta" name="tipo_alerta" required>
+            <label for="descricao_alerta">Descrição do alerta:</label>
+            <input type="text" id="descricao_alerta" name="descricao_alerta" required>
+            <label for="data_hora_alerta">Data e hora do alerta:</label>
+            <input type="datetime-local" id="data_hora_alerta" name="data_hora_alerta" required>
+            <br><br>
+            <button type="submit">Adicionar alerta</button>
         </form>
-
-    </div>
-
-    <button onclick="alternarVisibilidade()">Sensores</button>
-
-    <div class="Oculto2">
-
-        <h2>Alertas de Sensores</h2>
-        <form method="POST" action="">
-            <label for="modelo_trem">Modelo do Trem:</label>
-            <input type="text" id="modelo_trem" name="modelo_trem" required>
-            <label for="id_sensor">Id do sensor:</label>
-            <input type="text" id="modelo_trem" name="modelo_trem" required>
-            <lapel for="tipo_alerta">Tipo de alerta:</label>
-                <input type="text" id="modelo_trem" name="modelo_trem" required>
-                <label for="descricao_alerta">Descrição do alerta:</label>
-                <input type="text" id="modelo_trem" name="modelo_trem" required>
-                <label for="data_hora_alerta">Data e hora do alerta:</label>
-                <input type="datetime-local" id="data_hora_alerta" name="data_hora_alerta" required>
-                <br><br>
-                <button type="submit">Adicionar alerta</button>
-        </form>
-
     </div>
 
      <script>
         function alternarVisibilidade() {
-            // Obtém o elemento pelo seu ID
             var elemento = document.getElementById("Oculto1");
-
-            // Verifica o estado atual da propriedade 'display'
             if (elemento.style.display === "none" || elemento.style.display === "") {
-                // Se estiver oculto ou sem estilo definido, mostra como bloco (ou outro valor, como 'block', 'flex', etc., dependendo do layout desejado)
                 elemento.style.display = "block";
             } else {
-                // Se estiver visível, oculta
                 elemento.style.display = "none";
             }
         }
     </script>
 
-    <script>
-        function alternarVisibilidade() {
-            // Obtém o elemento pelo seu ID
-            var elemento = document.getElementById("Oculto2");
+    <hr>
 
-            // Verifica o estado atual da propriedade 'display'
+    <button onclick="alternarVisibilidade2()">Sensores</button>
+
+    <div class="Oculto2" id="Oculto2">
+        <h2>Alertas de Sensores</h2>
+        <form method="POST" action="">
+            <label for="pk_trem">ID do Trem (opcional):</label>
+            <input type="number" id="pk_trem" name="pk_trem" min="1" placeholder="ID do Trem">
+            <label for="tipo_alerta">Tipo de alerta:</label>
+            <input type="text" id="tipo_alerta" name="tipo_alerta" required>
+            <label for="descricao_alerta">Descrição do alerta:</label>
+            <input type="text" id="descricao_alerta" name="descricao_alerta" required>
+            <label for="data_hora_alerta">Data e hora do alerta:</label>
+            <input type="datetime-local" id="data_hora_alerta" name="data_hora_alerta" required>
+            <br><br>
+            <button type="submit">Adicionar alerta</button>
+        </form>
+    </div>
+
+    <script>
+        function alternarVisibilidade2() {
+            var elemento = document.getElementById("Oculto2");
             if (elemento.style.display === "none" || elemento.style.display === "") {
-                // Se estiver oculto ou sem estilo definido, mostra como bloco (ou outro valor, como 'block', 'flex', etc., dependendo do layout desejado)
                 elemento.style.display = "block";
             } else {
-                // Se estiver visível, oculta
                 elemento.style.display = "none";
             }
         }
