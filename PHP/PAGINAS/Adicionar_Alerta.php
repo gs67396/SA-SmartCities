@@ -2,6 +2,46 @@
 session_start();
 require_once("../CODIGO/bd.php"); 
 
+// Lógica de edição de alerta
+if (isset($_GET['acao']) && $_GET['acao'] === 'editar' && isset($_GET['id_editar'])) {
+    $id_editar = intval($_GET['id_editar']);
+    $alerta = null;
+    $sql = "SELECT * FROM alerta WHERE pk_alerta = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("i", $id_editar);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    if ($result && $result->num_rows > 0) {
+        $alerta = $result->fetch_assoc();
+    }
+    $stmt->close();
+}
+
+// Atualização do alerta
+if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['editar_alerta'])) {
+    $pk_alerta = intval($_POST['pk_alerta']);
+    $tipo_alerta = trim($_POST['tipo_alerta'] ?? '');
+    $descricao_alerta = trim($_POST['descricao_alerta'] ?? '');
+    $data_hora_alerta = trim($_POST['data_hora_alerta'] ?? '');
+    $pk_trem = isset($_POST['pk_trem']) ? intval($_POST['pk_trem']) : null;
+    if ($tipo_alerta !== "" && $descricao_alerta !== "" && $data_hora_alerta !== "" && $pk_trem) {
+        $sql = "UPDATE alerta SET tipo_alerta=?, descricao_alerta=?, data_hora_alerta=?, pk_trem=? WHERE pk_alerta=?";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("sssii", $tipo_alerta, $descricao_alerta, $data_hora_alerta, $pk_trem, $pk_alerta);
+        if ($stmt->execute()) {
+            $stmt->close();
+            $conn->close();
+            header("Location: Alertas.php?editado=1");
+            exit();
+        } else {
+            echo "Erro ao editar alerta.";
+            $stmt->close();
+        }
+    } else {
+        echo "Preencha todos os campos obrigatórios para editar.";
+    }
+}
+
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $tipo_alerta = trim($_POST['tipo_alerta'] ?? '');
     $descricao_alerta = trim($_POST['descricao_alerta'] ?? '');
@@ -39,6 +79,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     }
     $conn->close();
 }
+
+
 ?>
 
 <!DOCTYPE html>
@@ -114,6 +156,31 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             }
         }
     </script>
+
+    <hr>
+
+    <h2>Editar Alerta Existente</h2>
+    <form method="GET" action="Adicionar_Alerta.php">
+        <label for="id_editar">ID do Alerta:</label>
+        <input type="number" id="id_editar" name="id_editar" min="1" required>
+        <button type="submit" name="acao" value="editar">Buscar Alerta</button>
+    </form>
+
+    <?php if (isset($alerta)) : ?>
+        <h3>Editando Alerta #<?= $alerta['pk_alerta'] ?></h3>
+        <form method="POST" action="">
+            <input type="hidden" name="pk_alerta" value="<?= $alerta['pk_alerta'] ?>">
+            <label for="pk_trem">ID do Trem:</label>
+            <input type="number" id="pk_trem" name="pk_trem" min="1" value="<?= $alerta['pk_trem'] ?>" required>
+            <label for="tipo_alerta">Tipo de alerta:</label>
+            <input type="text" id="tipo_alerta" name="tipo_alerta" value="<?= htmlspecialchars($alerta['tipo_alerta']) ?>" required>
+            <label for="descricao_alerta">Descrição do alerta:</label>
+            <input type="text" id="descricao_alerta" name="descricao_alerta" value="<?= htmlspecialchars($alerta['descricao_alerta']) ?>" required>
+            <label for="data_hora_alerta">Data e hora do alerta:</label>
+            <input type="datetime-local" id="data_hora_alerta" name="data_hora_alerta" value="<?= str_replace(' ', 'T', $alerta['data_hora_alerta']) ?>" required>
+            <button type="submit" name="editar_alerta" value="1">Salvar Alterações</button>
+        </form>
+    <?php endif; ?>
 </body>
 
 </html>
