@@ -68,7 +68,7 @@ if (isset($_POST["remover_alerta"])) {
                     </div>
                     <?php echo htmlspecialchars($row["descricao_alerta"]); ?>
                     <?php if (!empty($row["pk_trem"])): ?>
-                        no veículo de ID <div class="trainid-text"><?php echo $row["pk_trem"]; ?></div>.
+                        No veículo de ID <div class="trainid-text"><?php echo $row["pk_trem"]; ?></div>.
                     <?php endif; ?>
                 </div>
             </div>
